@@ -20,7 +20,8 @@
 from pyb import Pin, Timer, ADC, ExtInt
 from array import array
 
-def tim_cb(t):
+
+def tim_cb(tim):
     global data, idx, done
     data[idx] = adc.read()
     if idx == 100:
@@ -30,12 +31,10 @@ def tim_cb(t):
         tim7.callback(None)
         done = True
 
+ON = False
 def button_LED_toggle(the_pin):
     global ON
-    if ON:
-        ON = False
-    else:
-        ON = True
+    ON = not ON
 
 button_int = ExtInt(Pin.cpu.C13, ExtInt.IRQ_FALLING, Pin.PULL_NONE, button_LED_toggle)
 
