@@ -55,33 +55,30 @@ def main():
     V_in = 3770    # mV
     R = 34190      # Ω
     C = 0.00000428 # F
-    limit = 100
+    limit = 200
+
+    # Voltage vs Time
     time, trial1, trial2, trial3, trial4, trial5, trial6, trial7, title = Extract_Data_CSV("Lab 0x00.csv")  
     time = [i/600 for i in time]
     time_experimental = time *7
     time_theoretical = time
     voltage_theoretical = [0]*100+[ V_in*(1-math.exp(-t/(R*C))) for t in time_theoretical]
     all_trails = trial1 + trial2 + trial3 + trial4 + trial5 + trial6+ trial7
+    plt.rcParams.update({'font.size': 20})
     plt.figure()
-    # plt.plot(time, trial1)
-    # plt.plot(time, trial2)
-    # plt.plot(time, trial3)
-    # plt.plot(time, trial4)
-    # plt.plot(time, trial5)
-    # plt.plot(time, trial6)
-    # plt.plot(time, trial7)
-    plt.scatter(time_experimental, all_trails, marker='o', color="black")
-    plt.plot(time_theoretical, voltage_theoretical[0:1000], color="#c44800")
-
+    plt.plot(time_theoretical, voltage_theoretical[0:1000], color="#c44800", linewidth=3)
+    plt.scatter(time_experimental, all_trails, marker='o', color="black", s=5)
     plt.title("Voltage (mV) vs Time (s)")
     plt.xlabel("Time (s)")
     plt.ylabel("Voltage (mV)")
+    plt.xlim(0,1.666)
+    plt.ylim(0,4000)
+    plt.legend(['Experimental', 'Theoretical'])
     plt.show()
 
 
+    # LIN. Voltage vs Time
     plt.figure()
-
-
     time_experimental = time[0:limit] * 7
     time_theoretical = time[0:limit]
     all_trails = trial1[100:100+limit] + trial2[100:100+limit] + trial3[100:100+limit] + trial4[100:100+limit] + trial5[100:100+limit] + trial6[100:100+limit] + trial7[100:100+limit]
@@ -90,12 +87,20 @@ def main():
 
     plt.scatter(time_experimental, y, marker='o', color='black', s=5)
     plt.plot(time_theoretical, y_theoretical, color='#c44800')
-    plt.legend(['Experimental', 'Theoretical'])
+    plt.xlim(0,0.333)
+    plt.ylim(-2.25,0)
+    plt.title("LIN. Voltage vs Time (s)")
+    plt.xlabel("Time (s)")
+    plt.ylabel("LIN. Voltage")
 
     # Setting intercept to 0 and getting the slope 
     A = np.array(time_experimental).reshape(-1, 1)
     m = np.linalg.lstsq(A, y, rcond=None)[0][0]
-    print(-1/m)
+    time_curve_fit = time[0:limit]
+    y_curve_fit = [ (m)*t for t in time_curve_fit]
+    plt.plot(time_curve_fit, y_curve_fit, color="#5B9FF7",linestyle="--", label="Dashed (--)", linewidth=2)
+    plt.legend(['Experimental', 'Theoretical', 'Experimental Curve Fit'])
+    plt.text(0.275, -1.5, 'y ='+ str(round(m, 4)) +' t' , fontsize=20, color="black")
     plt.show()
 
 
