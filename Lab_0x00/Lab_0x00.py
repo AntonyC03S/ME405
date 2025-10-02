@@ -1,4 +1,4 @@
-from pyb import Pin, Timer, ADC, ExtInt
+from pyb import Pin, Timer, ADC, ExtInt # type: ignore
 from array import array
 
 
