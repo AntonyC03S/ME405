@@ -52,16 +52,27 @@ def Extract_Data_CSV(file = "data.csv"):
 
 
 def main():  
+    V_in = 3770    # mV
+    R = 34190      # Ω
+    C = 0.00000428 # F
+    limit = 100
     time, trial1, trial2, trial3, trial4, trial5, trial6, trial7, title = Extract_Data_CSV("Lab 0x00.csv")  
     time = [i/600 for i in time]
+    time_experimental = time *7
+    time_theoretical = time
+    voltage_theoretical = [0]*100+[ V_in*(1-math.exp(-t/(R*C))) for t in time_theoretical]
+    all_trails = trial1 + trial2 + trial3 + trial4 + trial5 + trial6+ trial7
     plt.figure()
-    plt.plot(time, trial1)
-    plt.plot(time, trial2)
-    plt.plot(time, trial3)
-    plt.plot(time, trial4)
-    plt.plot(time, trial5)
-    plt.plot(time, trial6)
-    plt.plot(time, trial7)
+    # plt.plot(time, trial1)
+    # plt.plot(time, trial2)
+    # plt.plot(time, trial3)
+    # plt.plot(time, trial4)
+    # plt.plot(time, trial5)
+    # plt.plot(time, trial6)
+    # plt.plot(time, trial7)
+    plt.scatter(time_experimental, all_trails, marker='o', color="black")
+    plt.plot(time_theoretical, voltage_theoretical[0:1000], color="#c44800")
+
     plt.title("Voltage (mV) vs Time (s)")
     plt.xlabel("Time (s)")
     plt.ylabel("Voltage (mV)")
@@ -69,23 +80,20 @@ def main():
 
 
     plt.figure()
-    V_in = 3770    # mV
-    R = 34190      # Ω
-    C = 0.00000428 # F
-    limit = 100
 
-    all_time = time[0:limit] * 7
+
+    time_experimental = time[0:limit] * 7
     time_theoretical = time[0:limit]
     all_trails = trial1[100:100+limit] + trial2[100:100+limit] + trial3[100:100+limit] + trial4[100:100+limit] + trial5[100:100+limit] + trial6[100:100+limit] + trial7[100:100+limit]
     y = [math.log(1-(Vout)/(V_in)) for Vout in all_trails]
     y_theoretical = [ (-t/(R*C)) for t in time_theoretical]
 
-    plt.scatter(all_time, y, marker='o', color='black', s=5)
-    plt.scatter(time_theoretical, y_theoretical, marker='o', color='red', s=2)
+    plt.scatter(time_experimental, y, marker='o', color='black', s=5)
+    plt.plot(time_theoretical, y_theoretical, color='#c44800')
     plt.legend(['Experimental', 'Theoretical'])
 
     # Setting intercept to 0 and getting the slope 
-    A = np.array(all_time).reshape(-1, 1)
+    A = np.array(time_experimental).reshape(-1, 1)
     m = np.linalg.lstsq(A, y, rcond=None)[0][0]
     print(-1/m)
     plt.show()
