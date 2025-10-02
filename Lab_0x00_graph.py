@@ -29,7 +29,41 @@ def Extract_Data_CSV(file = "data.csv"):
                 continue
     return x_values, trial1, trial2, trial3, trial4, trial5, trial6, trial7, title
 
+def test():
+    times = []            
+    height = []
+    with open('data.csv', 'r') as file:
+        # First line is always the column labels
+        title = file.readline()
 
+        for row, line in enumerate(file):
+            try:
+                # No data Error
+                if line == '\n':
+                    print(f"Line {row+2}: No Data. ")
+                    raise
+                
+                # Comment Data Error
+                if line[0] == "#":
+                    print(f"Line {row+2}: No Data. Only Comment.")
+                    raise
+
+                # Word Data Error
+                float(line[0])
+                
+                # Line gets split to each column data 
+                lineparts = line.split(",")
+                times.append(float(lineparts[0]))
+                heightdata = lineparts[1].split("#")
+                height.append(float(heightdata[0]))
+
+            # Word Data Error
+            except ValueError:
+                print(f"Line {row+2}: Data is not numbers.")
+
+            # All the other Errors
+            except:
+                continue
 
 
 def main():  
