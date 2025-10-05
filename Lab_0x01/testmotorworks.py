@@ -1,4 +1,4 @@
-from pyb import Pin, Timer
+from pyb import Pin, Timer # type: ignore
 
 Motor_EN_L = Pin(Pin.cpu.B11, mode=Pin.OUT_PP)
 Motor_Dir_L = Pin(Pin.cpu.B12, mode=Pin.OUT_PP)
