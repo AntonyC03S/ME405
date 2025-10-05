@@ -6,18 +6,26 @@ class Motor:
        motor drivers using separate PWM and direction inputs such as the DRV8838
        drivers present on the Romi chassis from Pololu.'''
     
-    def __init__(self, PWM, DIR, nSLP):
+    def __init__(self, PWM, DIR, nSLP, tim, chan):
         '''Initializes a Motor object'''
         self.nSLP_pin = Pin(nSLP, mode=Pin.OUT_PP, value=0)
+        self.DIR_pin  = Pin(DIR, mode=Pin.OUT_PP, value=0)
+        self.PWM_chan = tim.channel(chan, pin = PWM, mode=Timer.PWM, pulse_width_percent=0)
+
     
     def set_effort(self, effort):
         '''Sets the present effort requested from the motor based on an input value
            between -100 and 100'''
-        pass
+        if effort > 0:
+            self.DIR_pin.low()
+            self.PWM_chan.pulse_width_percent(effort)
+        else:
+            self.DIR_pin.high()
+            self.PWM_chan.pulse_width_percent(-effort)
             
     def enable(self):
         '''Enables the motor driver by taking it out of sleep mode into brake mode'''
-        pass
+        self.nSLP_pin.high()
             
     def disable(self):
         '''Disables the motor driver by taking it into sleep mode'''
@@ -54,3 +62,8 @@ class Encoder:
         '''Sets the present encoder position to zero and causes future updates
            to measure with respect to the new zero position'''
         pass
+
+# testing motor driver
+#mot_left  = Motor(Pin.cpu.A7, Pin.cpu.B12, Pin.cpu.B11, Timer(3, freq=20000), 2)
+#mot_left.enable()
+#mot_left.set_effort(50)
