@@ -4,12 +4,12 @@ from time import ticks_us, ticks_diff   # Use to get dt value in update()
 class Encoder:
     '''A quadrature encoder decoding interface encapsulated in a Python class'''
 
-    def __init__(self, tim: Timer, chA_pin: Pin, chB_pin: Pin):
+    def __init__(self, tim: Timer, chA_pin: Pin, chB_pin: Pin, chA_chan: int, chB_chan: int):
         '''Initializes an Encoder object'''
 
-        self._ChA_chan = tim.channel(0, pin = chA_pin, mode=Timer.PWM, pulse_width_percent=0)
-        self._CHB_chan = tim.channel(1, pin = chB_pin, mode=Timer.PWM, pulse_width_percent=0)
-        self._position   = None   # Total accumulated position of the encoder
+        self._ChA_chan = tim.channel(chA_chan, pin = chA_pin, mode=Timer.PWM, pulse_width_percent=0)
+        self._CHB_chan = tim.channel(chB_chan, pin = chB_pin, mode=Timer.PWM, pulse_width_percent=0)
+        self._position   = 0   # Total accumulated position of the encoder
         self._prev_count = 0      # Counter value from the most recent update
         self._delta      = 0      # Change in count between last two updates
         self._dt         = 0      # Amount of time between last two updates
