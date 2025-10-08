@@ -31,3 +31,16 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+# testing motor driver
+#mot_left  = Motor(Pin.cpu.A7, Pin.cpu.B12, Pin.cpu.B11, Timer(3, freq=20000), 2)
+#mot_left.enable()
+#mot_left.set_effort(50)
+tim = Timer(1)
+ChA_chan = tim.channel(1, pin = Pin.cpu.A8, mode=Timer.ENC_AB)
+sCHB_chan = tim.channel(2, pin = Pin.cpu.A9, mode=Timer.ENC_AB)
+
+while True:
+    print(tim.counter)
