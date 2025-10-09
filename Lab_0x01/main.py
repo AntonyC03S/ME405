@@ -49,8 +49,7 @@ def main():
         elif button_test == 7:
             motor_left.set_effort(-25)
             motor_right.set_effort(25)
-        elif button_test == 8:
-            pass
+
 
         now = ticks_us()                          # present time [us] 
         if ticks_diff(deadline, now) <= 0:        # deadline elapsed 
