@@ -4,14 +4,17 @@ Motor_EN_L = Pin(Pin.cpu.B11, mode=Pin.OUT_PP)
 Motor_Dir_L = Pin(Pin.cpu.B12, mode=Pin.OUT_PP)
 tim3 = Timer(3, freq=20000)
 Motor_Eff_L = tim3.channel(2, pin=Pin.cpu.A7, mode=Timer.PWM, pulse_width_percent=0)
+
+
+
 Motor_EN_R = Pin(Pin.cpu.A12, mode=Pin.OUT_PP)
 Motor_Dir_R = Pin(Pin.cpu.A11, mode=Pin.OUT_PP)
 Motor_Eff_R = tim3.channel(1, pin=Pin.cpu.A6, mode=Timer.PWM, pulse_width_percent=0)
 
 
-Motor_EN_L.high()
-Motor_Dir_L.low()
-Motor_EN_R.high()
-Motor_Dir_R.low()
-Motor_Eff_L.pulse_width_percent(50)
-Motor_Eff_R.pulse_width_percent(50)
+# Motor_EN_L.high()
+# Motor_Dir_L.low()
+# Motor_EN_R.high()
+# Motor_Dir_R.low()
+# Motor_Eff_L.pulse_width_percent(50)
+# Motor_Eff_R.pulse_width_percent(50)

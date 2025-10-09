@@ -40,8 +40,3 @@ class Motor:
     def disable(self):
         '''Disables the motor driver by taking it into sleep mode'''
         self._nSLP_pin.low()
-
-# testing motor driver
-#mot_left  = Motor(Pin.cpu.A7, Pin.cpu.B12, Pin.cpu.B11, Timer(3, freq=20000), 2)
-#mot_left.enable()
-#mot_left.set_effort(50)
