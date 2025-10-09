@@ -15,13 +15,14 @@ class Encoder:
         self._prev_time  = 0
         self._delta      = 0      # Change in count between last two updates
         self._dt         = 0      # Amount of time between last two updates
-        self._AR         = 65,535 # 16-bit timers maximal count value
+        self._AR         = 65535 # 16-bit timers maximal count value
     
     def update(self):
         '''Runs one update step on the encoder's timer counter to keep
            track of the change in count and check for counter reload'''
-        
-        self._delta = ticks_diff(self._prev_count , self._tim.counter())
+        now_count = self._tim.counter()
+        self._delta = ticks_diff(self._prev_count , now_count)
+        self._prev_count = now_count
         # Overflow: delta < -(AR+1)/2; to correct, delta += AR + 1 
         if self._delta < -(self._AR+1)/2:
             self._delta += self._AR +1
@@ -35,7 +36,7 @@ class Encoder:
 
         now = ticks_us()
         self._dt = ticks_diff(now, self._prev_time)
-        self._prev_time == now
+        self._prev_time = now
             
 
     @property
@@ -68,7 +69,7 @@ def main():
             # variables using ticks_diff() for timestamping actions 
             # of code (like data collection) 
             encoder_a.update()
-            print(encoder_a.position())
+            print(f"{encoder_a.position}")
             deadline = ticks_add(deadline, interval)# prep next deadline 
         
 
