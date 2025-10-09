@@ -1,5 +1,5 @@
 from pyb import Pin, Timer # type: ignore
-from time import ticks_us, ticks_diff   # Use to get dt value in update()
+from time import ticks_us, ticks_diff, ticks_add   # Use to get dt value in update()
 
 class Encoder:
     '''A quadrature encoder decoding interface encapsulated in a Python class'''
@@ -54,3 +54,23 @@ class Encoder:
         '''Sets the present encoder position to zero and causes future updates
            to measure with respect to the new zero position'''
         self._position = 0
+
+def main():
+    interval = 100_000                          # time interval [us] 
+    start    = ticks_us()                       # time of 1st run 
+    # Run initialization code here 
+    encoder_a = Encoder(Timer(1, prescaler = 0, period = 0xFFFF),Pin.cpu.A8,Pin.cpu.A9)
+    deadline = ticks_add(start, interval)       # first run deadline 
+    while True: 
+        now = ticks_us()                          # present time [us] 
+        if ticks_diff(deadline, now) <= 0:        # deadline elapsed 
+            # Run looping code here; can reference "start" and "now" 
+            # variables using ticks_diff() for timestamping actions 
+            # of code (like data collection) 
+            encoder_a.update()
+            print(encoder_a.position())
+            deadline = ticks_add(deadline, interval)# prep next deadline 
+        
+
+if __name__ == "__main__":
+    main()
