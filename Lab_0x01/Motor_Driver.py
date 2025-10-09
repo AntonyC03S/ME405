@@ -26,6 +26,13 @@ class Motor:
     def set_effort(self, effort: float):
         '''Sets the present effort requested from the motor based on an input value
            between -100 and 100'''
+        if effort == 0:
+            self._PWM_chan.pulse_width_percent(0)
+            return
+        if effort > 100:
+            effort = 100
+        if effort < -100:
+            effort = -100
         if effort > 0:
             self._DIR_pin.low()
             self._PWM_chan.pulse_width_percent(effort)
@@ -36,7 +43,9 @@ class Motor:
     def enable(self):
         '''Enables the motor driver by taking it out of sleep mode into brake mode'''
         self._nSLP_pin.high()
+        self._PWM_chan.pulse_width_percent(0)
             
     def disable(self):
         '''Disables the motor driver by taking it into sleep mode'''
+        self._PWM_chan.pulse_width_percent(0)
         self._nSLP_pin.low()
