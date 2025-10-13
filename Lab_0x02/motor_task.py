@@ -48,8 +48,9 @@ def motor_task(shares):
             motor_right.set_effort(eff)
 
             counter += 1
-            if counter >= 50:
+            if counter >= 100:
                 done.put(1)
+                encoder_start.put(0)
                 motor_left.set_effort(0)
                 motor_right.set_effort(0)
                 counter = 0
