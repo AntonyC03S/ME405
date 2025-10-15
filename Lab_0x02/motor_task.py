@@ -4,7 +4,7 @@ from Motor_Driver import Motor
 
 def motor_task(shares):
 
-    motor_eff, encoder_start, done = shares
+    motor_eff, encoder_start, motor_volt, done = shares
 
     state = 0
     counter = 0
@@ -42,7 +42,6 @@ def motor_task(shares):
         # State 2 - Running
         # Enabling Motor and running an effort
         elif state == Running:
-            '''Need to change this later so that we can change each of the effor and so it does not eable every time'''
             eff = int(motor_eff.get())
             motor_left.set_effort(eff)
             motor_right.set_effort(eff)
