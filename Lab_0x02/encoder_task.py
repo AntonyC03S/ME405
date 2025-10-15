@@ -10,7 +10,7 @@ def encoder_task(shares):
     Init = 0
     Not_read = 1
     Read = 2
-    Output_data = 0
+    Output_data = 3
 
     while True:
         # State 0 - Init
