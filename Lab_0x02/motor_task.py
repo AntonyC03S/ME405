@@ -46,6 +46,8 @@ def motor_task(shares):
             motor_left.set_effort(eff)
             motor_right.set_effort(eff)
 
+            motor_volt.put(7.2*(motor_volt/100))
+
             counter += 1
             if counter >= 100:
                 done.put(1)
@@ -54,6 +56,7 @@ def motor_task(shares):
                 motor_right.set_effort(0)
                 counter = 0
                 state = Stop
+                continue
             if eff == 0:
                 state = Stop
             
@@ -61,7 +64,7 @@ def motor_task(shares):
         # State Z - State not found
         # State is out of bounds and is reset
         else:
-            state = 0
+            state = Stop
 
         yield state
 
