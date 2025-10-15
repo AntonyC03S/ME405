@@ -6,11 +6,23 @@ def UI_task(shares):
     state = 0
     ser = pyb.USB_VCP()
     motor_eff, results, done, motor_speed_left, motor_speed_right, motor_time, encoder_start = shares
+
+    # States
+    Init = 0
+    Not_read = 1
+    Read = 2
+    Output_data = 3
+
     while True:
+
+
+
         if state == 0:
             print("Select number from 0-9 to set motor speed.")
             Print = False
             state = 1
+
+
         elif state == 1:
             if ser.any():
                 char_in = ser.read(1).decode()
@@ -22,6 +34,8 @@ def UI_task(shares):
                 else:
                     print("Invalid input. Please enter a number from 0-9.")
                     state = 1
+
+
         elif state == 2:
             if  done.get() == 1:
                 motor_eff.put(0)
@@ -31,6 +45,8 @@ def UI_task(shares):
                 done.put(0)
             else:
                 state = 2
+
+
         elif state == 3:
             if not Print:
                 print("Time (us)\tLeft Speed (units/s)\tRight Speed (units/s)")
@@ -40,6 +56,7 @@ def UI_task(shares):
                 l = float(motor_speed_left.get())     
                 r = float(motor_speed_right.get())    
                 print("{}\t{:.2f}\t{:.2f}".format(t, l, r))
+
 
         yield state
 
