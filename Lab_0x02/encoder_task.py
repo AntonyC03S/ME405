@@ -6,12 +6,6 @@ def encoder_task(shares):
     state = 0
     encoder_start, motor_speed_left, motor_speed_right, motor_time, done = shares
 
-
-    encoder_left  = Encoder(Timer(1, prescaler = 0, period = 0xFFFF),Pin.cpu.A8,Pin.cpu.A9)
-    encoder_right = Encoder(Timer(2, prescaler = 0, period = 0xFFFF),Pin.cpu.A0,Pin.cpu.A1)
-    count = ticks_us()
-
-
     # States
     Init = 0
     Not_read = 1
