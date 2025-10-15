@@ -5,35 +5,60 @@ from Encoder_Driver import Encoder
 def encoder_task(shares):
     state = 0
     encoder_start, motor_speed_left, motor_speed_right, motor_time, done = shares
-    encoder_left = Encoder(Timer(1, prescaler = 0, period = 0xFFFF),Pin.cpu.A8,Pin.cpu.A9)
+
+
+    encoder_left  = Encoder(Timer(1, prescaler = 0, period = 0xFFFF),Pin.cpu.A8,Pin.cpu.A9)
     encoder_right = Encoder(Timer(2, prescaler = 0, period = 0xFFFF),Pin.cpu.A0,Pin.cpu.A1)
     count = ticks_us()
 
-    
+
+    # States
+    Init = 0
+    Not_read = 1
+    Read = 2
+    Output_data = 0
+
     while True:
-        if state == 0:
+        # State 0 - Init
+        # Initialized the motor 
+        if state == Init:
+            encoder_left  = Encoder(Timer(1, prescaler = 0, period = 0xFFFF),Pin.cpu.A8,Pin.cpu.A9)
+            encoder_right = Encoder(Timer(2, prescaler = 0, period = 0xFFFF),Pin.cpu.A0,Pin.cpu.A1)
+            count = ticks_us()
+
+
+        # State 1 - Not_read
+        # Encoder no active. Waiting until it is active
+        if state == Not_read:
             if encoder_start.get() == 1:   
-                state = 1
+                state = Read
                 start = ticks_us()
             else:
-                state = 0
+                state = Not_read
 
-        elif state == 1:
+        # State 2 - Reading
+        # Encoder is readding data
+        elif state == Read:
             encoder_left.update()
             encoder_right.update()
             if encoder_start.get() == 0:
-                state = 0
+                state = Not_read
             else:
-                state = 2
+                state = Output_data
 
-        elif state == 2:
+        # State 3 - Output data
+        # Encoder is giving data out
+        elif state == Output_data:
             motor_speed_left.put(float(encoder_left.velocity))
             motor_speed_right.put(float(encoder_right.velocity))
             motor_time.put(ticks_diff(start, count))
             if encoder_start.get() == 0:
-                state = 0 
+                state = Not_read
             else:
-                state = 1     
+                state = Read  
+
+
+    
         yield state
 
 
