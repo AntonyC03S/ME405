@@ -1,4 +1,4 @@
-from pyb import Pin, Timer, ExtInt # type: ignore
+from pyb import Pin, Timer # type: ignore
 from Motor_Driver import Motor
 
 

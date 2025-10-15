@@ -1,6 +1,6 @@
-import pyb
-import cotask
-import task_share
+import pyb # type: ignore
+
+
 
 def UI_task(shares):
     state = 0
