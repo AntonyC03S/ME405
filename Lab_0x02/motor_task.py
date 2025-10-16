@@ -47,7 +47,7 @@ def motor_task(shares):
             motor_left.set_effort(eff)
             motor_right.set_effort(eff)
 
-            #motor_volt.put(7.2*(motor_volt/100))
+           # motor_volt.put(7.2*(motor_volt/100))
 
             counter += 1
             if counter >= 100:
@@ -68,8 +68,6 @@ def motor_task(shares):
             state = Stop
 
         yield state
-
-
 
 
 if __name__ == "__main__":

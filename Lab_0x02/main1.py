@@ -32,13 +32,13 @@ def main():
     task1 = cotask.Task(UI_task,      name="UI Task",       priority=0, period=200, profile=True, trace=False, shares=(motor_eff, results, done, motor_speed_left, motor_speed_right, motor_time, encoder_start))
     task2 = cotask.Task(motor_task,   name="Motor Task",   priority=2, period=20,  profile=True, trace=False, shares=(motor_eff, encoder_start, motor_volt, done))
     task3 = cotask.Task(encoder_task, name="Encoder Task", priority=1, period=100, profile=True, trace=False, shares=(encoder_start, motor_speed_left, motor_speed_right, motor_position_left, motor_position_right, motor_time, done))
-    task4 = cotask.Task(data_task, name="Data Task", priority=1, period=100, profile=True, trace=False, shares=(motor_volt, motor_speed_left, motor_speed_right, motor_position_left, motor_position_right, motor_time, results, done))
+    #task4 = cotask.Task(data_task, name="Data Task", priority=1, period=100, profile=True, trace=False, shares=(motor_volt, motor_speed_left, motor_speed_right, motor_position_left, motor_position_right, motor_time, results, done))
     
     
     cotask.task_list.append(task1)
     cotask.task_list.append(task2)
     cotask.task_list.append(task3)
-    cotask.task_list.append(task4)  
+    #cotask.task_list.append(task4)  
 
 
 

@@ -51,13 +51,18 @@ def UI_task(shares):
             if not Print:
                 print("Time (us)\tLeft Speed (units/s)\tRight Speed (units/s)")
                 Print = True
+            # Drain any available triplets in lockstep
             while motor_speed_left.any() and motor_speed_right.any() and motor_time.any():
                 t = motor_time.get()             
                 l = float(motor_speed_left.get())     
                 r = float(motor_speed_right.get())    
                 print("{}\t{:.2f}\t{:.2f}".format(t, l, r))
 
-
+            # If motor_task signals the run is done AND we printed all queued rows, reset UI
+            if (done.get() == 1) and not motor_speed_left.any() or motor_speed_right.any() or motor_time.any():
+                print("Task complete.")
+                done.put(0)
+                state = 0
         yield state
 
 if __name__ == "__main__":

@@ -35,6 +35,7 @@ def encoder_task(shares):
             encoder_left.update()
             encoder_right.update()
             count = ticks_us()
+            print("hi")
             if encoder_start.get() == 0:
                 state = Stop
             else:
