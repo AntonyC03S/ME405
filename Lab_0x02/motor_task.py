@@ -23,6 +23,7 @@ def motor_task(shares):
             tim3 = Timer(3, freq=20000)
             motor_left   = Motor(Pin.cpu.A6, Pin.cpu.C7,  Pin.cpu.B2,  tim3, 1)  
             motor_right  = Motor(Pin.cpu.A7, Pin.cpu.B12, Pin.cpu.B11, tim3, 2) 
+            motor_eff.put(0)
             motor_left.enable()
             motor_right.enable()
             state = Stop
@@ -46,7 +47,7 @@ def motor_task(shares):
             motor_left.set_effort(eff)
             motor_right.set_effort(eff)
 
-            motor_volt.put(7.2*(motor_volt/100))
+            #motor_volt.put(7.2*(motor_volt/100))
 
             counter += 1
             if counter >= 100:

@@ -12,7 +12,7 @@ data = []
 
  
 
-with Serial("COM36", baudrate=115_200, timeout=1) as ser: 
+with Serial("COM7", baudrate=115_200, timeout=1) as ser: 
 
     print("Opening serial port") 
 
