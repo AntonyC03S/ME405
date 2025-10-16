@@ -16,7 +16,7 @@ def encoder_task(shares):
         # State 0 - Init
         # Initialized the motor 
         if state == Init:
-            encoder_left  = Encoder(Timer(1, prescaler = 0, period = 0xFFFF),Pin.cpu.A8,Pin.cpu.A9)
+            encoder_left  = Encoder(Timer(1, prescaler = 0, period = 0xFFFF),Pin.cpu.A8,Pin.cpu.A11, chB_chan=4)
             encoder_right = Encoder(Timer(2, prescaler = 0, period = 0xFFFF),Pin.cpu.A0,Pin.cpu.A1)
 
 
