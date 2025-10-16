@@ -16,13 +16,14 @@ def encoder_task(shares):
         # State 0 - Init
         # Initialized the motor 
         if state == Init:
-            encoder_left  = Encoder(Timer(4, prescaler = 0, period = 0xFFFF),Pin.cpu.A6,Pin.cpu.A7)
+            encoder_left  = Encoder(Timer(4, prescaler = 0, period = 0xFFFF),Pin.cpu.B6,Pin.cpu.B7)
             encoder_right = Encoder(Timer(2, prescaler = 0, period = 0xFFFF),Pin.cpu.A0,Pin.cpu.A1)
+            state = Stop
 
 
         # State 1 - Not_read
         # Encoder no active. Waiting until it is active
-        if state == Stop:
+        elif state == Stop:
             if encoder_start.get() == 1:   
                 state = Read
                 start = ticks_us()
@@ -35,7 +36,6 @@ def encoder_task(shares):
             encoder_left.update()
             encoder_right.update()
             count = ticks_us()
-            print("hi")
             if encoder_start.get() == 0:
                 state = Stop
             else:
@@ -54,8 +54,6 @@ def encoder_task(shares):
             else:
                 state = Read  
 
-
-    
         yield state
 
 

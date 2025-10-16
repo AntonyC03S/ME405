@@ -1,7 +1,7 @@
 from UI_task import UI_task
 from motor_task import motor_task
 from encoder_task import encoder_task
-from data_task import data_task
+#from data_task import data_task
 import gc
 import pyb             # type: ignore
 import cotask          # type: ignore 

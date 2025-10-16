@@ -15,8 +15,6 @@ def UI_task(shares):
 
     while True:
 
-
-
         if state == 0:
             print("Select number from 0-9 to set motor speed.")
             Print = False
@@ -34,7 +32,6 @@ def UI_task(shares):
                 else:
                     print("Invalid input. Please enter a number from 0-9.")
                     state = 1
-
 
         elif state == 2:
             if  done.get() == 1:
@@ -57,12 +54,7 @@ def UI_task(shares):
                 l = float(motor_speed_left.get())     
                 r = float(motor_speed_right.get())    
                 print("{}\t{:.2f}\t{:.2f}".format(t, l, r))
-
-            # If motor_task signals the run is done AND we printed all queued rows, reset UI
-            if (done.get() == 1) and not motor_speed_left.any() or motor_speed_right.any() or motor_time.any():
-                print("Task complete.")
-                done.put(0)
-                state = 0
+                state = 3
         yield state
 
 if __name__ == "__main__":
