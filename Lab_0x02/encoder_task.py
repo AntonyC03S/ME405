@@ -24,6 +24,7 @@ def encoder_task(shares):
         # State 1 - Not_read
         # Encoder no active. Waiting until it is active
         elif state == Stop:
+            count = ticks_us()
             if encoder_start.get() == 1:   
                 state = Read
                 start = ticks_us()
@@ -35,7 +36,6 @@ def encoder_task(shares):
         elif state == Read:
             encoder_left.update()
             encoder_right.update()
-            count = ticks_us()
             if encoder_start.get() == 0:
                 state = Stop
             else:
@@ -48,7 +48,7 @@ def encoder_task(shares):
             motor_speed_right.put(float(encoder_right.velocity))
             motor_position_left.put(float(encoder_left.position))
             motor_position_right.put(float(encoder_right.position))
-            motor_time.put(ticks_diff(start, count))
+            motor_time.put(ticks_diff(ticks_us(), start))
             if encoder_start.get() == 0:
                 state = Stop
             else:

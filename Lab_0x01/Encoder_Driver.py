@@ -1,5 +1,6 @@
 from pyb import Pin, Timer # type: ignore
 from time import ticks_us, ticks_diff, ticks_add   # Use to get dt value in update()
+import math
 
 class Encoder:
     '''A quadrature encoder decoding interface encapsulated in a Python class'''
@@ -49,7 +50,7 @@ class Encoder:
     def velocity(self):
         '''Returns a measure of velocity using the the most recently updated
            value of delta as determined within the update() method'''
-        return f"{self._delta/self._dt}"
+        return f"{(self._delta/self._dt) * (2 * math.pi * 1_000_000 / 5748.36)}"
     
     def zero(self):
         '''Sets the present encoder position to zero and causes future updates

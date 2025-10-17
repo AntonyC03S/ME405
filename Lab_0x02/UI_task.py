@@ -1,4 +1,5 @@
 import pyb # type: ignore
+import math
 
 
 
@@ -46,14 +47,14 @@ def UI_task(shares):
 
         elif state == 3:
             if not Print:
-                print("Time (us)\tLeft Speed (units/s)\tRight Speed (units/s)")
+                print("Time (s)\tLeft Speed (rad/s)\tRight Speed (rad/s)")
                 Print = True
             # Drain any available triplets in lockstep
-            while motor_speed_left.any() and motor_speed_right.any() and motor_time.any():
-                t = motor_time.get()             
-                l = float(motor_speed_left.get())     
-                r = float(motor_speed_right.get())    
-                print("{}\t{:.2f}\t{:.2f}".format(t, l, r))
+            while motor_speed_left.any() and motor_speed_right.any():
+                t = motor_time.get() / 1_000_000
+                l = motor_speed_left.get() 
+                r = motor_speed_right.get() * -1
+                print("{}\t{}\t{}".format(t, l, r))
                 state = 3
         yield state
 
