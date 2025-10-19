@@ -6,9 +6,12 @@ from matplotlib import pyplot
 
  
 
-times = [] 
-
-data = [] 
+time = [] 
+left_position = []
+right_position = []
+left_speed = []
+right_speed = []
+volt = []
 
  
 
@@ -36,29 +39,47 @@ with Serial("COM7", baudrate=115_200, timeout=1) as ser:
 
     print("Waiting for data") 
 
-    while not ser.in_waiting: continue 
+    while not ser.in_waiting: 
+        continue 
+
+    for raw_line in ser:
+        try:
+            line = raw_line.decode(errors="ignore").strip()
+            if not line or line == "END":
+                # skip empty or end marker lines
+                continue
+
+            parts = line.split(",")
+            if len(parts) != 6:
+                # skip malformed lines
+                print("Skipping bad line:", repr(line))
+                continue
+
+            t, lp, rp, ls, rs, v = map(float, parts)
+
+            time.append(t)
+            left_position.append(lp)
+            right_position.append(rp)
+            left_speed.append(ls)
+            right_speed.append(rs)
+            volt.append(v)
+
+        except ValueError as e:
+            print("ValueError on line:", repr(raw_line), "->", e)
+            continue
+        except Exception as e:
+            print("General error:", e)
+            continue 
+
+print(f'time:{time}')
+print(f'left postion: {left_position}')
+print(f'right position: {right_position}')
+print(f'left speed: {left_speed}')
+print(f'right speed: {right_speed}')
+print(f'voltage: {volt}')
+
 
  
 
-    thead, dhead = ser.readline().decode().strip().split(",") 
-
-    for line in ser: 
-
-        t,d = map(float, line.decode().strip().split(",")) 
-
-        times.append(t) 
-
-        data.append(d) 
 
  
-
- 
-
-pyplot.plot(times,data) 
-
-pyplot.xlabel(thead) 
-
-pyplot.ylabel(dhead) 
-
-pyplot.savefig("plot.svg") 
-

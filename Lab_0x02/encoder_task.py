@@ -16,6 +16,8 @@ def encoder_task(shares):
         # State 0 - Init
         # Initialized the motor 
         if state == Init:
+            Pin(Pin.cpu.B6,  mode=Pin.ANALOG)     # Set pin modes back to default
+            Pin(Pin.cpu.B7,  mode=Pin.ANALOG)
             encoder_left  = Encoder(Timer(4, prescaler = 0, period = 0xFFFF),Pin.cpu.B6,Pin.cpu.B7)
             encoder_right = Encoder(Timer(2, prescaler = 0, period = 0xFFFF),Pin.cpu.A0,Pin.cpu.A1)
             state = Stop

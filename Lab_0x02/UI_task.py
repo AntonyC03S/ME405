@@ -15,7 +15,6 @@ def UI_task(shares):
     Output_data = 3
 
     while True:
-
         if state == 0:
             print("Select number from 0-9 to set motor speed.")
             Print = False
@@ -46,16 +45,17 @@ def UI_task(shares):
 
 
         elif state == 3:
-            if not Print:
-                print("Time (s)\tLeft Speed (rad/s)\tRight Speed (rad/s)")
-                Print = True
-            # Drain any available triplets in lockstep
-            while motor_speed_left.any() and motor_speed_right.any():
-                t = motor_time.get() / 1_000_000
-                l = motor_speed_left.get() 
-                r = motor_speed_right.get() * -1
-                print("{}\t{}\t{}".format(t, l, r))
-                state = 3
+            pass
+            # if not Print:
+            #     print("Time (s)\tLeft Speed (rad/s)\tRight Speed (rad/s)")
+            #     Print = True
+            # # Drain any available triplets in lockstep
+            # while motor_speed_left.any() and motor_speed_right.any():
+            #     t = motor_time.get() / 1_000_000
+            #     l = motor_speed_left.get() 
+            #     r = motor_speed_right.get() * -1
+            #     print("{}\t{}\t{}".format(t, l, r))
+            #     state = 3
         yield state
 
 if __name__ == "__main__":

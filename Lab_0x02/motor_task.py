@@ -29,10 +29,7 @@ def motor_task(shares):
             state = Stop
 
         # State 1 - Stop
-        # Disable motor and all motion
         elif state == Stop:
-            #motor_left.disable()
-            #motor_right.disable()
             eff = int(motor_eff.get())
             motor_left.set_effort(0)
             motor_right.set_effort(0)
@@ -47,8 +44,7 @@ def motor_task(shares):
             motor_left.set_effort(eff)
             motor_right.set_effort(eff)
 
-           # motor_volt.put(7.2*(motor_volt/100))
-
+            motor_volt.put(1)
             counter += 1
             if counter >= 100:
                 done.put(1)
