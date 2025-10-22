@@ -17,24 +17,12 @@ csv_list = []
 with Serial("COM7", baudrate=115_200, timeout=1) as ser: 
 
     print("Opening serial port") 
-
     sleep(0.5) 
-
-    
     print("Flushing serial port") 
-
     while ser.in_waiting: 
-
         ser.read() 
-
- 
-
     print("Sending command to start data collection") 
-
-    ser.write("c\r\n".encode()) 
-
- 
-
+    ser.write("c\r\n".encode())
     print("Waiting for data") 
 
     while not ser.in_waiting: 

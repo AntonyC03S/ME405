@@ -1,12 +1,17 @@
-import pyb # type: ignore
+from pyb import Pin,UART # type: ignore
 import math
+from time import sleep_ms
 
 
 
 def UI_task(shares):
     state = 0
-    ser = pyb.USB_VCP()
+    # ser = pyb.USB_VCP()
     motor_eff, results, done, motor_speed_left, motor_speed_right, motor_time, encoder_start = shares
+    bluetooth = UART(1, 115200)
+    Pin(Pin.cpu.A9,  mode=Pin.ALT, alt=7) # Set pin modes to UART matching column 7 in alt. fcn. table
+    Pin(Pin.cpu.A10, mode=Pin.ALT, alt=7)
+    start = False
 
     # States
     Init = 0
@@ -16,22 +21,40 @@ def UI_task(shares):
 
     while True:
         if state == 0:
-            print("Select number from 0-9 to set motor speed.")
-            Print = False
-            state = 1
+            if not start and bluetooth.any():
+                print("hi")
+                line = bluetooth.readline()
+                if not line:
+                    sleep_ms(10)
+                    continue
+                try:
+                    cmd = line.decode().strip()
+                except Exception:
+                    cmd = ''
+
+                if cmd.lower() == 'c':
+                    # begin streaming all collected rows
+                    start = True
+            if start == True:
+                print("Testing starting.")
+                speed = 50
+                motor_eff.put(speed)
+                Print = False
+                state = 2
 
 
         elif state == 1:
-            if ser.any():
-                char_in = ser.read(1).decode()
-                if char_in in '0123456789':
-                    speed = int(char_in) * 10
-                    motor_eff.put(speed)
-                    print(f"Motor speed set to {speed}%")
-                    state = 2
-                else:
-                    print("Invalid input. Please enter a number from 0-9.")
-                    state = 1
+            pass
+            # if ser.any():
+            #     char_in = ser.read(1).decode()
+            #     if char_in in '0123456789':
+            #         speed = int(char_in) * 10
+            #         motor_eff.put(speed)
+            #         print(f"Motor speed set to {speed}%")
+            #         state = 2
+            #     else:
+            #         print("Invalid input. Please enter a number from 0-9.")
+            #         state = 1
 
         elif state == 2:
             if  done.get() == 1:

@@ -24,12 +24,7 @@ def data_task(shares):
     while True:
         # State 0 - Init
         if state == Init:
-            bluetooth = UART(1, 115200)
-            Pin(Pin.cpu.B6,  mode=Pin.ANALOG)     # Set pin modes back to default
-            Pin(Pin.cpu.B7,  mode=Pin.ANALOG)
             # Configure the selected pins in coordination with the alternate function table
-            Pin(Pin.cpu.A9,  mode=Pin.ALT, alt=7) # Set pin modes to UART matching column 7 in alt. fcn. table
-            Pin(Pin.cpu.A10, mode=Pin.ALT, alt=7)
             state = Collect
 
 
@@ -48,6 +43,7 @@ def data_task(shares):
                 rows.append((t, lp, rp, ls, rs, v))
             if done.get() == 1:
                 state = Send
+                bluetooth = UART(1, 115200)
 
 
 
@@ -55,22 +51,22 @@ def data_task(shares):
         # State 2 - Send
         # 
         elif state == Send:
-            if not sending and bluetooth.any():
-                line = bluetooth.readline()
-                if not line:
-                    sleep_ms(10)
-                    continue
-                try:
-                    cmd = line.decode().strip()
-                except Exception:
-                    cmd = ''
+            # if not sending and bluetooth.any():
+            #     line = bluetooth.readline()
+            #     if not line:
+            #         sleep_ms(10)
+            #         continue
+            #     try:
+            #         cmd = line.decode().strip()
+            #     except Exception:
+            #         cmd = ''
 
-                if cmd.lower() == 'c':
-                    # begin streaming all collected rows
-                    sending = True
-                    send_index = 0
+            #     if cmd.lower() == 'c':
+            #         # begin streaming all collected rows
+            #         sending = True
+            #         send_index = 0
 
-            if sending:
+            # if sending:
                 if send_index < len(rows):
                     t, left_pos, right_pos, left_speed, right_speed, volt = rows[send_index]
                     send_line('{:.6f},{:.6f},{:.6f},{:.6f},{:.6f},{:.6f}'.format(t, left_pos, right_pos, left_speed, right_speed, volt))
