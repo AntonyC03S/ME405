@@ -1,8 +1,7 @@
 from serial import Serial 
-
 from time import sleep 
-
-from matplotlib import pyplot 
+from matplotlib import pyplot
+import csv 
 
  
 
@@ -12,7 +11,7 @@ right_position = []
 left_speed = []
 right_speed = []
 volt = []
-
+csv_list = []
  
 
 with Serial("COM7", baudrate=115_200, timeout=1) as ser: 
@@ -21,8 +20,7 @@ with Serial("COM7", baudrate=115_200, timeout=1) as ser:
 
     sleep(0.5) 
 
-     
-
+    
     print("Flushing serial port") 
 
     while ser.in_waiting: 
@@ -57,6 +55,10 @@ with Serial("COM7", baudrate=115_200, timeout=1) as ser:
 
             t, lp, rp, ls, rs, v = map(float, parts)
 
+            row_list = [t, lp, rp, ls, rs]
+            csv_list.append(row_list)
+
+
             time.append(t)
             left_position.append(lp)
             right_position.append(rp)
@@ -79,7 +81,10 @@ print(f'right speed: {right_speed}')
 print(f'voltage: {volt}')
 
 
- 
+
+with open(f"Voltage_{volt[-1]}.csv", "w", newline="", encoding="utf-8") as f:
+    writer = csv.writer(f)
+    writer.writerows(csv_list)
 
 
  
