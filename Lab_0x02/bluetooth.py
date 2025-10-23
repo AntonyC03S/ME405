@@ -71,7 +71,7 @@ print(f'voltage: {volt}')
 
 
 save_location = os.path.join("data", "Lab_0x02")
-save_location = os.path.join("data", f"Voltage_{volt[-1]}.csv")
+save_location = os.path.join(save_location, f"Voltage_{volt[-1]}.csv")
 
 with open(save_location, "w", newline="", encoding="utf-8") as f:
     writer = csv.writer(f)
