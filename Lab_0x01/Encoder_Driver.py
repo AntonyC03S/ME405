@@ -50,7 +50,7 @@ class Encoder:
     def velocity(self):
         '''Returns a measure of velocity using the the most recently updated
            value of delta as determined within the update() method'''
-        return f"{(self._delta/self._dt) * (2 * math.pi * 1_000_000 / 5748.36)}"
+        return f"{(self._delta/self._dt) * (2 * math.pi * 1_000_000 / 1437.1)}"
     
     def zero(self):
         '''Sets the present encoder position to zero and causes future updates
