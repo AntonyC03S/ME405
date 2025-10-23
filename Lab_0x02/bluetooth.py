@@ -2,6 +2,7 @@ from serial import Serial
 from time import sleep 
 from matplotlib import pyplot
 import csv 
+import os
 
  
 
@@ -69,7 +70,9 @@ print(f'right speed: {right_speed}')
 print(f'voltage: {volt}')
 
 
+save_location = os.path.join("data", "Lab_0x02")
+save_location = os.path.join("data", f"Voltage_{volt[-1]}.csv")
 
-with open(f"Voltage_{volt[-1]}.csv", "w", newline="", encoding="utf-8") as f:
+with open(save_location, "w", newline="", encoding="utf-8") as f:
     writer = csv.writer(f)
     writer.writerows(csv_list)
