@@ -5,7 +5,7 @@ def UI_task(shares):
     state = 0
     motor_eff, results, done, motor_speed_left, motor_speed_right, motor_time, encoder_start = shares
     start = False
-    sleep_period = 0
+    sleep_period = 100
     test_effort = 0
 
     # UART1 on PB6 (TX) / PB7 (RX)
@@ -59,7 +59,7 @@ def UI_task(shares):
                 done.put(0)
                 state = 3
             else:
-                if sleep_period == 100:
+                if sleep_period >= 100:
                     print(f"Testing {test_effort}% effort")
                     motor_eff.put(test_effort)
                     sleep_period = 0

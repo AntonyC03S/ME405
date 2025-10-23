@@ -41,6 +41,7 @@ def data_task(shares):
                 t  = motor_time.get()/  1_000_000
 
                 rows.append((t, lp, rp, ls, rs, v))
+                
             if done.get() == 1:
                 state = Send
                 bluetooth = UART(1, 115200)

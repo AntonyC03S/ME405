@@ -3,7 +3,7 @@ import os
 import matplotlib.pylab as plt
 
 def main():
-    folder_path = "data"  # no leading slash!
+    folder_path = save_location = os.path.join("Lab_0x02", "data")
 
 
 
