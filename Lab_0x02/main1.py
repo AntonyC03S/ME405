@@ -13,12 +13,12 @@ def main():
     print("Lab 0X02")
 
     # Create a share and a queue to test function and diagnostic printouts
-    motor_volt           = task_share.Share('H', thread_protect=False, name="Motor Voltage Queue")
-    motor_speed_left     = task_share.Queue('f', 100, thread_protect=False, overwrite=False, name="Left Motor Speed Queue")
-    motor_speed_right    = task_share.Queue('f', 100, thread_protect=False, overwrite=False, name="Right Motor Speed Queue")
-    motor_position_left  = task_share.Queue('f', 100, thread_protect=False, overwrite=False, name="Left Motor Position Queue")
-    motor_position_right = task_share.Queue('f', 100, thread_protect=False, overwrite=False, name="Right Motor Position Queue")
-    motor_time           = task_share.Queue('L', 100, thread_protect=False, overwrite=False, name="Motor Time Queue")
+    motor_volt           = task_share.Queue('H', 1000, thread_protect=False, overwrite=False, name="Left Motor Speed Queue")
+    motor_speed_left     = task_share.Queue('f', 1000, thread_protect=False, overwrite=False, name="Left Motor Speed Queue")
+    motor_speed_right    = task_share.Queue('f', 1000, thread_protect=False, overwrite=False, name="Right Motor Speed Queue")
+    motor_position_left  = task_share.Queue('f', 1000, thread_protect=False, overwrite=False, name="Left Motor Position Queue")
+    motor_position_right = task_share.Queue('f', 1000, thread_protect=False, overwrite=False, name="Right Motor Position Queue")
+    motor_time           = task_share.Queue('L', 1000, thread_protect=False, overwrite=False, name="Motor Time Queue")
     motor_eff            = task_share.Share('B', thread_protect=False, name="Motor Effort Share")
     encoder_start        = task_share.Share('B', thread_protect=False, name="Encoder Start Share")
     results              = task_share.Share('L', thread_protect=False, name="Result Share")

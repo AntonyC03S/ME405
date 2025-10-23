@@ -24,8 +24,9 @@ def encoder_task(shares):
         # State 1 - Not_read
         # Encoder no active. Waiting until it is active
         elif state == Stop:
-            count = ticks_us()
             if encoder_start.get() == 1:   
+                encoder_left.zero()
+                encoder_right.zero()
                 state = Read
                 start = ticks_us()
             else:

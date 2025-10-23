@@ -47,10 +47,10 @@ def motor_task(shares):
             motor_volt.put(1)
             counter += 1
             if counter >= 75:
-                done.put(0)
+                print("hi")
+                done.put(1)
                 encoder_start.put(0)
-                motor_left.set_effort(0)
-                motor_right.set_effort(0)
+                motor_eff.put(0)
                 counter = 0
                 state = Stop
                 continue
@@ -68,3 +68,5 @@ def motor_task(shares):
 
 if __name__ == "__main__":
     pass
+
+

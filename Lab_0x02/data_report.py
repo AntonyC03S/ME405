@@ -33,7 +33,7 @@ def main():
                     right_speed.append(float(row[2]))
                     left_poistion.append(float(row[3]))
                     right_poistion.append(float(row[4]))
-                    voltage.append(float(row[5]))
+                    # voltage.append(float(row[5]))
         
 
 
