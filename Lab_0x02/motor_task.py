@@ -46,7 +46,7 @@ def motor_task(shares):
 
             motor_volt.put(1)
             counter += 1
-            if counter >= 100:
+            if counter >= 75:
                 done.put(1)
                 encoder_start.put(0)
                 motor_left.set_effort(0)

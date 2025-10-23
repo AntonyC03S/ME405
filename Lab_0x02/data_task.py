@@ -14,11 +14,11 @@ def data_task(shares):
     sending = False
     send_index = 0
 
-    # def send_line(s):
-    # # ensure CRLF termination
-    #     if not s.endswith('\n'):
-    #         s = s + '\r\n'   
-    #     bluetooth.write(s)
+    def send_line(s):
+    # ensure CRLF termination
+        if not s.endswith('\n'):
+            s = s + '\r\n'   
+        bluetooth.write(s)
 
 
     while True:
@@ -31,7 +31,7 @@ def data_task(shares):
         # State 1 - Collect
         elif state == Collect:
             if (motor_speed_left.any() and motor_speed_right.any() and motor_time.any()
-                and motor_position_left.any() and motor_position_right.any() and motor_volt.any()):
+                and motor_position_left.any() and motor_position_right.any()):
                 
                 ls = motor_speed_left.get()
                 rs = motor_speed_right.get() * -1
