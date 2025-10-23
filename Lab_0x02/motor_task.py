@@ -46,8 +46,7 @@ def motor_task(shares):
 
             motor_volt.put(1)
             counter += 1
-            if counter >= 75:
-                print("hi")
+            if counter >= 100:
                 done.put(1)
                 encoder_start.put(0)
                 motor_eff.put(0)

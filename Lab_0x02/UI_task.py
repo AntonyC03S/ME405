@@ -6,8 +6,8 @@ def UI_task(shares):
     motor_eff, results, done, motor_speed_left, motor_speed_right, motor_time, encoder_start = shares
     start = False
     sleep_period = 100
-    test_effort = 10
-    test_done = 1
+    test_effort = 0
+    test_done = 0
 
     # UART1 on PB6 (TX) / PB7 (RX)
     bluetooth = UART(1, 115200)
@@ -53,14 +53,14 @@ def UI_task(shares):
             yield state
 
         elif state == 2:
-            if test_done >= 10:
+            if test_done >= 12:
                 motor_eff.put(0)
                 print("Task complete.")
                 encoder_start.put(0)
                 done.put(0)
                 state = 3
             else:
-                if sleep_period >= 20:
+                if sleep_period >= 25:
                     print(f"Testing {test_effort}% effort")
                     motor_eff.put(test_effort)
                     encoder_start.put(0)

@@ -25,7 +25,7 @@ with Serial("COM7", baudrate=115_200, timeout=1) as ser:
     ser.write(b"c\r\n")
     print("Waiting for data") 
 
-    for x in  range(0,9):
+    for x in  range(0,10):
         time = [] 
         left_position = []
         right_position = []

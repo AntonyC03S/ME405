@@ -24,7 +24,7 @@ def main():
             
             with open(file_path, "r", encoding="utf-8") as infile:
                 reader = csv.reader(infile)
-                header = next(reader)  # skip header or store it if needed
+                # header = next(reader)  # skip header or store it if needed
                 
                 print(f"--- {filename} ---")
                 for row in reader:
@@ -38,10 +38,10 @@ def main():
 
 
         # Top subplot
-        axes[0].plot(time, left_speed)
+        axes[0].plot(time, right_speed)
 
         # Bottom subplot
-        axes[1].plot(time, left_poistion)
+        axes[1].plot(time, right_poistion)
 
 
     axes[0].set_title("Top Plot")
@@ -60,6 +60,8 @@ def main():
 
     # Shared legend outside (to the right)
     fig.legend(handles, loc='center left', bbox_to_anchor=(0.82, 0.5), title="Legend")
+    plt.xlim(0,0.25)
+    axes[0].set_ylim(0,2000)
 
     plt.show()
 

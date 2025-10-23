@@ -5,6 +5,7 @@ from Encoder_Driver import Encoder
 def encoder_task(shares):
     state = 0
     encoder_start, motor_speed_left, motor_speed_right, motor_position_left, motor_position_right, motor_time, done = shares
+    counter = 0
 
     # States
     Init = 0
@@ -25,10 +26,11 @@ def encoder_task(shares):
         # Encoder no active. Waiting until it is active
         elif state == Stop:
             if encoder_start.get() == 1:   
-                encoder_left.zero()
-                encoder_right.zero()
+                #encoder_left.zero()
+                #encoder_right.zero()
                 state = Read
-                start = ticks_us()
+                #start = ticks_us()
+                counter = 0
             else:
                 state = Stop
 
@@ -37,6 +39,12 @@ def encoder_task(shares):
         elif state == Read:
             encoder_left.update()
             encoder_right.update()
+            if counter == 0:
+                counter += 1
+                encoder_left.zero()
+                encoder_right.zero()            
+                encoder_left.update()
+                encoder_right.update()
             if encoder_start.get() == 0:
                 state = Stop
             else:
@@ -49,6 +57,9 @@ def encoder_task(shares):
             motor_speed_right.put(float(encoder_right.velocity))
             motor_position_left.put(float(encoder_left.position))
             motor_position_right.put(float(encoder_right.position))
+            if counter == 1:
+                start = ticks_us()
+                counter += 1
             motor_time.put(ticks_diff(ticks_us(), start))
             if encoder_start.get() == 0:
                 state = Stop
