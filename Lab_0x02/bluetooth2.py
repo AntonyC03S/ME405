@@ -1,18 +1,12 @@
-from pyb import UART
-from time import ticks_ms, ticks_diff, sleep_ms
+from pyb import Pin, Timer # type: ignore
+from time import ticks_us, ticks_diff, ticks_add   # Use to get dt value in update()
+from Encoder_Driver import Encoder
 
-uart = UART(1, 115200)  # default pins PB6/PB7 on Pyboard
-print("Beacon on UART1 (PB6/PB7) @9600")
 
-t0 = ticks_ms()
-n = 0
+encoder_left  = Encoder(Timer(1, prescaler = 0, period = 0xFFFF),Pin.cpu.A8,Pin.cpu.A9)
+encoder_right = Encoder(Timer(2, prescaler = 0, period = 0xFFFF),Pin.cpu.A0,Pin.cpu.A1)
+
 while True:
-    if ticks_diff(ticks_ms(), t0) >= 1000:
-        uart.write("PING %d\r\n" % n)
-        n += 1
-        t0 = ticks_ms()
-    if uart.any():
-        line = uart.readline()
-        if line:
-            uart.write(b"RX: "); uart.write(line); uart.write(b"\r\n")
-    sleep_ms(10)
+    encoder_left.update()
+    encoder_right.update()
+    print(encoder_left.position, encoder_right.position)
