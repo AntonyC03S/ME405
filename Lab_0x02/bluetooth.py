@@ -3,7 +3,7 @@ from time import sleep
 from matplotlib import pyplot
 import csv 
 import os
-
+import data_report
  
 
 time = [] 
@@ -76,3 +76,5 @@ save_location = os.path.join("data", f"Voltage_{volt[-1]}.csv")
 with open(save_location, "w", newline="", encoding="utf-8") as f:
     writer = csv.writer(f)
     writer.writerows(csv_list)
+
+data_report.main()
