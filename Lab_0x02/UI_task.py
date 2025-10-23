@@ -48,7 +48,6 @@ def UI_task(shares):
                         if cmd.lower().startswith("c"):
                             start = True
                             state = 2
-                            
                             break
             yield state
 
