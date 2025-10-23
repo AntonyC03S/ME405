@@ -62,7 +62,6 @@ with Serial("COM7", baudrate=115_200, timeout=1) as ser:
                 right_position.append(rp)
                 left_speed.append(ls)
                 right_speed.append(rs)
-                volt.append(v)
 
             except ValueError as e:
                 print("ValueError on line:", repr(raw_line), "->", e)
@@ -72,7 +71,7 @@ with Serial("COM7", baudrate=115_200, timeout=1) as ser:
                 continue 
 
         save_location = os.path.join("Lab_0x02", "data")
-        save_location = os.path.join(save_location, f"Voltage_{volt[-1]}.csv")
+        save_location = os.path.join(save_location, f"Voltage_{x}.csv")
 
         with open(save_location, "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
@@ -83,7 +82,6 @@ print(f'left postion: {left_position}')
 print(f'right position: {right_position}')
 print(f'left speed: {left_speed}')
 print(f'right speed: {right_speed}')
-print(f'voltage: {volt}')
 
 
 data_report.main()
