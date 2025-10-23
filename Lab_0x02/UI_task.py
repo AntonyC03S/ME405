@@ -44,8 +44,7 @@ def UI_task(shares):
                             continue
                         if cmd.lower().startswith("c"):
                             start = True
-                            print("Testing starting.")
-                            motor_eff.put(50)
+                            test(motor_eff)
                             state = 2
                             break
             yield state
@@ -61,3 +60,12 @@ def UI_task(shares):
 
         elif state == 3:
             yield state
+
+
+def test(motor_eff):
+    print("Testing starting.")
+    for i in range(0,10):
+        i *= 10
+        print(f"Testing {i}% effort")
+        motor_eff.put(i)
+        sleep_ms(1000)
