@@ -6,7 +6,10 @@ from time import sleep_ms
 def data_task(shares):
     state = 0
     motor_volt, motor_speed_left, motor_speed_right, motor_position_left, motor_position_right, motor_time, results, done = shares
-    rows = []
+    #rows = []
+    rows_time_voltage = []
+    rows_speed = []
+    rows_position = []
     # States
     Init = 0
     Collect = 1
@@ -31,7 +34,7 @@ def data_task(shares):
         # State 1 - Collect
         elif state == Collect:
             if (motor_speed_left.any() and motor_speed_right.any() and motor_time.any()
-                and motor_position_left.any() and motor_position_right.any()):
+                and motor_position_left.any() and motor_position_right.any() and motor_volt.any()):
                 
                 ls = motor_speed_left.get()
                 rs = motor_speed_right.get() * -1
@@ -40,9 +43,11 @@ def data_task(shares):
                 v  = motor_volt.get()
                 t  = motor_time.get()/  1_000_000
 
-                rows.append((t, lp, rp, ls, rs, v))
-                
-            if done.get() == 1:
+                #rows.append((t, lp, rp, ls, rs, v))
+                rows_time_voltage.append((t,v))
+                rows_speed.append((ls, rs))
+                rows_position.append((lp, rp))
+            if done.get() >= 1:
                 state = Send
                 bluetooth = UART(1, 115200)
 
@@ -68,13 +73,18 @@ def data_task(shares):
             #         send_index = 0
 
             # if sending:
-                if send_index < len(rows):
-                    t, left_pos, right_pos, left_speed, right_speed, volt = rows[send_index]
+                if send_index < len(rows_time_voltage):
+                    t, volt = rows_time_voltage[send_index]
+                    left_pos, right_pos= rows_position[send_index]
+                    left_speed, right_speed = rows_speed[send_index]
+
                     send_line('{:.6f},{:.6f},{:.6f},{:.6f},{:.6f},{:.6f}'.format(t, left_pos, right_pos, left_speed, right_speed, volt))
                     send_index += 1
                 else:
                     send_line('END')
-                    rows.clear()
+                    rows_time_voltage.clear()
+                    rows_position.clear()
+                    rows_speed.clear()
                     sending = False
                     send_index = 0
                     print("All data sent")
