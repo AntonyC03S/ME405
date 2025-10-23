@@ -59,7 +59,7 @@ def UI_task(shares):
                 done.put(0)
                 state = 3
             else:
-                if sleep_period == 200:
+                if sleep_period == 100:
                     print(f"Testing {test_effort}% effort")
                     motor_eff.put(test_effort)
                     sleep_period = 0
