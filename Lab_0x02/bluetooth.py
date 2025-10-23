@@ -22,7 +22,7 @@ with Serial("COM7", baudrate=115_200, timeout=1) as ser:
     while ser.in_waiting: 
         ser.read() 
     print("Sending command to start data collection") 
-    ser.write("c\r\n".encode())
+    ser.write(b"c\r\n")
     print("Waiting for data") 
 
     while not ser.in_waiting: 
@@ -73,6 +73,3 @@ print(f'voltage: {volt}')
 with open(f"Voltage_{volt[-1]}.csv", "w", newline="", encoding="utf-8") as f:
     writer = csv.writer(f)
     writer.writerows(csv_list)
-
-
- 

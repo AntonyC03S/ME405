@@ -14,11 +14,11 @@ def data_task(shares):
     sending = False
     send_index = 0
 
-    def send_line(s):
-    # ensure CRLF termination
-        if not s.endswith('\n'):
-            s = s + '\r\n'   
-        bluetooth.write(s)
+    # def send_line(s):
+    # # ensure CRLF termination
+    #     if not s.endswith('\n'):
+    #         s = s + '\r\n'   
+    #     bluetooth.write(s)
 
 
     while True:
