@@ -44,13 +44,24 @@ class Encoder:
     def position(self):
         '''Returns the most recently updated value of position as determined
            within the update() method'''
-        return f"{self._position}"
+        return f"{self._position *(2 * math.pi * 1_000_000 / 1437.1)}"
+    
+
+    def distance_traveled(self, raduis = 35):
+        '''Returns the distance travel from the view point of the wheel
+            in mm'''
+        return f"{self.position * (2 * math.pi * 1_000_000 / 1437.1)* raduis}"
     
     @property   
     def velocity(self):
         '''Returns a measure of velocity using the the most recently updated
            value of delta as determined within the update() method'''
         return f"{(self._delta/self._dt) * (2 * math.pi * 1_000_000 / 1437.1)}"
+    
+    def linear_velocity(self, raduis = 35):
+        '''Returns the velocity from the view point of the wheel
+            in mm/s'''
+        return f"{(self._delta/self._dt) * (2 * math.pi * 1_000_000 / 1437.1)* raduis}"
     
     def zero(self):
         '''Sets the present encoder position to zero and causes future updates
