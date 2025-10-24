@@ -1,5 +1,6 @@
 from pyb import Pin, Timer # type: ignore
 from Motor_Driver import Motor
+from Controller_Class import Controller
 
 
 def motor_task(shares):
@@ -23,6 +24,8 @@ def motor_task(shares):
             tim3 = Timer(3, freq=20000)
             motor_left   = Motor(Pin.cpu.A6, Pin.cpu.C7,  Pin.cpu.B2,  tim3, 1)  
             motor_right  = Motor(Pin.cpu.A7, Pin.cpu.B12, Pin.cpu.B11, tim3, 2) 
+            controller_left = Controller(2,2,0.25)
+            controller_right = Controller(2,2,0.25)
             motor_eff.put(0)
             motor_left.enable()
             motor_right.enable()
