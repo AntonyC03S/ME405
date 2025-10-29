@@ -5,7 +5,7 @@ from Controller_Class import Controller
 
 def motor_task(shares):
 
-    motor_eff, encoder_start, motor_volt, done, KP, KI, KD,motor_speed_left, motor_speed_right = shares
+    motor_eff, encoder_start, motor_volt, done, Kp, Ki, Kd, motor_speed_left, motor_speed_right = shares
 
     state = 0
     counter = 0
@@ -24,8 +24,8 @@ def motor_task(shares):
             tim3 = Timer(3, freq=20000)
             motor_left   = Motor(Pin.cpu.A6, Pin.cpu.C7,  Pin.cpu.B2,  tim3, 1)  
             motor_right  = Motor(Pin.cpu.A7, Pin.cpu.B12, Pin.cpu.B11, tim3, 2) 
-            controller_left = Controller(KP.get(),KI.get(),KD.get())
-            controller_right = Controller(KP.get(),KI.get(),KD.get())
+            controller_left = Controller(Kp.get(),Ki.get(),Kd.get())
+            controller_right = Controller(Kp.get(),Ki.get(),Kd.get())
             motor_eff.put(0)
             motor_left.enable()
             motor_right.enable()
@@ -44,11 +44,18 @@ def motor_task(shares):
         # Enabling Motor and running an effort
         elif state == Running:
             eff = int(motor_eff.get())
-            motor_volt.put(1)
             Lgain = controller_left.update(3,motor_speed_left.get())
             Rgain = controller_right.update(3,motor_speed_right.get())
-            motor_left.set_effort(eff + Lgain)
-            motor_right.set_effort(eff + Rgain)
+            Lnew = eff + Lgain
+            Rnew = eff + Rgain
+            if counter == 0:
+                print("hi")
+                motor_left.set_effort(eff)
+                motor_right.set_effort(eff)
+            else:
+                motor_left.set_effort(Lnew)
+                motor_right.set_effort(Rnew)
+            motor_volt.put(1)
             counter += 1
 
             if counter >= 100:

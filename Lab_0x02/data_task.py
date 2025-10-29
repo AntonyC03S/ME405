@@ -32,37 +32,38 @@ def data_task(shares):
             yield state
 
         elif state == Collect:
-            wrote_any = False
-            while (motor_speed_left.any() and motor_speed_right.any() and motor_time.any()
-                   and motor_position_left.any() and motor_position_right.any()):
-                ls = motor_speed_left.get()
-                rs = -motor_speed_right.get()  
-                lp = motor_position_left.get()
-                rp = -motor_position_right.get()
-                v  = motor_volt.get()          
-                t_us = motor_time.get()
-                t = t_us / 1_000_000.0         
+            pass
+        #     wrote_any = False
+        #     while (motor_speed_left.any() and motor_speed_right.any() and motor_time.any()
+        #            and motor_position_left.any() and motor_position_right.any()):
+        #         #ls = motor_speed_left.get()
+        #         #rs = -motor_speed_right.get()  
+        #         lp = motor_position_left.get()
+        #         rp = -motor_position_right.get()
+        #         v  = motor_volt.get()          
+        #         t_us = motor_time.get()
+        #         t = t_us / 1_000_000.0         
 
 
-                send_line('{:.6f},{:.6f},{:.6f},{:.6f},{:.6f},{:.6f}'.format(
-                    t, lp, rp, ls, rs, v
-                ))
-                wrote_any = True
+        #     #     send_line('{:.6f},{:.6f},{:.6f},{:.6f},{:.6f},{:.6f}'.format(
+        #     #         t, lp, rp, ls, rs, v
+        #     #     ))
+        #     #     wrote_any = True
 
-            if done.get() >= 1 and not (motor_speed_left.any() or motor_speed_right.any()
-                                        or motor_position_left.any() or motor_position_right.any()
-                                        or motor_time.any()):
-                state = Send
+        #     # if done.get() >= 1 and not (motor_speed_left.any() or motor_speed_right.any()
+        #     #                             or motor_position_left.any() or motor_position_right.any()
+        #     #                             or motor_time.any()):
+        #         state = Send
 
-            if not wrote_any:
-                sleep_ms(1)
-            yield state
-        elif state == Send:
-            send_line('END')
-            done.put(0)
-            state = Collect
-            yield state
+        #     if not wrote_any:
+        #         sleep_ms(1)
+        #     yield state
+        # elif state == Send:
+        #     send_line('END')
+        #     done.put(0)
+        #     state = Collect
+        #     yield state
 
-        else:
-            state = Init
+        # else:
+        #     state = Init
             yield state

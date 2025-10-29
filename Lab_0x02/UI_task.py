@@ -3,12 +3,12 @@ from time import sleep_ms
 
 def UI_task(shares):
     state = 0
-    motor_eff, results, done, motor_speed_left, motor_speed_right, motor_time, encoder_start, KP, KI, KD = shares
+    motor_eff, results, done, motor_speed_left, motor_speed_right, motor_time, encoder_start, Kp, Ki, Kd = shares
     start = False
     sleep_period = 100
     test_effort = 0
     test_done = 0
-    PID = False
+    Pid = False
 
     # UART1 on PB6 (TX) / PB7 (RX)
     bluetooth = UART(1, 115200)
@@ -56,17 +56,17 @@ def UI_task(shares):
                             kp = float(PID_list[0])
                             ki = float(PID_list[1])
                             kd = float(PID_list[2])
-                            KP.put(int(kp))
-                            KI.put(int(ki))
-                            KD.put(int(kd))
+                            Kp.put(int(kp))
+                            Ki.put(int(ki))
+                            Kd.put(int(kd))
                             state = 2
-                            PID = True
+                            Pid = True
 
 
             yield state
 
         elif state == 2:
-            if PID == True:
+            if Pid == True:
                 motor_eff.put(10)
                 
             if start == True:
