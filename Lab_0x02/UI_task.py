@@ -3,11 +3,12 @@ from time import sleep_ms
 
 def UI_task(shares):
     state = 0
-    motor_eff, results, done, motor_speed_left, motor_speed_right, motor_time, encoder_start = shares
+    motor_eff, results, done, motor_speed_left, motor_speed_right, motor_time, encoder_start, KP, KI, KD = shares
     start = False
     sleep_period = 100
     test_effort = 0
     test_done = 0
+    PID = False
 
     # UART1 on PB6 (TX) / PB7 (RX)
     bluetooth = UART(1, 115200)
@@ -49,33 +50,45 @@ def UI_task(shares):
                             start = True
                             state = 2
                             break
-                        elif cmd.startswith("1"):
+                        elif cmd.lower().startswith("1"):
                             cmd_split = cmd.split("_")
-                            PID_list = cmd_split[1:3]
+                            PID_list = cmd_split[1:4]
+                            kp = float(PID_list[0])
+                            ki = float(PID_list[1])
+                            kd = float(PID_list[2])
+                            KP.put(int(kp))
+                            KI.put(int(ki))
+                            KD.put(int(kd))
+                            state = 2
+                            PID = True
 
 
             yield state
 
         elif state == 2:
-            if test_done >= 12:
-                motor_eff.put(0)
-                print("Task complete.")
-                encoder_start.put(0)
-                done.put(0)
-                state = 3
-            else:
-                if sleep_period >= 25:
-                    print(f"Testing {test_effort}% effort")
-                    motor_eff.put(test_effort)
+            if PID == True:
+                motor_eff.put(10)
+                
+            if start == True:
+                if test_done >= 12:
+                    motor_eff.put(0)
+                    print("Task complete.")
                     encoder_start.put(0)
-                    motor_speed_left.clear()
-                    motor_speed_right.clear()
-                    motor_time.clear()
-                    sleep_period = 0
-                    test_effort += 10
-                    test_done += 1
+                    done.put(0)
+                    state = 3
                 else:
-                    sleep_period += 1
+                    if sleep_period >= 25:
+                        print(f"Testing {test_effort}% effort")
+                        motor_eff.put(test_effort)
+                        encoder_start.put(0)
+                        motor_speed_left.clear()
+                        motor_speed_right.clear()
+                        motor_time.clear()
+                        sleep_period = 0
+                        test_effort += 10
+                        test_done += 1
+                    else:
+                        sleep_period += 1
             yield state
 
         elif state == 3:
