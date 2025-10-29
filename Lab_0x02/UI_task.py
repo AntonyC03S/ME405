@@ -49,6 +49,11 @@ def UI_task(shares):
                             start = True
                             state = 2
                             break
+                        elif cmd.startswith("1"):
+                            cmd_split = cmd.split("_")
+                            PID_list = cmd_split[1:3]
+
+
             yield state
 
         elif state == 2:

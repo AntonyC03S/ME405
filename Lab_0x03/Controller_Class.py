@@ -20,21 +20,30 @@ class Controller:
         dt = ticks_diff(now, self._prev_time) / 1_000_000
 
         error = setpoint - measured
+        P_gain = error * self._KP
 
-        Pgain = error * self._KP
-        self._integral += error * dt
-        Igain = self._integral * self._KI
-        Dgain = ((error - self._prev_error) / dt) * self._KD
+        # Anti-Windup
+        if self._output == self._gain:
+            self._integral += error * dt
+        else:
+            self._integral = 0
 
-        self._gain = Pgain + Igain + Dgain
+        I_gain = self._integral * self._KI
+        D_gain = ((error - self._prev_error) / dt) * self._KD
 
+
+
+        self._gain = P_gain + I_gain + D_gain
+
+        # Saturation check
         if self._gain >= 100:
             self._output = 100
         elif self._gain <= 0:
             self._output = 0
         else:
             self._output = self._gain
-            
+        
+        
         self._prev_error = error
         self._prev_time = now
 

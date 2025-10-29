@@ -23,6 +23,7 @@ def main():
     encoder_start        = task_share.Share('B', thread_protect=False, name="Encoder Start Share")
     results              = task_share.Share('L', thread_protect=False, name="Result Share")
     done                 = task_share.Share('B', thread_protect=False, name="Task Done Share")
+    PID                  = task_share.Share('L', thread_protect=False, name="PID Share")
 
 
     # Create the tasks. If trace is enabled for any task, memory will be
