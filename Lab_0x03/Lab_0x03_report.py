@@ -23,14 +23,15 @@ def main():
                 
                 for row in reader:
                     time.append(float(row[0]))
-                    left_speed.append(float(row[1]))
-                    right_speed.append(float(row[2]))
-                    left_poistion.append(float(row[3]))
-                    right_poistion.append(float(row[4]))
+                    left_speed.append(float(row[3]))
+                    right_speed.append(float(row[4]))
+                    left_poistion.append(float(row[1]))
+                    right_poistion.append(float(row[2]))
         
-
         plt.plot(time, right_speed)
+        plt.plot(time, left_speed)
     
+    plt.show()
 
 
 if __name__ == "__main__":
