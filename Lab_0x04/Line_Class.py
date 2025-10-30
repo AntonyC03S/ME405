@@ -16,22 +16,32 @@ class Line:
                          ADC(self._s5_pin), ADC(self._s7_pin), 
                          ADC(self._s9_pin), ADC(self._s11_pin),
                          ADC(self._s13_pin), ADC(self._s15_pin)]
-        
+        self._white_cal = None
+        self._black_cal = None
+
     def cali_white(self):
-        white_values = [adc.read() for adc in self._sensors]
-        return white_values
-    
+        self._white_cal = [adc.read() for adc in self._sensors]
+        return self._white_cal
+
     def cali_black(self):
-        black_values = [adc.read() for adc in self._sensors]
-        return black_values
+        self._black_cal = [adc.read() for adc in self._sensors]
+        return self._black_cal
     
     def update(self):
         values = [adc.read() for adc in self._sensors]
-        counter = 1
-        for a in values:
-            part = a * counter
-            total += part
-            counter += 2
-
         
+        positions = [1, 3, 5, 7, 9, 11, 13, 15]
+        
+        numerator = 0
+        denominator = 0
+        
+        for i in range(len(values)):
+            numerator += values[i] * positions[i]
+            denominator += values[i]
+        
+        if denominator == 0:
+            return 8  
+        
+        centroid = numerator / denominator
+        return centroid-8
 

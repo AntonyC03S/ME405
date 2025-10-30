@@ -33,7 +33,6 @@ class Controller:
         D_gain = ((error - self._prev_error) / dt) * self._KD
 
 
-        print(error)
         self._gain = P_gain + I_gain + D_gain
 
         # Saturation check
