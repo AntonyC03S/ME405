@@ -56,9 +56,9 @@ def UI_task(shares):
                             kp = float(PID_list[0])
                             ki = float(PID_list[1])
                             kd = float(PID_list[2])
-                            Kp.put(int(kp))
-                            Ki.put(int(ki))
-                            Kd.put(int(kd))
+                            Kp.put(float(kp))
+                            Ki.put(float(ki))
+                            Kd.put(float(kd))
                             state = 2
                             Pid = True
 
@@ -67,7 +67,8 @@ def UI_task(shares):
 
         elif state == 2:
             if Pid == True:
-                motor_eff.put(10)
+                motor_eff.put(5)
+                state = 3
                 
             if start == True:
                 if test_done >= 12:

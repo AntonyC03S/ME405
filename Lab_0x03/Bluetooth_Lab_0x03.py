@@ -39,7 +39,6 @@ with Serial("COM7", baudrate=115_200, timeout=1) as ser:
 
     while not ser.in_waiting: 
         continue 
-
     for raw_line in ser:
         try:
             line = raw_line.decode(errors="ignore").strip()
@@ -52,9 +51,7 @@ with Serial("COM7", baudrate=115_200, timeout=1) as ser:
                 # skip malformed lines
                 print("Skipping bad line:", repr(line))
                 continue
-
             t, lp, rp, ls, rs, v = map(float, parts)
-
             row_list = [t, lp, rp, ls, rs]
             csv_list.append(row_list)
 

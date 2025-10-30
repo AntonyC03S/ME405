@@ -28,9 +28,9 @@ def main():
                     left_poistion.append(float(row[1]))
                     right_poistion.append(float(row[2]))
         
-        plt.plot(time, right_speed)
-        plt.plot(time, left_speed)
-    
+        #plt.plot(time, right_speed, label = f"{file_path}")
+        plt.plot(time, left_speed, label = f"{file_path}")
+    plt.legend()
     plt.show()
 
 

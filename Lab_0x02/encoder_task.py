@@ -4,7 +4,7 @@ from Encoder_Driver import Encoder
 
 def encoder_task(shares):
     state = 0
-    encoder_start, motor_speed_left, motor_speed_right, motor_position_left, motor_position_right, motor_time, done = shares
+    encoder_start, motor_speed_left, motor_speed_right, motor_position_left, motor_position_right, motor_time, done, lspeed, rspeed = shares
     counter = 0
 
     # States
@@ -53,6 +53,8 @@ def encoder_task(shares):
         # State 3 - Output data
         # Encoder is giving data out
         elif state == Send:
+            lspeed.put(float(encoder_left.velocity))
+            rspeed.put(float(encoder_left.velocity))
             motor_speed_left.put(float(encoder_left.velocity))
             motor_speed_right.put(float(encoder_right.velocity))
             motor_position_left.put(float(encoder_left.position))

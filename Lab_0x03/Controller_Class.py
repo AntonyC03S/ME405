@@ -1,4 +1,5 @@
 from time import ticks_us, ticks_diff
+import math
 
 class Controller:
     
@@ -19,7 +20,7 @@ class Controller:
         now = ticks_us()
         dt = ticks_diff(now, self._prev_time) / 1_000_000
 
-        error = setpoint - measured
+        error = setpoint - abs(measured)
         P_gain = error * self._KP
 
         # Anti-Windup
@@ -32,7 +33,7 @@ class Controller:
         D_gain = ((error - self._prev_error) / dt) * self._KD
 
 
-
+        print(error)
         self._gain = P_gain + I_gain + D_gain
 
         # Saturation check
