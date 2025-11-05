@@ -89,11 +89,11 @@ def motor_task(shares):
                 Lgain = controller_left.update(15,lspeed.get())
                 Rgain = controller_right.update(15,rspeed.get())
                 if centroid > 0:
-                    Lnew = eff + Lgain + Line_gain
-                    Rnew = eff + Rgain - Line_gain
+                    Lnew = eff + Lgain + Line_gain/2
+                    Rnew = eff + Rgain - Line_gain/2
                 else:
-                    Lnew = eff + Lgain - Line_gain
-                    Rnew = eff + Rgain + Line_gain
+                    Lnew = eff + Lgain - Line_gain/2
+                    Rnew = eff + Rgain + Line_gain/2
                 motor_left.set_effort(Lnew)
                 motor_right.set_effort(Rnew)
 
