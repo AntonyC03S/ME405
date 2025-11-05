@@ -80,24 +80,22 @@ def motor_task(shares):
             if counter == 0:
                 controller_left = Controller(2.7,20,0.1)
                 controller_right = Controller(2,19,0.1)
+                controller_line = Controller(Kp.get(),Ki.get(),Kd.get())
                 motor_left.set_effort(eff)
                 motor_right.set_effort(eff)
             else:
                 centroid = line.update()
-                if centroid <= 0:
-                    Lgain = controller_left.update(15 + centroid,lspeed.get())
-                    Rgain = controller_right.update(15 - centroid,rspeed.get())
-                    Lnew = eff + Lgain
-                    Rnew = eff + Rgain
-                    motor_left.set_effort(Lnew)
-                    motor_right.set_effort(Rnew)
+                Line_gain = controller_line.update(0, centroid)
+                Lgain = controller_left.update(15,lspeed.get())
+                Rgain = controller_right.update(15,rspeed.get())
+                if centroid > 0:
+                    Lnew = eff + Lgain + Line_gain
+                    Rnew = eff + Rgain - Line_gain
                 else:
-                    Lgain = controller_left.update(15 - centroid,lspeed.get())
-                    Rgain = controller_right.update(15 + centroid,rspeed.get())
-                    Lnew = eff + Lgain
-                    Rnew = eff + Rgain
-                    motor_left.set_effort(Lnew)
-                    motor_right.set_effort(Rnew)
+                    Lnew = eff + Lgain - Line_gain
+                    Rnew = eff + Rgain + Line_gain
+                motor_left.set_effort(Lnew)
+                motor_right.set_effort(Rnew)
 
         else:
             state = Stop

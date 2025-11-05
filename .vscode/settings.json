@@ -1,6 +1,7 @@
 {
     "python.analysis.extraPaths": [
         "./Lab_0x01",
-        "./Lab_0x03"
+        "./Lab_0x03",
+        "./Lab_0x04"
     ]
 }
