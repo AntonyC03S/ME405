@@ -85,15 +85,17 @@ def motor_task(shares):
                 motor_right.set_effort(eff)
             else:
                 centroid = line.update()
-                Line_gain = controller_line.update(8, centroid)
+                Line_gain = controller_line.update(16, centroid)
                 Lgain = controller_left.update(5,lspeed.get())
                 Rgain = controller_right.update(5,rspeed.get())
-                if centroid < 0:
-                    Lnew = eff + Lgain + Line_gain/2
-                    Rnew = eff + Rgain - Line_gain/2
-                else:
-                    Lnew = eff + Lgain - Line_gain/2
-                    Rnew = eff + Rgain + Line_gain/2
+                # if centroid > 16:
+                #     Lnew = eff + Lgain + Line_gain/2
+                #     Rnew = eff + Rgain - Line_gain/2
+                # else:
+                #     Lnew = eff + Lgain - Line_gain/2
+                #     Rnew = eff + Rgain + Line_gain/2
+                Lnew = eff + Lgain - Line_gain/2
+                Rnew = eff + Rgain + Line_gain/2
                 motor_left.set_effort(Lnew)
                 motor_right.set_effort(Rnew)
                 print(Lnew, Rnew, centroid, Line_gain)
