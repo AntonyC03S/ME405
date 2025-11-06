@@ -31,7 +31,10 @@ class Line:
     
     def update(self):
         values = [self.calibrate(adc.read(),idx) for idx, adc in enumerate(self._sensors)]
-        
+        for i in values:
+            values *= 2
+
+
         positions = [1, 3, 5, 7, 9, 11, 13, 15]
         
         numerator = 0
@@ -46,10 +49,10 @@ class Line:
         
 
         centroid = numerator / denominator
-        if centroid > 9:
-            return 9
-        elif centroid < 7:
-            return 7
+        if centroid > 18:
+            return 18
+        elif centroid < 14:
+            return 14
         return centroid
     
     def readings(self):
