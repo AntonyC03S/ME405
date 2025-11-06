@@ -1,4 +1,4 @@
-from pyb import Pin, ADC
+from pyb import Pin, ADC # type: ignore
 
 
 class Line:
@@ -31,7 +31,20 @@ class Line:
     
     def update(self):
         values = [self.calibrate(adc.read(),idx) for idx, adc in enumerate(self._sensors)]
+        centroid_max = 18
+        centroid_min = 14
+        centroid_middle = 16
 
+        # Case: No line showing
+        if self.filter_val(values):
+            return centroid_middle
+        
+        # Case: Line Edge 
+        edge_case, centroid = self.edge_val(values, centroid_min, centroid_max)
+        if edge_case:
+            return centroid
+
+        # Case: Line in Middle 
         positions = [1, 3, 5, 7, 9, 11, 13, 15]
         
         numerator = 0
@@ -42,21 +55,46 @@ class Line:
             denominator += values[i]
         
         if denominator == 0:
-            return 16  
+            return centroid_middle  
         
-
         centroid = numerator / denominator
         centroid *= 2 
-        if centroid > 18:
-            return 18
-        elif centroid < 14:
-            return 14
+        if centroid > centroid_max:
+            return centroid_max
+        elif centroid < centroid_min:
+            return centroid_min
         return centroid
-    
+
     def readings(self):
         values = [self.calibrate(adc.read(),idx) for idx, adc in enumerate(self._sensors)]
         return values
+
+
+    """--------------------Helping Functions---------------------------------"""
+    # For Update
+    def filter_val(self, values):
+        max = 1000000          
+        min = 0                  
+        for i in values:
+            if i > max:
+                max = i
+            elif i < min:
+                min = i 
+        
+        if max - min < 100:        # 100 can be tuned
+            return True
+        else:
+            return False
+        
+    # For Update
+    def edge_val(self, values, centroid_min, centroid_max):
+        if values[0] > values[1] and values[0] > values[2]:
+            return True, centroid_min
+        elif values[-1] > values[-2] and values[-1] > values[-3]:
+            return True, centroid_max
+        return False, 0
     
+    # For Update and readings
     def calibrate(self, value, idx):
         if self._white_cal is None or self._black_cal is None:
             # Load calibration values directly from the text file if not already loaded
