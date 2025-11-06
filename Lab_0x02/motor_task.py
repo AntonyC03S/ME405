@@ -85,7 +85,7 @@ def motor_task(shares):
                 motor_right.set_effort(eff)
             else:
                 centroid = line.update()
-                Line_gain = controller_line.update(0, centroid)
+                Line_gain = controller_line.update(8, centroid)
                 Lgain = controller_left.update(5,lspeed.get())
                 Rgain = controller_right.update(5,rspeed.get())
                 if centroid < 0:
@@ -96,7 +96,7 @@ def motor_task(shares):
                     Rnew = eff + Rgain + Line_gain/2
                 motor_left.set_effort(Lnew)
                 motor_right.set_effort(Rnew)
-                print(Lnew, Rnew, centroid)
+                print(Lnew, Rnew, centroid, Line_gain)
             motor_volt.put(1)
 
             counter += 1

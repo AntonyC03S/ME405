@@ -38,8 +38,8 @@ class Controller:
         # Saturation check
         if self._gain >= 100:
             self._output = 100
-        elif self._gain <= 0:
-            self._output = 0
+        elif self._gain <= -100:
+            self._output = -100
         else:
             self._output = self._gain
         

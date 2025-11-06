@@ -45,7 +45,7 @@ class Line:
             return 8  
         
         centroid = numerator / denominator
-        return centroid-8
+        return centroid
     
     def readings(self):
         values = [self.calibrate(adc.read(),idx) for idx, adc in enumerate(self._sensors)]
