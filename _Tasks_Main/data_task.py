@@ -1,5 +1,4 @@
-
-from pyb import UART
+from pyb import UART # type: ignore
 from time import sleep_ms
 
 def data_task(shares):
