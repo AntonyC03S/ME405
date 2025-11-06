@@ -81,15 +81,14 @@ def motor_task(shares):
                 controller_left = Controller(2.7,20,0.1)
                 controller_right = Controller(2,19,0.1)
                 controller_line = Controller(Kp.get(),Ki.get(),Kd.get())
-                print("hello")
                 motor_left.set_effort(eff)
                 motor_right.set_effort(eff)
             else:
                 centroid = line.update()
                 Line_gain = controller_line.update(0, centroid)
-                Lgain = controller_left.update(15,lspeed.get())
-                Rgain = controller_right.update(15,rspeed.get())
-                if centroid > 0:
+                Lgain = controller_left.update(5,lspeed.get())
+                Rgain = controller_right.update(5,rspeed.get())
+                if centroid < 0:
                     Lnew = eff + Lgain + Line_gain/2
                     Rnew = eff + Rgain - Line_gain/2
                 else:
@@ -97,12 +96,12 @@ def motor_task(shares):
                     Rnew = eff + Rgain + Line_gain/2
                 motor_left.set_effort(Lnew)
                 motor_right.set_effort(Rnew)
-                print(Lnew)
+                print(Lnew, Rnew, centroid)
             motor_volt.put(1)
 
             counter += 1
 
-            if counter >= 100:
+            if counter >= 1000:
                 done.put(1)
                 encoder_start.put(0)
                 motor_eff.put(0)

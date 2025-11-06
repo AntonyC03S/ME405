@@ -54,7 +54,7 @@ class Line:
     def calibrate(self, value, idx):
         if self._white_cal is None or self._black_cal is None:
             # Load calibration values directly from the text file if not already loaded
-            with open('/flash/calibration', 'r') as f:
+            with open('calibration.txt', 'r') as f:
                 lines = f.readlines()
                 self._white_cal = [int(x) for x in eval(lines[0])]
                 self._black_cal = [int(x) for x in eval(lines[1])]

@@ -13,8 +13,9 @@ hi = line.cali_white()
 print("Go on black")
 time.sleep(3)
 bye = line.cali_black()
-print(hi)
-print(bye)
+
+print(line._black_cal)
+print(line._white_cal)
 
 
 
