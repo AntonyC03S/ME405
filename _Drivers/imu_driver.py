@@ -12,6 +12,9 @@ class IMU:
         self.result = self.higher_4_bits | 0x0b
         self.i2c.mem_write(self.result, self.devad, 0x3D)
 
+    def scan(self):
+        return self.i2c.scan()
+
     def read(self,DATA):
         if DATA == 'Gyro':
             self.gyrobuf = bytearray(0 for n in range(6))
