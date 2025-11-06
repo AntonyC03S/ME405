@@ -9,10 +9,12 @@ line = Line(Pin.cpu.C2, Pin.cpu.C3, Pin.cpu.C0,
                         Pin.cpu.C4, Pin.cpu.B1)
 print("Go on white")
 time.sleep(3)
-line.cali_white()
+hi = line.cali_white()
 print("Go on black")
 time.sleep(3)
-line.cali_black()
+bye = line.cali_black()
+print(hi)
+print(bye)
 
 
 

@@ -1,5 +1,6 @@
 from pyb import Pin, ADC
 
+
 class Line:
     
     def __init__(self, s1: Pin, s3: Pin, s5: Pin, s7: Pin, s9: Pin, s11: Pin, s13: Pin, s15: Pin):
@@ -26,9 +27,10 @@ class Line:
     def cali_black(self):
         self._black_cal = [adc.read() for adc in self._sensors]
         return self._black_cal
+
     
     def update(self):
-        values = [adc.read() for adc in self._sensors]
+        values = [self.calibrate(adc.read(),idx) for idx, adc in enumerate(self._sensors)]
         
         positions = [1, 3, 5, 7, 9, 11, 13, 15]
         
@@ -50,5 +52,13 @@ class Line:
         return values
     
     def calibrate(self, value, idx):
-        return (self._black_cal[idx]-value)/(self._black_cal[idx]-self._white_cal[idx])
+        if self._white_cal is None or self._black_cal is None:
+            # Load calibration values directly from the text file if not already loaded
+            with open('/flash/calibration', 'r') as f:
+                lines = f.readlines()
+                self._white_cal = [int(x) for x in eval(lines[0])]
+                self._black_cal = [int(x) for x in eval(lines[1])]
+
+        return (self._black_cal[idx] - value) / (self._black_cal[idx] - self._white_cal[idx])
+
 

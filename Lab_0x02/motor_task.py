@@ -42,7 +42,7 @@ def motor_task(shares):
             motor_left.set_effort(0)
             motor_right.set_effort(0)
             if eff != 0:
-                state = Line
+                state = Line_Running
                 encoder_start.put(1)
 
         # State 2 - Running
@@ -81,6 +81,7 @@ def motor_task(shares):
                 controller_left = Controller(2.7,20,0.1)
                 controller_right = Controller(2,19,0.1)
                 controller_line = Controller(Kp.get(),Ki.get(),Kd.get())
+                print("hello")
                 motor_left.set_effort(eff)
                 motor_right.set_effort(eff)
             else:
@@ -96,6 +97,7 @@ def motor_task(shares):
                     Rnew = eff + Rgain + Line_gain/2
                 motor_left.set_effort(Lnew)
                 motor_right.set_effort(Rnew)
+                print(Lnew)
 
         else:
             state = Stop
