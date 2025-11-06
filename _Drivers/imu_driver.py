@@ -7,10 +7,10 @@ class IMU:
         self.devad = 0x28
 
         #Read 8-bit config data from reg and write 1100 to lower 4 bits to set ndof mode
-        self.config = self.i2c.mem_read(1, self.devad, 0x3D)
-        self.higher_4_bits = self.config & 0xF0
-        self.result = self.higher_4_bits | 0x0b
-        self.i2c.mem_write(self.result, self.devad, 0x3D)
+        # self.config = self.i2c.mem_read(1, self.devad, 0x3D)
+        # self.higher_4_bits = self.config & 0xF0
+        # self.result = self.higher_4_bits | 0x0b
+        # self.i2c.mem_write(self.result, self.devad, 0x3D)
 
     def scan(self):
         return self.i2c.scan()
