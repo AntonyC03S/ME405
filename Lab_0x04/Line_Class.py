@@ -44,7 +44,12 @@ class Line:
         if denominator == 0:
             return 8  
         
+
         centroid = numerator / denominator
+        if centroid > 9:
+            return 9
+        elif centroid < 7:
+            return 7
         return centroid
     
     def readings(self):
