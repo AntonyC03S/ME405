@@ -98,6 +98,20 @@ def motor_task(shares):
                 motor_left.set_effort(Lnew)
                 motor_right.set_effort(Rnew)
                 print(Lnew)
+            motor_volt.put(1)
+
+            counter += 1
+
+            if counter >= 100:
+                done.put(1)
+                encoder_start.put(0)
+                motor_eff.put(0)
+                counter = 0
+                state = Stop
+                
+            if eff == 0:
+                state = Stop
+
 
         else:
             state = Stop
