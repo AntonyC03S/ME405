@@ -16,7 +16,7 @@ def motor_task(shares):
     Init = 0
     Stop = 1
     Running = 2
-    Line = 3
+    Line_Running = 3
 
 
     while True:
@@ -75,7 +75,7 @@ def motor_task(shares):
             if eff == 0:
                 state = Stop
             
-        elif state == Line:
+        elif state == Line_Running:
             eff = int(motor_eff.get())
             if counter == 0:
                 controller_left = Controller(2.7,20,0.1)
