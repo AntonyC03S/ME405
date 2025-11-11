@@ -50,8 +50,13 @@ class Encoder:
     def distance_traveled(self, raduis = 35):
         '''Returns the distance travel from the view point of the wheel
             in mm'''
-        return f"{self.position * (2 * math.pi * 1_000_000 / 1437.1)* raduis}"
+        return f"{self._position * (2 * math.pi * 1_000_000 / 1437.1)* raduis}"
     
+    def define_distance_traveled(self, traveled, raduis = 35):
+        '''Returns Nothing. Sets position to distance wanted'''
+        self._position = traveled/raduis
+        return 
+
     @property   
     def velocity(self):
         '''Returns a measure of velocity using the the most recently updated
