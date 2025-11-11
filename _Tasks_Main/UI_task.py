@@ -1,5 +1,6 @@
 from pyb import UART # type: ignore
 from time import sleep_ms
+from gc import collect
 
 def UI_task(shares):
     state = 0
@@ -61,6 +62,7 @@ def UI_task(shares):
                             Kd.put(float(kd))
                             state = 2
                             Pid = True
+                            break
 
 
             yield state
@@ -93,4 +95,5 @@ def UI_task(shares):
             yield state
 
         elif state == 3:
+            collect()
             yield state

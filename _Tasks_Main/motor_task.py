@@ -11,7 +11,6 @@ def motor_task(shares):
     state = 0
     counter = 0
 
-
     # States
     Init = 0
     Stop = 1
@@ -75,6 +74,8 @@ def motor_task(shares):
             if eff == 0:
                 state = Stop
             
+        # State 3 - Running and Following a line
+        # Enabling Motor, Encoder, and Line Sensor
         elif state == Line_Running:
             eff = int(motor_eff.get())
             if counter == 0:
@@ -88,12 +89,6 @@ def motor_task(shares):
                 Line_gain = controller_line.update(16, centroid)
                 Lgain = controller_left.update(5,lspeed.get())
                 Rgain = controller_right.update(5,rspeed.get())
-                # if centroid > 16:
-                #     Lnew = eff + Lgain + Line_gain/2
-                #     Rnew = eff + Rgain - Line_gain/2
-                # else:
-                #     Lnew = eff + Lgain - Line_gain/2
-                #     Rnew = eff + Rgain + Line_gain/2
                 Lnew = eff + Lgain - Line_gain/2
                 Rnew = eff + Rgain + Line_gain/2
                 motor_left.set_effort(Lnew)
@@ -112,6 +107,9 @@ def motor_task(shares):
                 
             if eff == 0:
                 state = Stop
+
+
+
 
 
         else:

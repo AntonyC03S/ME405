@@ -1,4 +1,5 @@
 from pyb import Pin, ADC # type: ignore
+from os import listdir
 
 
 class Line:
@@ -97,11 +98,30 @@ class Line:
     # For Update and readings
     def calibrate(self, value, idx):
         if self._white_cal is None or self._black_cal is None:
-            # Load calibration values directly from the text file if not already loaded
-            with open('calibration.txt', 'r') as f:
-                lines = f.readlines()
-                self._white_cal = [int(x) for x in eval(lines[0])]
-                self._black_cal = [int(x) for x in eval(lines[1])]
+            filelist = listdir()
+            if "calibration.txt" in filelist:
+                # Calibration data is present
+                print("Found calibration data, skipping calibration")
+                with open("calibration.txt", "r") as file:
+                    # Read data from file, strip special characters, split on commas, assign
+                    # to variables. Similar to HW 0x00 using file.readline()
+                    lines = file.readlines()
+                    self._white_cal = [int(x) for x in eval(lines[0])]
+                    self._black_cal = [int(x) for x in eval(lines[1])]
+            else:
+                # Calibration data is not present
+                input("Accept Black?")
+                
+                self.cali_black()
+                input("Accept White?")
+
+                self.cali_white()
+                with open("calibration.txt", "w") as file:
+                # Convert calibration values to strings, join with commas, append newline
+                # and write to file. Essentially the inverse of HW 0x00, so use file.write()
+                    file.write(", ".join(str(item) for item in self._white_cal))
+                    file.write("\n")
+                    file.write(", ".join(str(item) for item in self._black_cal))
 
         return (self._black_cal[idx] - value) / (self._black_cal[idx] - self._white_cal[idx])
 
