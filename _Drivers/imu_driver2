@@ -35,24 +35,19 @@ class IMU:
         """Initialize the BNO055 sensor"""
         # Set to config mode
         self.i2c.mem_write(bytes([self.CONFIG_MODE]), self.devad, self.OPR_MODE_REG)
-        time.sleep_ms(25)  # Wait for mode change
         
         # Reset system
         self.i2c.mem_write(bytes([0x20]), self.devad, self.SYS_TRIGGER_REG)
-        time.sleep_ms(650)  # Wait for reset
         
         # Set to normal power mode
         self.i2c.mem_write(bytes([0x00]), self.devad, self.PWR_MODE_REG)
-        time.sleep_ms(10)
         
         # Set to NDOF mode (fusion mode with all sensors)
         self.i2c.mem_write(bytes([self.NDOF_MODE]), self.devad, self.OPR_MODE_REG)
-        time.sleep_ms(20)  # Wait for mode change
     
     def set_mode(self, mode):
         """Set operation mode"""
         self.i2c.mem_write(bytes([mode]), self.devad, self.OPR_MODE_REG)
-        time.sleep_ms(20)
     
     def scan(self):
         """Scan I2C bus for devices"""
