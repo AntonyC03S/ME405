@@ -24,12 +24,7 @@ class IMU:
         self.i2c = i2c
         self.devad = 0x28
         
-        # Verify chip ID (should be 0xA0)
-        chip_id = self.i2c.mem_read(1, self.devad, self.CHIP_ID_REG)[0]
-        if chip_id != 0xA0:
-            raise RuntimeError(f"BNO055 not found! Got chip ID: {hex(chip_id)}")
-        
-        # Initialize sensor
+        #Initialize sensor
         self._init_sensor()
     
     def _init_sensor(self):
@@ -42,9 +37,18 @@ class IMU:
         
         # Set to normal power mode
         self.i2c.mem_write(bytes([0x00]), self.devad, self.PWR_MODE_REG)
+
+        try:
+            self.push_cal_data()
         
-        # Set to NDOF mode (fusion mode with all sensors)
-        self.i2c.mem_write(bytes([self.NDOF_MODE]), self.devad, self.OPR_MODE_REG)
+        except:
+            check = self.get_cal_status()
+            if check == [3,3,3,3]:
+                self.get_cal_data()
+                self.push_cal_data()
+            else:
+                 # Set to NDOF mode (fusion mode with all sensors)
+                self.i2c.mem_write(bytes([self.NDOF_MODE]), self.devad, self.OPR_MODE_REG)
     
     def set_mode(self, mode):
         """Set operation mode"""
@@ -90,16 +94,17 @@ class IMU:
         gyro = (calib_stat >> 4) & 0x03
         accel = (calib_stat >> 2) & 0x03
         mag = calib_stat & 0x03
-        return {'sys': sys, 'gyro': gyro, 'accel': accel, 'mag': mag}
+        return [sys,gyro,accel,mag]
     
     def get_cal_data(self):
         # Define the filename and content
         filename = "cal_data.txt"
-        content = self.i2c.mem_read(18, self.devad, self.CAL_DATA_LSB)
+        buf = bytearray(18)
+        self.i2c.mem_read(buf, self.devad, self.CAL_DATA_LSB)
 
         # Open the file in write mode ('w') and write the content
         with open(filename, 'wb') as file:
-            file.write(content)
+            file.write(buf)
 
     def push_cal_data(self):
         filename = "cal_data.txt"
