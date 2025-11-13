@@ -18,6 +18,7 @@ class IMU:
     MAG_DATA_X_LSB = 0x0E
     GYRO_DATA_X_LSB = 0x14
     EULER_H_LSB = 0x1A
+    CAL_DATA_LSB = 0x55
     
     def __init__(self, i2c):
         self.i2c = i2c
@@ -82,7 +83,7 @@ class IMU:
         z = struct.unpack('<h', raw_data[4:6])[0] / scale
         return (x, y, z)
     
-    def get_calibration_status(self):
+    def get_cal_status(self):
         """Get calibration status for system, gyro, accel, mag (0-3 each)"""
         calib_stat = self.i2c.mem_read(1, self.devad, 0x35)[0]
         sys = (calib_stat >> 6) & 0x03
@@ -90,3 +91,22 @@ class IMU:
         accel = (calib_stat >> 2) & 0x03
         mag = calib_stat & 0x03
         return {'sys': sys, 'gyro': gyro, 'accel': accel, 'mag': mag}
+    
+    def get_cal_data(self):
+        # Define the filename and content
+        filename = "cal_data.txt"
+        content = self.i2c.mem_read(18, self.devad, self.CAL_DATA_LSB)
+
+        # Open the file in write mode ('w') and write the content
+        with open(filename, 'wb') as file:
+            file.write(content)
+
+    def push_cal_data(self):
+        filename = "cal_data.txt"
+        with open(filename, 'rb') as f:
+        # Read the entire file content as bytes
+            file_content_bytes = f.read()
+
+        # Convert the bytes object to a bytearray and pastes to cal data lsb
+        cal_data_old = bytearray(file_content_bytes)
+        self.i2c.mem_write(cal_data_old,self.devad, self.CAL_DATA_LSB)
