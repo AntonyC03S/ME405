@@ -48,6 +48,16 @@ class IMU:
     def _set_mode(self, mode):
         self.i2c.mem_write(bytes([mode]), self.devad, self.OPR_MODE_REG)
 
+    def cali_status(self):
+        """Return calibration status as a tuple: (sys, gyro, acc, mag)"""
+        cal_stat = self.i2c.mem_read(1, self.devad, 0x35)[0]
+        sys = (cal_stat >> 6) & 0x03
+        gyro = (cal_stat >> 4) & 0x03
+        acc = (cal_stat >> 2) & 0x03
+        mag = cal_stat & 0x03
+        return (sys, gyro, acc, mag)
+
+
     def scan(self):
         return self.i2c.scan()
 
