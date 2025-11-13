@@ -1,8 +1,12 @@
-from pyb import UART # type: ignore
+from pyb import UART, ExtInt, Pin  # type: ignore
 from time import sleep_ms
 from gc import collect
 
 def UI_task(shares):
+    def button_callback(state):
+        def button_LED_toggle(the_pin):
+            state = 4
+
     state = 0
     motor_eff, results, done, motor_speed_left, motor_speed_right, motor_time, encoder_start, Kp, Ki, Kd = shares
     start = False
@@ -96,4 +100,12 @@ def UI_task(shares):
 
         elif state == 3:
             collect()
+            button_int = ExtInt(Pin.cpu.C13, ExtInt.IRQ_FALLING, Pin.PULL_NONE, button_callback(state))
+            yield state
+
+        elif state == 4:
+            motor_eff.put(0)
+            encoder_start.put(0)
+            done.put(0)
+            state = 0
             yield state
