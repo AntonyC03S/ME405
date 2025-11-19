@@ -23,11 +23,11 @@ def main():
     encoder_start        = task_share.Share('B', thread_protect=False, name="Encoder Start Share")
     results              = task_share.Share('L', thread_protect=False, name="Result Share")
     done                 = task_share.Share('B', thread_protect=False, name="Task Done Share")
-    Kp                  = task_share.Share('f', thread_protect=False, name="KP Share")
-    Ki                  = task_share.Share('f', thread_protect=False, name="KI Share")
-    Kd                  = task_share.Share('f', thread_protect=False, name="KD Share")
-    lspeed              = task_share.Share('f', thread_protect=False, name="Left Speed Share")
-    rspeed              = task_share.Share('f', thread_protect=False, name="Right Speed Share")
+    Kp                   = task_share.Share('f', thread_protect=False, name="KP Share")
+    Ki                   = task_share.Share('f', thread_protect=False, name="KI Share")
+    Kd                   = task_share.Share('f', thread_protect=False, name="KD Share")
+    lspeed               = task_share.Share('f', thread_protect=False, name="Left Speed Share")
+    rspeed               = task_share.Share('f', thread_protect=False, name="Right Speed Share")
 
 
     # Create the tasks. If trace is enabled for any task, memory will be
@@ -56,7 +56,14 @@ def main():
         try:
             cotask.task_list.pri_sched()
         except KeyboardInterrupt:
+            # mot_L.disable()
+            # mot_R.disable()
             break
+            
+        except:
+            # mot_L.disable()
+            # mot_R.disable()
+            raise
 
 
 if __name__ == "__main__":

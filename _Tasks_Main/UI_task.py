@@ -3,12 +3,13 @@ from time import sleep_ms
 from gc import collect
 
 def UI_task(shares):
-    def button_callback(state):
+    button = []
+    def button_callback(button):
         def button_LED_toggle(the_pin):
-            state = 4
-
-    state = 0
+            button.append(0)
+    button_int = ExtInt(Pin.cpu.C13, ExtInt.IRQ_FALLING, Pin.PULL_NONE, button_callback(button))
     motor_eff, results, done, motor_speed_left, motor_speed_right, motor_time, encoder_start, Kp, Ki, Kd = shares
+    state = 0
     start = False
     sleep_period = 100
     test_effort = 0
@@ -99,13 +100,16 @@ def UI_task(shares):
             yield state
 
         elif state == 3:
+            if len(button) != 0:
+                state == 4
+                print("button")
             collect()
-            button_int = ExtInt(Pin.cpu.C13, ExtInt.IRQ_FALLING, Pin.PULL_NONE, button_callback(state))
             yield state
 
         elif state == 4:
+            print("button act")
             motor_eff.put(0)
             encoder_start.put(0)
             done.put(0)
-            state = 0
+            state = 3
             yield state
