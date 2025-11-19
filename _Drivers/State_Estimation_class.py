@@ -4,7 +4,7 @@ from matplotlib import rc
 import matplotlib.pyplot as plt
 from math import pi, sin, cos
 
-class State_Esimation:
+class State_Estimation:
 
     def __init__(self,K = 250*2*pi/60/4.5, tau = 0.1, l = 0.141, r = 0.035):
         # Electromechanical properties
@@ -35,16 +35,16 @@ class State_Esimation:
                     [ Kp * err_R ] ])       
         
         # State equations
-        xd =  array( [[ (1/self._tau)     * (self._K*u[0,0] - x[0,0]) ],    #ΩL
-                    [   (1/self._tau)     * (self._K*u[1,0] - x[1,0]) ],    #ΩS
-                    [   (self._r/2)       * ( x[1,0] + x[0,0]) ],           #s
-                    [   (self._r/self._l) * ( x[1,0] - x[0,0]) ]])          #Ψ
+        xd =  array( [[ (1/self._tau)     * (self._K*u[0,0] - x[0,0]) ],    #Ω L
+                    [   (1/self._tau)     * (self._K*u[1,0] - x[1,0]) ],    #Ω S
+                    [   (self._r/2)       * ( x[1,0]        + x[0,0]) ],    #S
+                    [   (self._r/self._l) * ( x[1,0]        - x[0,0]) ]])   #Ψ
         
         # Output Equations
-        y  =  array( [ [ x[2,0] ]
-                    [ x[3,0] ],
-                    [ (self._r/2) * ( x[5,0] + x[4,0]) ],
-                    [ (self._r/self._l) * ( x[5,0] - x[4,0]) ] ])
+        y  =  array( [ [ x[2,0] - (x[3,0] * (self._l/2))       ]     #S_L
+                    [    x[2,0] + (x[3,0] * (self._l/2))       ],    #S_R
+                    [    x[3,0]                                ],    #Ψ
+                    [   (self._r/self._l) * ( x[1,0] - x[0,0]) ]])  #Ψ_dot
         
         return xd, y
 
