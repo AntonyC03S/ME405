@@ -54,7 +54,7 @@ def encoder_task(shares):
         # Encoder is giving data out
         elif state == Send:
             lspeed.put(float(encoder_left.velocity))
-            rspeed.put(float(encoder_left.velocity))
+            rspeed.put(float(encoder_right.velocity))
             motor_speed_left.put(float(encoder_left.velocity))
             motor_speed_right.put(float(encoder_right.velocity))
             motor_position_left.put(float(encoder_left.position))
