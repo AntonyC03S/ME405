@@ -110,8 +110,11 @@ class IMU:
 
     def read_yaw_rate(self):
         """Return yaw rate (gz) in deg/s."""
-        raw = self.i2c.mem_read(2, self.devad, self.GYRO_DATA_X_LSB + 4)  # Z LSB
-        return struct.unpack('<h', raw)[0] / 16.0
+        # GYRO_DATA_X_LSB = 0x14, Y=0x16, Z=0x18
+        GYRO_Z_LSB = 0x18
+        raw = self.i2c.mem_read(2, self.devad, GYRO_Z_LSB)
+        yaw_rate = struct.unpack('<h', raw)[0] / 16.0
+        return yaw_rate  # degrees per second
 
 
 

@@ -44,17 +44,20 @@ class Encoder:
     def position(self):
         '''Returns the most recently updated value of position as determined
            within the update() method'''
-        return f"{self._position *(2 * math.pi * 1_000_000 / 1437.1)}"
+        return f"{self._position *(2 * math.pi / 1437.1)}"
     
 
-    def distance_traveled(self, raduis = 35):
-        '''Returns the distance travel from the view point of the wheel
-            in mm'''
-        return f"{self._position * (2 * math.pi * 1_000_000 / 1437.1)* raduis}"
+    def distance_traveled(self, radius=35, ticks_per_rev=1437.1):
+        """Return absolute wheel distance traveled (m)."""
+        rev = self._position / float(ticks_per_rev)
+        dist_m = 2 * math.pi * (radius / 1000.0) * rev
+        return dist_m
+
+
     
-    def define_distance_traveled(self, traveled, raduis = 35):
+    def define_distance_traveled(self, traveled, radius = 35):
         '''Returns Nothing. Sets position to distance wanted'''
-        self._position = traveled/raduis
+        self._position = traveled/radius
         return 
 
     @property   
