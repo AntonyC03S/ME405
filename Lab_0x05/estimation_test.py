@@ -22,11 +22,13 @@ Bd = [[ 0.553633,  0.      ],
       [ 0.000049,  0.000049],
       [-0.000699,  0.000699]]
 
-# Optional: paste your tuned L from offline design (shape 4x4).
-# If you don't have it yet, comment L_out and let the class use the starter L.
-# L_out = [[...],[...],[...],[...]]  
+L = [[ 0.08, -0.08, 0.00, -0.02],  # wL: use yaw-rate innovation a bit to correct diff
+    [-0.08,  0.08, 0.00,  0.02],  # wR: opposite sign
+    [ 0.35,  0.35, 0.00,  0.00],  # s : CORRECT -> average of (SL, SR)
+    [ 0.00,  0.00, 0.50,  0.70]]
 
-obs = RomiObserver(Ad, Bd, r, l)  
+
+obs = RomiObserver(Ad, Bd, r, l, L=L)  
 tim3 = Timer(3, freq=20000)
 motor_left = Motor(Pin.cpu.A6, Pin.cpu.C7,  Pin.cpu.B2,  tim3, 1)  
 motor_right = Motor(Pin.cpu.A7, Pin.cpu.B12, Pin.cpu.B14, tim3, 2) 
@@ -45,6 +47,15 @@ motor_left.set_effort(25)
 motor_right.set_effort(25)
 encoder_left.zero()
 encoder_right.zero()
+
+psi0_deg = imu.read_heading()   # reference heading (degrees)
+
+def wrap_deg180(a):
+    # wrap to (-180, 180]
+    while a <= -180: a += 360
+    while a >   180: a -= 360
+    return a
+
 
 v = 7.2 * .1
 
@@ -65,7 +76,7 @@ def loop_step():
     SL = encoder_left.distance_traveled()
     SR = encoder_right.distance_traveled()
 
-    psi_deg   = imu.read_heading()    # degrees
+    psi_deg = wrap_deg180(imu.read_heading() - psi0_deg)
     yaw_dps   = imu.read_yaw_rate()   # deg/s
 
     # 3) observer update
@@ -75,6 +86,7 @@ def loop_step():
     # xhat = [wL, wR, s, psi]^T  (psi in rad)
     # Replace with your Share/Queue publish call:
     print("xhat:", [float(xhat[0,0]), float(xhat[1,0]), float(xhat[2,0]), float(xhat[3,0])])
+
 
 # --- Simple periodic loop (blocking) ---
 while True:
