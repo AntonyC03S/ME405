@@ -4,9 +4,12 @@ import sys
 import time
 import math
 
-line = Line(Pin.cpu.C2, Pin.cpu.C3, Pin.cpu.C0, 
-                        Pin.cpu.C1, Pin.cpu.B0, Pin.cpu.A4,
-                        Pin.cpu.C4, Pin.cpu.B1)
+line = Line()
+line.define_13(Pin.cpu.A0,Pin.cpu.A1,Pin.cpu.A4,
+               Pin.cpu.A6,Pin.cpu.A7,Pin.cpu.B0,
+               Pin.cpu.B1,Pin.cpu.C0,Pin.cpu.C1,
+               Pin.cpu.C2,Pin.cpu.C3,Pin.cpu.C4,
+               Pin.cpu.C5)
 
 
 while True:

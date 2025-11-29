@@ -30,7 +30,8 @@ def motor_task(shares):
             motor_right.enable()
             lspeed.put(0)
             rspeed.put(0)
-            line = Line(Pin.cpu.C2, Pin.cpu.C3, Pin.cpu.C0, 
+            line = Line()
+            line.define_8(Pin.cpu.C2, Pin.cpu.C3, Pin.cpu.C0, 
                         Pin.cpu.C1, Pin.cpu.B0, Pin.cpu.A4,
                         Pin.cpu.C4, Pin.cpu.B1)
             state = Stop

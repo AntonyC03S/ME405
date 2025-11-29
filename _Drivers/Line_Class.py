@@ -2,9 +2,13 @@ from pyb import Pin, ADC # type: ignore
 from os import listdir
 
 
-class Line:
+class Line: 
     
-    def __init__(self, s1: Pin, s3: Pin, s5: Pin, s7: Pin, s9: Pin, s11: Pin, s13: Pin, s15: Pin):
+    def __init__(self):
+        self._white_cal = None
+        self._black_cal = None
+        
+    def define_8(self, s1: Pin, s3: Pin, s5: Pin, s7: Pin, s9: Pin, s11: Pin, s13: Pin, s15: Pin):
         self._s1_pin = Pin(s1, mode = Pin.IN)
         self._s3_pin = Pin(s3, mode = Pin.IN)
         self._s5_pin = Pin(s5, mode = Pin.IN)
@@ -18,8 +22,33 @@ class Line:
                          ADC(self._s5_pin), ADC(self._s7_pin), 
                          ADC(self._s9_pin), ADC(self._s11_pin),
                          ADC(self._s13_pin), ADC(self._s15_pin)]
-        self._white_cal = None
-        self._black_cal = None
+
+    def define_13(self, s1: Pin, s2: Pin, s3: Pin, s4: Pin, s5: Pin, s6: Pin, s7: Pin, s8: Pin, s9: Pin, s10: Pin, s11: Pin, s12: Pin, s13: Pin, s14: Pin, s15: Pin):
+        self._s1_pin = Pin(s1, mode = Pin.IN)
+        self._s2_pin = Pin(s2, mode = Pin.IN)
+        self._s3_pin = Pin(s3, mode = Pin.IN)
+        self._s4_pin = Pin(s4, mode = Pin.IN)
+        self._s5_pin = Pin(s5, mode = Pin.IN)
+        self._s6_pin = Pin(s6, mode = Pin.IN)
+        self._s7_pin = Pin(s7, mode = Pin.IN)
+        self._s8_pin = Pin(s8, mode = Pin.IN)
+        self._s9_pin = Pin(s9, mode = Pin.IN)
+        self._s10_pin = Pin(s10, mode = Pin.IN)
+        self._s11_pin = Pin(s11, mode = Pin.IN)
+        self._s12_pin = Pin(s12, mode = Pin.IN)
+        self._s13_pin = Pin(s13, mode = Pin.IN)
+        self._s14_pin = Pin(s14, mode = Pin.IN)
+        self._s15_pin = Pin(s15, mode = Pin.IN)
+
+        self._sensors = [ADC(self._s1_pin), ADC(self._s2_pin), 
+                         ADC(self._s3_pin), ADC(self._s4_pin),
+                         ADC(self._s5_pin), ADC(self._s6_pin),
+                         ADC(self._s7_pin), ADC(self._s8_pin),
+                         ADC(self._s9_pin), ADC(self._s10_pin),
+                         ADC(self._s11_pin), ADC(self._s12_pin),
+                         ADC(self._s13_pin), ADC(self._s14_pin),
+                         ADC(self._s15_pin)]
+
 
     def cali_white(self):
         self._white_cal = [adc.read() for adc in self._sensors]
@@ -124,5 +153,4 @@ class Line:
                     file.write(", ".join(str(item) for item in self._black_cal))
 
         return (self._black_cal[idx] - value) / (self._black_cal[idx] - self._white_cal[idx])
-
 
