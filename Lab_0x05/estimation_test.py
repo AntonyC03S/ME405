@@ -68,7 +68,7 @@ def wrap_deg180(a):
 
 
 def loop_step():
-    global s
+    global s, a
     Lgain = controller_left.update(10,float(encoder_left.velocity))
     Rgain = controller_right.update(10,float(encoder_right.velocity))
     effL = 5 + Lgain
@@ -92,19 +92,54 @@ def loop_step():
     # 4) use/publish the estimate
     # xhat = [wL, wR, s, psi]^T  (psi in rad)
     # Replace with your Share/Queue publish call:
-    s = float(xhat[2,0])*39.3701
-    print("xhat:", [float(xhat[0,0]), float(xhat[1,0]), s, float(xhat[3,0])])
+    s = float(xhat[2,0])*1000
+    a = float(xhat[3,0])
+    print("xhat:", float(xhat[0,0]), float(xhat[1,0]), s, a)
 
 
 # --- Simple periodic loop (blocking) ---
 while True:
     if counter == 0:
         loop_step()
-    if s <= 20:
-        loop_step()
         counter += 1
-    else:
+    elif counter == 1:
+        while 0 < s <= 300:
+            loop_step()
+        counter += 1
+    elif  counter == 2:
+        while a <= 90:
+            motor_left.disable()
+            motor_right.set_effort(5)
+        counter += 1
+        motor_left.enable()
+    elif counter == 3:
+        while 300 < s <= 600:
+            loop_step()
+        counter += 1
+    elif counter == 4:
+        while a >= -90:
+            motor_left.set_effort(5)
+            motor_right.disable()
+        counter += 1
+        motor_right.enable()
+    elif counter == 5:
+        while 600 < s <= 900:
+            loop_step()
+        counter += 1
+    elif counter == 6:
+        while a >= -180:
+            motor_left.set_effort(5)
+            motor_right.disable()
+        counter += 1
+        motor_right.enable()
+    elif counter == 7:
+        while 900 < s <= 1200:
+            loop_step()
         motor_left.set_effort(0)
         motor_right.set_effort(0)
-        break
+    else:
+        print("Finished")
+
+
+    
         
