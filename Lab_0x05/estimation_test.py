@@ -55,6 +55,7 @@ encoder_right.zero()
 encoder_left.update()
 encoder_right.update() 
 counter = 0
+b = 0
 
 psi0_deg = imu.read_heading()   # reference heading (degrees)
 
@@ -107,31 +108,93 @@ while True:
             loop_step()
         counter += 1
     elif  counter == 2:
-        while a <= 90:
-            motor_left.disable()
-            motor_right.set_effort(5)
+        while b <= 90:
+            motor_left.set_effort(10)
+            motor_right.disable()
+            uL = 7.2 * (10 / 100)
+            uR = 0 
+            u = np.array([[uL],[uR]])
+            encoder_left.update()
+            encoder_right.update() 
+            L = encoder_left.distance_traveled()
+            R = encoder_right.distance_traveled()
+
+            psi_deg = wrap_deg180(imu.read_heading() - psi0_deg)
+            yaw_dps   = imu.read_yaw_rate()   # deg/s
+
+            # 3) observer update
+            xhat = obs.step(u, L, R, psi_deg, yaw_dps)
+
+            # 4) use/publish the estimate
+            # xhat = [wL, wR, s, psi]^T  (psi in rad)
+            # Replace with your Share/Queue publish call:
+            x = float(xhat[2,0])*1000
+            b = float(xhat[3,0]) * (180/pi)
+            print("xhat:", float(xhat[0,0]), float(xhat[1,0]), x, b)
         counter += 1
         motor_left.enable()
     elif counter == 3:
-        while 300 < s <= 600:
+        while s <= 600:
             loop_step()
         counter += 1
     elif counter == 4:
-        while a >= -90:
-            motor_left.set_effort(5)
-            motor_right.disable()
-        counter += 1
+        while b >= -90:
+            motor_left.disable()
+            motor_right.set_effort(10)
+            uL = 0
+            uR = 7.2 * (10 / 100) 
+            u = np.array([[uL],[uR]])
+            encoder_left.update()
+            encoder_right.update() 
+            L = encoder_left.distance_traveled()
+            R = encoder_right.distance_traveled()
+
+            psi_deg = wrap_deg180(imu.read_heading() - psi0_deg)
+            yaw_dps   = imu.read_yaw_rate()   # deg/s
+
+            # 3) observer update
+            xhat = obs.step(u, L, R, psi_deg, yaw_dps)
+
+            # 4) use/publish the estimate
+            # xhat = [wL, wR, s, psi]^T  (psi in rad)
+            # Replace with your Share/Queue publish call:
+            x = float(xhat[2,0])*1000
+            b = float(xhat[3,0]) * (180/pi)
+            print("xhat:", float(xhat[0,0]), float(xhat[1,0]), x, b)
         motor_right.enable()
+        counter += 1
     elif counter == 5:
-        while 600 < s <= 900:
+        while s <= 900:
             loop_step()
         counter += 1
     elif counter == 6:
         while a >= -180:
-            motor_left.set_effort(5)
-            motor_right.disable()
+            motor_left.disable()
+            motor_right.set_effort(10)
+            uL = 0
+            uR = 7.2 * (10 / 100)  
+            u = np.array([[uL],[uR]])
+            encoder_left.update()
+            encoder_right.update() 
+            L = encoder_left.distance_traveled()
+            R = encoder_right.distance_traveled()
+
+            psi_deg = wrap_deg180(imu.read_heading() - psi0_deg)
+            yaw_dps   = imu.read_yaw_rate()   # deg/s
+
+            # 3) observer update
+            xhat = obs.step(u, L, R, psi_deg, yaw_dps)
+
+            # 4) use/publish the estimate
+            # xhat = [wL, wR, s, psi]^T  (psi in rad)
+            # Replace with your Share/Queue publish call:
+            s = float(xhat[2,0])*1000
+            a = float(xhat[3,0])
+            print("xhat:", float(xhat[0,0]), float(xhat[1,0]), s, a)
+          
         counter += 1
         motor_right.enable()
+        s = 901
     elif counter == 7:
         while 900 < s <= 1200:
             loop_step()
