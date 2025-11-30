@@ -22,4 +22,4 @@ while True:
         data =  int(data*10)
         string = "#"*data
         print(string)
-    sys.stdout.write("\033[9A")
+    sys.stdout.write("\033[14A")

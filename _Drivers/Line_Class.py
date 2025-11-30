@@ -22,9 +22,10 @@ class Line:
                          ADC(self._s5_pin), ADC(self._s7_pin), 
                          ADC(self._s9_pin), ADC(self._s11_pin),
                          ADC(self._s13_pin), ADC(self._s15_pin)]
+        
+        self.positions = [1, 3, 5, 7, 9, 11, 13, 15]
 
-    def define_13(self, s1: Pin, s2: Pin, s3: Pin, s4: Pin, s5: Pin, s6: Pin, s7: Pin, s8: Pin, s9: Pin, s10: Pin, s11: Pin, s12: Pin, s13: Pin, s14: Pin, s15: Pin):
-        self._s1_pin = Pin(s1, mode = Pin.IN)
+    def define_13(self, s2: Pin, s3: Pin, s4: Pin, s5: Pin, s6: Pin, s7: Pin, s8: Pin, s9: Pin, s10: Pin, s11: Pin, s12: Pin, s13: Pin, s14: Pin):
         self._s2_pin = Pin(s2, mode = Pin.IN)
         self._s3_pin = Pin(s3, mode = Pin.IN)
         self._s4_pin = Pin(s4, mode = Pin.IN)
@@ -38,16 +39,16 @@ class Line:
         self._s12_pin = Pin(s12, mode = Pin.IN)
         self._s13_pin = Pin(s13, mode = Pin.IN)
         self._s14_pin = Pin(s14, mode = Pin.IN)
-        self._s15_pin = Pin(s15, mode = Pin.IN)
 
-        self._sensors = [ADC(self._s1_pin), ADC(self._s2_pin), 
+        self._sensors = [ADC(self._s2_pin), 
                          ADC(self._s3_pin), ADC(self._s4_pin),
                          ADC(self._s5_pin), ADC(self._s6_pin),
                          ADC(self._s7_pin), ADC(self._s8_pin),
                          ADC(self._s9_pin), ADC(self._s10_pin),
                          ADC(self._s11_pin), ADC(self._s12_pin),
-                         ADC(self._s13_pin), ADC(self._s14_pin),
-                         ADC(self._s15_pin)]
+                         ADC(self._s13_pin), ADC(self._s14_pin)]
+        
+        self.positions = [2,3,4,5,6,7,8,9,10,11,12,13,14]
 
 
     def cali_white(self):
@@ -60,28 +61,29 @@ class Line:
 
     
     def update(self):
-        values = [self.calibrate(adc.read(),idx) for idx, adc in enumerate(self._sensors)]
-        centroid_max = 18
-        centroid_min = 14
+        values = [abs(self.calibrate(adc.read(),idx)-1) for idx, adc in enumerate(self._sensors)]
+
+
+
+        centroid_max = 26#18
+        centroid_min = 6#14
         centroid_middle = 16
 
         # Case: No line showing
-        if self.filter_val(values):
-            return centroid_middle
+        # if self.filter_val(values):
+        #     return centroid_middle
         
         # Case: Line Edge 
-        edge_case, centroid = self.edge_val(values, centroid_min, centroid_max)
-        if edge_case:
-            return centroid
+        # edge_case, centroid = self.edge_val(values, centroid_min, centroid_max)
+        # if edge_case:
+        #     return centroid
 
         # Case: Line in Middle 
-        positions = [1, 3, 5, 7, 9, 11, 13, 15]
-        
         numerator = 0
         denominator = 0
         
         for i in range(len(values)):
-            numerator += values[i] * positions[i]
+            numerator += values[i] * self.positions[i]
             denominator += values[i]
         
         if denominator == 0:
