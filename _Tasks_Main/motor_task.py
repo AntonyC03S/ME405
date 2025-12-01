@@ -23,24 +23,24 @@ def motor_task(shares):
         # Initialized the motor 
         if state == Init:
             tim3 = Timer(3, freq=20000)
-            motor_left   = Motor(Pin.cpu.A6, Pin.cpu.C7,  Pin.cpu.B2,  tim3, 1)  #Pink bot
-            motor_right  = Motor(Pin.cpu.A7, Pin.cpu.B12, Pin.cpu.B14, tim3, 2)     
-            # motor_left   = Motor(Pin.cpu.C7, Pin.cpu.A10,  Pin.cpu.B2,  tim3, 2)  
-            # motor_right  = Motor(Pin.cpu.C9, Pin.cpu.B12, Pin.cpu.B14, tim3, 4) 
+            # motor_left   = Motor(Pin.cpu.A6, Pin.cpu.C7,  Pin.cpu.B2,  tim3, 1)  #Pink bot
+            # motor_right  = Motor(Pin.cpu.A7, Pin.cpu.B12, Pin.cpu.B14, tim3, 2)     
+            motor_left   = Motor(Pin.cpu.C7, Pin.cpu.A10,  Pin.cpu.B2,  tim3, 2)  
+            motor_right  = Motor(Pin.cpu.C9, Pin.cpu.B12, Pin.cpu.B14, tim3, 4) 
             motor_eff.put(0)
             motor_left.enable()
             motor_right.enable()
             lspeed.put(0)
             rspeed.put(0)
             line = Line()
-            line.define_8(Pin.cpu.C2, Pin.cpu.C3, Pin.cpu.C0,       #Pink bot
-                        Pin.cpu.C1, Pin.cpu.B0, Pin.cpu.A4,
-                        Pin.cpu.C4, Pin.cpu.B1)
-            # line.define_13(Pin.cpu.A0,Pin.cpu.A1,Pin.cpu.A4,
-            #    Pin.cpu.A6,Pin.cpu.A7,Pin.cpu.B0,
-            #    Pin.cpu.B1,Pin.cpu.C0,Pin.cpu.C1,
-            #    Pin.cpu.C2,Pin.cpu.C3,Pin.cpu.C4,
-            #    Pin.cpu.C5)
+            # line.define_8(Pin.cpu.C2, Pin.cpu.C3, Pin.cpu.C0,       #Pink bot
+            #             Pin.cpu.C1, Pin.cpu.B0, Pin.cpu.A4,
+            #             Pin.cpu.C4, Pin.cpu.B1)
+            line.define_13(Pin.cpu.A0,Pin.cpu.A1,Pin.cpu.A4,
+               Pin.cpu.A6,Pin.cpu.A7,Pin.cpu.B0,
+               Pin.cpu.B1,Pin.cpu.C0,Pin.cpu.C1,
+               Pin.cpu.C2,Pin.cpu.C3,Pin.cpu.C4,
+               Pin.cpu.C5)
             state = Stop
 
         # State 1 - Stop
@@ -94,9 +94,11 @@ def motor_task(shares):
                 motor_right.set_effort(eff)
             else:
                 centroid = line.update()
-                Line_gain = controller_line.update(16, centroid)
+                Line_gain = controller_line.update(8, centroid)
                 Lgain = controller_left.update(5,lspeed.get())
                 Rgain = controller_right.update(5,rspeed.get())
+                Lgain = 30
+                Rgain = 30
                 Lnew = eff + Lgain - Line_gain/2
                 Rnew = eff + Rgain + Line_gain/2
                 motor_left.set_effort(Lnew)

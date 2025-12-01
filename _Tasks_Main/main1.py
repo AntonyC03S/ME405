@@ -6,11 +6,12 @@ import gc
 import pyb             # type: ignore
 import cotask          # type: ignore 
 import task_share      # type: ignore
+from pyb import Pin, Timer, ADC, ExtInt # type: ignore
 
 
 
 def main():
-    print("Lab 0X02")
+    print("Running Romi")
 
     # Create a share and a queue to test function and diagnostic printouts
     motor_volt           = task_share.Queue('H', 1000, thread_protect=False, overwrite=False, name="Left Motor Speed Queue")

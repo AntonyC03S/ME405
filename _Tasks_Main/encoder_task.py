@@ -18,8 +18,8 @@ def encoder_task(shares):
         # Initialized the motor 
         if state == Init:
             encoder_left  = Encoder(Timer(1, prescaler = 0, period = 0xFFFF),Pin.cpu.A8,Pin.cpu.A9)
-            encoder_right = Encoder(Timer(2, prescaler = 0, period = 0xFFFF),Pin.cpu.A0,Pin.cpu.A1)   #Pink bot
-            # encoder_right = Encoder(Timer(8, prescaler = 0, period = 0xFFFF),Pin.cpu.C8,Pin.cpu.C6)
+            #encoder_right = Encoder(Timer(2, prescaler = 0, period = 0xFFFF),Pin.cpu.A0,Pin.cpu.A1) #Pink bot
+            encoder_right = Encoder(Timer(8, prescaler = 0, period = 0xFFFF),Pin.cpu.C8,Pin.cpu.C6)
             state = Stop
 
 

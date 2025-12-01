@@ -17,9 +17,17 @@ while True:
     print(hi)
     readings = line.readings()
     for idx,data in enumerate(readings):
-        print(f"{idx}:                      ", end="\r")
-        print(f"{idx}:", end="")
+        print(f"{idx+2}:", end="")
         data =  int(data*10)
         string = "#"*data
         print(string)
-    sys.stdout.write("\033[14A")
+    print(readings)
+    sys.stdout.write("\033[15A")
+    time.sleep(0.1)
+    print("                   ")
+    for idx,data in enumerate(readings):
+        print(f"{idx+2}:                      ")
+    print("                                                                                                                                                                                                 ")
+    sys.stdout.write("\033[15A")
+
+    

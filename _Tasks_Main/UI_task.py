@@ -27,48 +27,55 @@ def UI_task(shares):
 
     while True:
         if state == 0:
-            if not start and bluetooth.any():
-                chunk = bluetooth.read()
-                if chunk:
-                    buf += chunk
-                    while True:
-                        end_idx = -1
-                        sep_len = 0
-                        for sep in (b"\r\n", b"\n", b"\r"):
-                            i = buf.find(sep)
-                            if i != -1:
-                                end_idx = i
-                                sep_len = len(sep)
-                                break
-                        if end_idx == -1:
-                            break
-                        line = bytes(buf[:end_idx])
-                        buf[:] = buf[end_idx + sep_len:]
+            # if not start and bluetooth.any():
+            #     chunk = bluetooth.read()
+            #     if chunk:
+            #         buf += chunk
+            #         while True:
+            #             end_idx = -1
+            #             sep_len = 0
+            #             for sep in (b"\r\n", b"\n", b"\r"):
+            #                 i = buf.find(sep)
+            #                 if i != -1:
+            #                     end_idx = i
+            #                     sep_len = len(sep)
+            #                     break
+            #             if end_idx == -1:
+            #                 break
+            #             line = bytes(buf[:end_idx])
+            #             buf[:] = buf[end_idx + sep_len:]
 
-                        # Decode safely without keyword arguments
-                        try:
-                            cmd = line.decode().strip()
-                        except UnicodeError:
-                            cmd = "".join(chr(b) for b in line if 32 <= b < 127).strip()
-                        if not cmd:
-                            continue
-                        if cmd.lower().startswith("c"):
-                            start = True
-                            state = 2
-                            break
-                        elif cmd.lower().startswith("1"):
-                            cmd_split = cmd.split("_")
-                            PID_list = cmd_split[1:4]
-                            kp = float(PID_list[0])
-                            ki = float(PID_list[1])
-                            kd = float(PID_list[2])
-                            Kp.put(float(kp))
-                            Ki.put(float(ki))
-                            Kd.put(float(kd))
-                            state = 2
-                            Pid = True
-                            break
-
+            #             # Decode safely without keyword arguments
+            #             try:
+            #                 cmd = line.decode().strip()
+            #             except UnicodeError:
+            #                 cmd = "".join(chr(b) for b in line if 32 <= b < 127).strip()
+            #             if not cmd:
+            #                 continue
+            #             if cmd.lower().startswith("c"):
+            #                 start = True
+            #                 state = 2
+            #                 break
+            #             elif cmd.lower().startswith("1"):
+            #                 cmd_split = cmd.split("_")
+            #                 PID_list = cmd_split[1:4]
+            #                 kp = float(PID_list[0])
+            #                 ki = float(PID_list[1])
+            #                 kd = float(PID_list[2])
+            #                 Kp.put(float(kp))
+            #                 Ki.put(float(ki))
+            #                 Kd.put(float(kd))
+            #                 state = 2
+            #                 Pid = True
+            #                 break
+            input_P_gain = input("Input P gain: ")
+            input_I_gain = input("Input I gain: ")
+            input_D_gain = input("Input D gain: ")
+            Kp.put(float(input_P_gain))
+            Ki.put(float(input_I_gain))
+            Kd.put(float(input_D_gain))
+            state = 2
+            Pid = True
 
             yield state
 

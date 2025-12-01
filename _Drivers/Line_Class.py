@@ -1,5 +1,6 @@
 from pyb import Pin, ADC # type: ignore
 from os import listdir
+import math
 
 
 class Line: 
@@ -61,24 +62,12 @@ class Line:
 
     
     def update(self):
-        values = [abs(self.calibrate(adc.read(),idx)-1) for idx, adc in enumerate(self._sensors)]
+        values = self.readings()
 
+        centroid_max = 15
+        centroid_min = 1
 
-
-        centroid_max = 26#18
-        centroid_min = 6#14
-        centroid_middle = 16
-
-        # Case: No line showing
-        # if self.filter_val(values):
-        #     return centroid_middle
-        
-        # Case: Line Edge 
-        # edge_case, centroid = self.edge_val(values, centroid_min, centroid_max)
-        # if edge_case:
-        #     return centroid
-
-        # Case: Line in Middle 
+        centroid_middle = 8
         numerator = 0
         denominator = 0
         
@@ -90,7 +79,7 @@ class Line:
             return centroid_middle  
         
         centroid = numerator / denominator
-        centroid *= 2 
+        # centroid *= 2 
         if centroid > centroid_max:
             return centroid_max
         elif centroid < centroid_min:
@@ -98,33 +87,10 @@ class Line:
         return centroid
 
     def readings(self):
-        values = [self.calibrate(adc.read(),idx) for idx, adc in enumerate(self._sensors)]
-        return values
+        return [self.color_def(abs(self.calibrate(adc.read(),idx)-1)) for idx, adc in enumerate(self._sensors)]
 
 
     """--------------------Helping Functions---------------------------------"""
-    # For Update
-    def filter_val(self, values):
-        max = 1000000          
-        min = 0                  
-        for i in values:
-            if i > max:
-                max = i
-            elif i < min:
-                min = i 
-        
-        if max - min < 100:        # 100 can be tuned
-            return True
-        else:
-            return False
-        
-    # For Update
-    def edge_val(self, values, centroid_min, centroid_max):
-        if values[0] > values[1] and values[0] > values[2]:
-            return True, centroid_min
-        elif values[-1] > values[-2] and values[-1] > values[-3]:
-            return True, centroid_max
-        return False, 0
     
     # For Update and readings
     def calibrate(self, value, idx):
@@ -155,4 +121,11 @@ class Line:
                     file.write(", ".join(str(item) for item in self._black_cal))
 
         return (self._black_cal[idx] - value) / (self._black_cal[idx] - self._white_cal[idx])
+    
+    def color_def(self, value):
+        if value > 0.006:
+            return round(value,3)
+        else:
+            return 0
+
 
