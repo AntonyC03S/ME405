@@ -4,12 +4,6 @@ from math import pi
 
 class RomiObserver:
     def __init__(self, Ad, Bd, r = 0.035, l = 0.141, L=None):
-        """
-        Ad: 4x4, Bd: 4x2 (your matrices)
-        r : wheel radius [m]
-        ell: wheelbase [m]
-        L : 4x4 observer gain (optional; if None, uses a conservative starter)
-        """
         self.Ad = np.array([[0.904837, 0, 0, 0], [0, 0.904837, 0, 0], [0.000167, 0.000167, 1, 0], [-0.002362, 0.002362, 0, 1]])
         self.Bd = np.array([[0.553633, 0], [0, 0.553633], [0.000049, 0.000049], [-0.000699,  0.000699]])
         self.C  = np.array([[0, 0, 1, -l/2],
@@ -19,10 +13,12 @@ class RomiObserver:
         if L is None:
             # Starter gain (tune on-robot):
             # bigger -> faster correction (but noisier). Start modest.
-            self.L = np.array([[0.10,  0.00,  0.00, -0.05],
-                               [0.00,  0.10,  0.00,  0.05],
-                               [0.00,  0.00,  0.60,  0.00],
-                               [-0.05, 0.05,  0.00,  0.80]])
+            self.L = np.array([
+    [ 0.08, -0.08, 0.00, -0.02], 
+    [-0.08,  0.08, 0.00,  0.02], 
+    [ 0.35,  0.35, 0.00,  0.00],  
+    [ 0.00,  0.00, 0.50,  0.70],  
+])
         else:
             self.L = np.array(L)
 

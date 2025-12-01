@@ -8,31 +8,23 @@ from Encoder_Driver import Encoder
 from Motor_Driver import Motor
 from Controller_Class import Controller   
 
-
 r      = 0.035  
 l      = 0.141   
 Ts_ms  = 10    
-
-
 s_mm   = 0.0     
 a_deg  = 0.0     
-
-
 Ad = [
     [ 0.904837,  0.      ,  0.      ,  0.      ],
     [ 0.      ,  0.904837,  0.      ,  0.      ],
     [ 0.000167,  0.000167,  1.      ,  0.      ],
     [-0.002362,  0.002362,  0.      ,  1.      ],
 ]
-
 Bd = [
     [ 0.553633,  0.      ],
     [ 0.      ,  0.553633],
     [ 0.000049,  0.000049],
     [-0.000699,  0.000699],
 ]
-
-
 L = [
     [ 0.08, -0.08, 0.00, -0.02], 
     [-0.08,  0.08, 0.00,  0.02], 
@@ -125,7 +117,7 @@ def step_straight():
     effR = base_eff + Rgain
     step(effL, effR)
 
-def straight(distance_mm, timeout_ms):
+def straight(distance_mm):
     global s_mm
     start_s = s_mm
     target  = distance_mm
@@ -229,21 +221,21 @@ def turn_ccw(deg):
 reset()
 print("START SQUARE PATTERN")
 print("Phase 1: straight 300 mm")
-straight(300.0, timeout_ms=8000)
-print("Phase 2: turn 90 CW (IMU)")
-turn_cw(90.0, timeout_ms=6000)
+straight(300.0)
+print("Phase 2: turn 90 CW")
+turn_cw(90)
 print("Phase 3: straight 300 mm")
-straight(300.0, timeout_ms=8000)
-print("Phase 4: turn 180 CCW (IMU)")
-turn_ccw(180.0, timeout_ms=9000)
+straight(300.0)
+print("Phase 4: turn 180 CCW")
+turn_ccw(180)
 print("Phase 5: straight 300 mm")
-straight(300.0, timeout_ms=8000)
-print("Phase 6: turn 90 CCW (IMU)")
-turn_ccw(90.0, timeout_ms=6000)
+straight(300.0)
+print("Phase 6: turn 90 CCW")
+turn_ccw(90)
 print("Phase 7: straight 300 mm")
-straight(300.0, timeout_ms=8000)
-print("Phase 8: turn 180 CW (IMU)")
-turn_cw(180.0, timeout_ms=9000)
+straight(300)
+print("Phase 8: turn 180 CW")
+turn_cw(180)
 motor_left.set_effort(0)
 motor_right.set_effort(0)
 print("Finished square pattern")

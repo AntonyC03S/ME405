@@ -2,6 +2,7 @@ from UI_task import UI_task
 from motor_task import motor_task
 from encoder_task import encoder_task
 from data_task import data_task
+from state_estimation_task import state_task
 import gc
 import pyb             # type: ignore
 import cotask          # type: ignore 
@@ -14,7 +15,8 @@ def main():
     print("Running Romi")
 
     # Create a share and a queue to test function and diagnostic printouts
-    motor_volt           = task_share.Queue('H', 1000, thread_protect=False, overwrite=False, name="Left Motor Speed Queue")
+    L_volt              = task_share.Share('f', thread_protect=False, name="Left Voltage Share")
+    R_volt              = task_share.Share('f', thread_protect=False, name="Right Voltage Share")
     motor_speed_left     = task_share.Queue('f', 1000, thread_protect=False, overwrite=False, name="Left Motor Speed Queue")
     motor_speed_right    = task_share.Queue('f', 1000, thread_protect=False, overwrite=False, name="Right Motor Speed Queue")
     motor_position_left  = task_share.Queue('f', 1000, thread_protect=False, overwrite=False, name="Left Motor Position Queue")
@@ -29,6 +31,10 @@ def main():
     Kd                   = task_share.Share('f', thread_protect=False, name="KD Share")
     lspeed               = task_share.Share('f', thread_protect=False, name="Left Speed Share")
     rspeed               = task_share.Share('f', thread_protect=False, name="Right Speed Share")
+    lpos               = task_share.Share('f', thread_protect=False, name="Left Position Share")
+    rpos               = task_share.Share('f', thread_protect=False, name="Right Position Share")
+    s               = task_share.Share('f', thread_protect=False, name="Arc Traveled Share")
+    a               = task_share.Share('f', thread_protect=False, name="Heading Share")
 
 
     # Create the tasks. If trace is enabled for any task, memory will be
@@ -36,15 +42,17 @@ def main():
     # of memory after a while and quit. Therefore, use tracing only for 
     # debugging and set trace to False when it's not needed
     task1 = cotask.Task(UI_task,      name="UI Task",      priority=0, period=200, profile=True, trace=False, shares=(motor_eff, results, done, motor_speed_left, motor_speed_right, motor_time, encoder_start, Kp, Ki, Kd))
-    task2 = cotask.Task(motor_task,   name="Motor Task",   priority=3, period=50,  profile=True, trace=False, shares=(motor_eff, encoder_start, motor_volt, done, Kp, Ki, Kd,motor_speed_left, motor_speed_right,lspeed, rspeed))
-    task3 = cotask.Task(encoder_task, name="Encoder Task", priority=3, period=50,  profile=True, trace=False, shares=(encoder_start, motor_speed_left, motor_speed_right, motor_position_left, motor_position_right, motor_time, done, lspeed, rspeed))
-    task4 = cotask.Task(data_task,    name="Data Task",    priority=2, period=10,  profile=True, trace=False, shares=(motor_volt, motor_speed_left, motor_speed_right, motor_position_left, motor_position_right, motor_time, results, done))
-    
+    task2 = cotask.Task(motor_task,   name="Motor Task",   priority=3, period=50,  profile=True, trace=False, shares=(motor_eff, encoder_start, L_volt, R_volt, done, Kp, Ki, Kd,motor_speed_left, motor_speed_right,lspeed, rspeed))
+    task3 = cotask.Task(encoder_task, name="Encoder Task", priority=3, period=50,  profile=True, trace=False, shares=(encoder_start, motor_speed_left, motor_speed_right, motor_position_left, motor_position_right, motor_time, lspeed, rspeed, lpos, rpos))
+    task4 = cotask.Task(data_task,    name="Data Task",    priority=2, period=10,  profile=True, trace=False, shares=(motor_speed_left, motor_speed_right, motor_position_left, motor_position_right, motor_time, results, done))
+    task5 = cotask.Task(state_task,   name="State Task",   priority=2, period=10,  profile=True, trace=False, shares=(L_volt, R_volt, lpos, rpos, s, a))
     
     cotask.task_list.append(task1)
     cotask.task_list.append(task2)
     cotask.task_list.append(task3)
     cotask.task_list.append(task4)  
+    cotask.task_list.append(task5)
+
 
 
 

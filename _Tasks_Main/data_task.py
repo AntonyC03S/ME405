@@ -3,7 +3,7 @@ from time import sleep_ms
 
 def data_task(shares):
     state = 0
-    (motor_volt,
+    (
      motor_speed_left, motor_speed_right,
      motor_position_left, motor_position_right,
      motor_time,
@@ -38,14 +38,13 @@ def data_task(shares):
                 ls = motor_speed_left.get()
                 rs = -motor_speed_right.get()  
                 lp = motor_position_left.get()
-                rp = -motor_position_right.get()
-                v  = motor_volt.get()          
+                rp = -motor_position_right.get()        
                 t_us = motor_time.get()
                 t = t_us / 1_000_000.0         
 
 
                 send_line('{:.6f},{:.6f},{:.6f},{:.6f},{:.6f},{:.6f}'.format(
-                    t, lp, rp, ls, rs, v
+                    t, lp, rp, ls, rs
                 ))
                 wrote_any = True
 

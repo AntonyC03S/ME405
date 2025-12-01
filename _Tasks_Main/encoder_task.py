@@ -4,7 +4,7 @@ from Encoder_Driver import Encoder
 
 def encoder_task(shares):
     state = 0
-    encoder_start, motor_speed_left, motor_speed_right, motor_position_left, motor_position_right, motor_time, done, lspeed, rspeed = shares
+    encoder_start, motor_speed_left, motor_speed_right, motor_position_left, motor_position_right, motor_time, lspeed, rspeed, lpos, rpos = shares
     counter = 0
 
     # States
@@ -56,6 +56,8 @@ def encoder_task(shares):
         elif state == Send:
             lspeed.put(float(encoder_left.velocity))
             rspeed.put(float(encoder_right.velocity))
+            lpos.put(float(encoder_left.position))
+            rpos.put(float(encoder_right.position))
             motor_speed_left.put(float(encoder_left.velocity))
             motor_speed_right.put(float(encoder_right.velocity))
             motor_position_left.put(float(encoder_left.position))
