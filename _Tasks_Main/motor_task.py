@@ -6,7 +6,7 @@ from Line_Class import Line
 
 def motor_task(shares):
 
-    motor_eff, encoder_start, motor_volt, done, Kp, Ki, Kd, motor_speed_left, motor_speed_right, lspeed, rspeed = shares
+    motor_eff, encoder_start, L_volt, R_volt, done, Kp, Ki, Kd,motor_speed_left, motor_speed_right,lspeed, rspeed = shares
 
     state = 0
     counter = 0
@@ -25,7 +25,7 @@ def motor_task(shares):
             tim3 = Timer(3, freq=20000)
             # motor_left   = Motor(Pin.cpu.A6, Pin.cpu.C7,  Pin.cpu.B2,  tim3, 1)  #Pink bot
             # motor_right  = Motor(Pin.cpu.A7, Pin.cpu.B12, Pin.cpu.B14, tim3, 2)     
-            motor_left   = Motor(Pin.cpu.C7, Pin.cpu.A10,  Pin.cpu.B2,  tim3, 2)  
+            motor_left   = Motor(Pin.cpu.C8, Pin.cpu.A10,  Pin.cpu.B2,  tim3, 3)  
             motor_right  = Motor(Pin.cpu.C9, Pin.cpu.B12, Pin.cpu.B14, tim3, 4) 
             motor_eff.put(0)
             motor_left.enable()
@@ -42,6 +42,8 @@ def motor_task(shares):
                Pin.cpu.C2,Pin.cpu.C3,Pin.cpu.C4,
                Pin.cpu.C5)
             state = Stop
+            L_volt.put(0)
+            R_volt.put(0)
 
         # State 1 - Stop
         elif state == Stop:
@@ -68,7 +70,6 @@ def motor_task(shares):
                 Rnew = eff + Rgain
                 motor_left.set_effort(Lnew)
                 motor_right.set_effort(Rnew)
-            motor_volt.put(1)
 
             counter += 1
 
@@ -92,6 +93,10 @@ def motor_task(shares):
                 controller_line = Controller(Kp.get(),Ki.get(),Kd.get())
                 motor_left.set_effort(eff)
                 motor_right.set_effort(eff)
+                u = 7.2 * (eff / 100.0)
+                L_volt.put(u)
+                R_volt.put(u)
+
             else:
                 centroid = line.update()
                 Line_gain = controller_line.update(8, centroid)
@@ -103,8 +108,9 @@ def motor_task(shares):
                 Rnew = eff + Rgain + Line_gain/2
                 motor_left.set_effort(Lnew)
                 motor_right.set_effort(Rnew)
+                L_volt.put(7.2 * (Lnew / 100.0))
+                R_volt.put(7.2 * (Rnew / 100.0))
                 print(Lnew, Rnew, centroid, Line_gain)
-            motor_volt.put(1)
 
             counter += 1
 

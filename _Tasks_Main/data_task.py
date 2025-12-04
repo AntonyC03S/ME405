@@ -43,7 +43,7 @@ def data_task(shares):
                 t = t_us / 1_000_000.0         
 
 
-                send_line('{:.6f},{:.6f},{:.6f},{:.6f},{:.6f},{:.6f}'.format(
+                send_line('{:.6f},{:.6f},{:.6f},{:.6f},{:.6f}'.format(
                     t, lp, rp, ls, rs
                 ))
                 wrote_any = True
