@@ -42,7 +42,7 @@ def main():
     # of memory after a while and quit. Therefore, use tracing only for 
     # debugging and set trace to False when it's not needed
     task1 = cotask.Task(UI_task,      name="UI Task",      priority=0, period=200, profile=True, trace=False, shares=(motor_eff, results, done, motor_speed_left, motor_speed_right, motor_time, encoder_start, Kp, Ki, Kd))
-    task2 = cotask.Task(motor_task,   name="Motor Task",   priority=3, period=50,  profile=True, trace=False, shares=(motor_eff, encoder_start, L_volt, R_volt, done, Kp, Ki, Kd,motor_speed_left, motor_speed_right,lspeed, rspeed))
+    task2 = cotask.Task(motor_task,   name="Motor Task",   priority=3, period=50,  profile=True, trace=False, shares=(motor_eff, encoder_start, L_volt, R_volt, done, Kp, Ki, Kd,lspeed, rspeed,s,a))
     task3 = cotask.Task(encoder_task, name="Encoder Task", priority=3, period=50,  profile=True, trace=False, shares=(encoder_start, motor_speed_left, motor_speed_right, motor_position_left, motor_position_right, motor_time, lspeed, rspeed, lpos, rpos))
     task4 = cotask.Task(data_task,    name="Data Task",    priority=2, period=10,  profile=True, trace=False, shares=(motor_speed_left, motor_speed_right, motor_position_left, motor_position_right, motor_time, results, done))
     task5 = cotask.Task(state_task,   name="State Task",   priority=2, period=10,  profile=True, trace=False, shares=(L_volt, R_volt, lpos, rpos, s, a))

@@ -20,7 +20,7 @@ class Controller:
         now = ticks_us()
         dt = ticks_diff(now, self._prev_time) / 1_000_000
 
-        error = setpoint - abs(measured)
+        error = setpoint - measured
         P_gain = error * self._KP
 
         # Anti-Windup

@@ -4,7 +4,7 @@ from imu_Driver import IMU
 from pyb import Timer, Pin, I2C, delay
 import time
 from ulab import numpy as np
-from math import pi
+from math import pi, sin, cos
 
 def state_task(shares):
     state = 0
@@ -14,7 +14,8 @@ def state_task(shares):
     Init = 0
     Stop = 1
     Run = 2
-
+    x = 0
+    y = 0
     r      = 0.035  
     l      = 0.141   
     Ts_ms  = 10    
@@ -104,10 +105,7 @@ def state_task(shares):
 
             s.put(s_mm)
             a.put(a_deg)
-
- 
-
-
+            print(s_mm)
         yield state
 
 

@@ -6,7 +6,7 @@ from Line_Class import Line
 
 def motor_task(shares):
 
-    motor_eff, encoder_start, L_volt, R_volt, done, Kp, Ki, Kd,motor_speed_left, motor_speed_right,lspeed, rspeed = shares
+    motor_eff, encoder_start, L_volt, R_volt, done, Kp, Ki, Kd,lspeed, rspeed,s,a = shares
 
     state = 0
     counter = 0
@@ -98,19 +98,31 @@ def motor_task(shares):
                 R_volt.put(u)
 
             else:
-                centroid = line.update()
-                Line_gain = controller_line.update(8, centroid)
-                Lgain = controller_left.update(5,lspeed.get())
-                Rgain = controller_right.update(5,rspeed.get())
-                Lgain = 30
-                Rgain = 30
-                Lnew = eff + Lgain - Line_gain/2
-                Rnew = eff + Rgain + Line_gain/2
-                motor_left.set_effort(Lnew)
-                motor_right.set_effort(Rnew)
-                L_volt.put(7.2 * (Lnew / 100.0))
-                R_volt.put(7.2 * (Rnew / 100.0))
-                print(Lnew, Rnew, centroid, Line_gain)
+                if 21000 <= s.get() <= 25000:
+                    vL_set = 5 
+                    vR_set = 5 
+                    Lgain = controller_left.update(vL_set,lspeed.get())
+                    Rgain = controller_right.update(vR_set,rspeed.get())
+                    motor_left.set_effort(Lgain)
+                    motor_right.set_effort(Rgain)
+                    L_volt.put(7.2 * (Lgain / 100.0))
+                    R_volt.put(7.2 * (Rgain / 100.0))
+                else:
+                    centroid = line.update()
+                    error_line = centroid - 8
+                    Line_gain = controller_line.update(0, error_line)
+                    vL_set = 5 - Line_gain
+                    vR_set = 5 + Line_gain
+                    vL_set = max(min(vL_set, 100), -100)
+                    vR_set = max(min(vR_set, 100), -100)
+                    Lgain = controller_left.update(vL_set,lspeed.get())
+                    Rgain = controller_right.update(vR_set,rspeed.get())
+                    motor_left.set_effort(Lgain)
+                    motor_right.set_effort(Rgain)
+                    L_volt.put(7.2 * (Lgain / 100.0))
+                    R_volt.put(7.2 * (Rgain / 100.0))
+                
+                    
 
             counter += 1
 
