@@ -6,7 +6,7 @@ from Line_Class import Line
 
 def motor_task(shares):
 
-    motor_eff, encoder_start, L_volt, R_volt, done, Kp, Ki, Kd,lspeed, rspeed,s,a = shares
+    motor_eff, encoder_start, L_volt, R_volt, done, Kp, Ki, Kd,lspeed, rspeed,s,a,data_sharing = shares
 
     state = 0
     counter = 0
@@ -16,7 +16,7 @@ def motor_task(shares):
     Stop = 1
     Running = 2
     Line_Running = 3
-
+    PID_Tuning = 4
 
     while True:
         # State 0 - Init
@@ -139,7 +139,38 @@ def motor_task(shares):
 
 
 
+        # State 4 - PID Tuning
+        # Enabling Motor and running an effort
+        elif state == PID_Tuning:
+            # eff = int(motor_eff.get())
+            # if counter == 0:
+            #     controller_left = Controller(2.7,20,0.1)
+            #     controller_right = Controller(2,19,0.1)
+            #     motor_left.set_effort(eff)
+            #     motor_right.set_effort(eff)
+            # else:
+            #     Lgain = controller_left.update(15,lspeed.get())
+            #     Rgain = controller_right.update(15,rspeed.get())
+            #     Lnew = eff + Lgain
+            #     Rnew = eff + Rgain
+            #     motor_left.set_effort(Lnew)
+            #     motor_right.set_effort(Rnew)
+            # counter += 1
+            # if counter >= 100:
+            #     done.put(1)
+            #     encoder_start.put(0)
+            #     motor_eff.put(0)
+            #     counter = 0
+            #     state = Stop
+            # if eff == 0:
+                state = Stop
 
+
+
+
+
+
+        # State X - Error State
         else:
             state = Stop
     
