@@ -8,7 +8,7 @@ var searchData=
   ['_5fchb_5fchan_5',['_CHB_chan',['../class_encoder___driver_1_1_encoder.html#a90249898ae74c87663bf9c145fc10cb9',1,'Encoder_Driver::Encoder']]],
   ['_5fdelta_6',['_delta',['../class_encoder___driver_1_1_encoder.html#ab1dc7ededb148522a576ea91c458cafe',1,'Encoder_Driver::Encoder']]],
   ['_5fdir_5fpin_7',['_DIR_pin',['../class_motor___driver_1_1_motor.html#a39f8207bba98f06572f91960d34ccf8d',1,'Motor_Driver::Motor']]],
-  ['_5fdt_8',['_dt',['../class_encoder___driver_1_1_encoder.html#a122e2d3f0d949e22be30522568a396f9',1,'Encoder_Driver::Encoder']]],
+  ['_5fdt_8',['_dt',['../class_encoder___driver_1_1_encoder.html#a8fc4ce0502ed6db45edde9814f21b31a',1,'Encoder_Driver::Encoder']]],
   ['_5fgain_9',['_gain',['../class_controller___class_1_1_controller.html#a3c21f4a8ae2af43a0f66c2f59ced6728',1,'Controller_Class::Controller']]],
   ['_5finit_5fsensor_10',['_init_sensor',['../class_i_m_u___class_1_1_i_m_u.html#a0c4cf9699f85baf3c0bf0bde9c402b8d',1,'IMU_Class::IMU']]],
   ['_5fintegral_11',['_integral',['../class_controller___class_1_1_controller.html#a884c04e9464798f1b9ebd5148d1bc4da',1,'Controller_Class::Controller']]],
