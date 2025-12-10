@@ -18,7 +18,7 @@ while True:
     readings = line.readings()
     for idx,data in enumerate(readings):
         print(f"{idx+2}:", end="")
-        data =  int(data*10)
+        data =  int(data)
         string = "#"*data
         print(string)
     print(readings)

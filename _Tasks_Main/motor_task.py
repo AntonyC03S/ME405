@@ -11,6 +11,7 @@ def motor_task(shares):
     state = 0
     counter = 0
     checkpoint = 0
+    buffer = 0
 
     # States
     Init = 0
@@ -103,7 +104,7 @@ def motor_task(shares):
                 # controller_right = Controller(2,19,0.1)
                 controller_left = Controller(1.5,12.5,0.1)
                 controller_right = Controller(1.6,12.5,0.1)
-                controller_line = Controller(1.2,0,0)
+                controller_line = Controller(1.35,0,0)
                 motor_left.set_effort(eff)
                 motor_right.set_effort(eff)
                 u = 7.2 * (eff / 100.0)
@@ -111,11 +112,18 @@ def motor_task(shares):
                 R_volt.put(u)
                 # state  = Turn
                 # hi = a.get()
+                # checkpoint = 1
             else:
                 basespeed = 5
-                if s.get() >= 30000:
+                if s.get() >= 86000:
+                    if checkpoint == 2:
+                        state = Turn
+                        hi = a.get()
+                if s.get() >= 30500:
                     if checkpoint == 0:
-                        state = Backward 
+                        checkpoint = 1
+                        state = Backward
+
                         
                 centroid = line.update()
                 error_line = centroid - 8
@@ -131,21 +139,12 @@ def motor_task(shares):
                 L_volt.put(7.2 * (Lgain / 100.0))
                 R_volt.put(7.2 * (Rgain / 100.0))
                 
-            counter += 1
-
-            if counter >= 1000:
-                done.put(1)
-                encoder_start.put(0)
-                motor_eff.put(0)
-                counter = 0
-                state = Stop
-                
+            counter += 1   
             if eff == 0:
                 state = Stop
 
         # State 5 - Backward
         elif state == Backward:
-            checkpoint = 1
             basespeed = -5
             centroid = line.update()
             error_line = centroid - 8
@@ -164,20 +163,15 @@ def motor_task(shares):
             counter += 1
 
             if s.get() <=25000:
-                basespeed = 5
-                state = Turn
-                hi = a.get()
+                if checkpoint == 1:
+                    basespeed = 5
+                    state = Turn
+                    hi = a.get()
 
-            if counter >= 1000:
-                done.put(1)
-                encoder_start.put(0)
-                motor_eff.put(0)
-                counter = 0
-                state = Stop
 
         # State 6 - Turn
         elif state == Turn:
-            basespeed = 5
+            basespeed = 1.5
             vL_set = -basespeed
             vR_set = basespeed
             vL_set = max(min(vL_set, 100), -100)
@@ -190,10 +184,16 @@ def motor_task(shares):
             R_volt.put(7.2 * (Rgain / 100.0))
             
             counter += 1
-            deltaa = abs(a.get() - abs(hi))
+            deltaa = a.get() - hi
 
-            if deltaa >= 222:
-                state = Line_Running
+            if checkpoint == 1:
+                if deltaa >= 100:
+                    state = Line_Running
+                    checkpoint = 2
+                    controller_line._KP  = 1.5
+            elif checkpoint == 2:
+                if deltaa >= 30:
+                    state = Line_Running
 
 
             if counter >= 1000:
@@ -203,11 +203,6 @@ def motor_task(shares):
                 counter = 0
                 state = Stop
             
-
-
-
-
-
         # State 4 - PID Tuning
         # Enabling Motor and running an effort
         elif state == PID_Tuning:
