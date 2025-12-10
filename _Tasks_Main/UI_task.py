@@ -30,7 +30,7 @@ def UI_task(shares):
             mode = input("Enable Bluetooth? Yes or No")
 
             #<--       Bluetooth              -->
-            if mode.lowercase() == "yes":
+            if "no" == "yes":
                 if not start and bluetooth.any():
                     chunk = bluetooth.read()
                     if chunk:
@@ -81,12 +81,12 @@ def UI_task(shares):
 
                 #<--       Direct Input              -->
             else:
-                input_P_gain = input("Input P gain: ")
-                input_I_gain = input("Input I gain: ")
-                input_D_gain = input("Input D gain: ")
-                Kp.put(float(input_P_gain))
-                Ki.put(float(input_I_gain))
-                Kd.put(float(input_D_gain))
+                # input_P_gain = input("Input P gain: ")
+                # input_I_gain = input("Input I gain: ")
+                # input_D_gain = input("Input D gain: ")
+                # Kp.put(float(input_P_gain))
+                # Ki.put(float(input_I_gain))
+                # Kd.put(float(input_D_gain))
                 state = 2
                 Pid = True
             yield state

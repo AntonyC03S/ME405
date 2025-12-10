@@ -14,8 +14,8 @@ volt = []
 csv_list = []
  
 
-#with Serial("COM7", baudrate=115_200, timeout=1) as ser: 
-with Serial("/dev/cu.mecha12", baudrate=115_200, timeout=1) as ser: 
+with Serial("COM7", baudrate=115_200, timeout=1) as ser: 
+# with Serial("/dev/cu.mecha12", baudrate=115_200, timeout=1) as ser: 
     print("Opening serial port") 
     sleep(0.5) 
     print("Flushing serial port") 

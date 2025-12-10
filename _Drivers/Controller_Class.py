@@ -49,17 +49,20 @@ class Controller:
 
         return self._output
     
-    @property
-    def KP(self):
-        return f"{self.KP}"
+    # def KP(self, value: float):
+    #     self.KP = value
+
+    # @property
+    # def KP(self):
+    #     return f"{self.KP}"
     
-    @property
-    def KI(self):
-        return f"{self.KI}"
+    # @property
+    # def KI(self):
+    #     return f"{self.KI}"
     
-    @property
-    def KD(self):
-        return f"{self.KD}"    
+    # @property
+    # def KD(self):
+    #     return f"{self.KD}"    
 
 
 
