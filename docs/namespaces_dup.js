@@ -1,13 +1,11 @@
 var namespaces_dup =
 [
     [ "bluetooth", "namespacebluetooth.html", [
+      [ "unique_path", "namespacebluetooth.html#ab51b3172a0b1cbc15a33689022cc8d3b", null ],
       [ "_200", "namespacebluetooth.html#afe23c6d04f5cae1fa9bb5fb387a3570e", null ],
       [ "baudrate", "namespacebluetooth.html#a261df53d098d0cef33ebc35691f32be4", null ],
       [ "csv_list", "namespacebluetooth.html#a276f9869f017d245d99a4a8627c01e6c", null ],
       [ "encoding", "namespacebluetooth.html#a38f448a747d9af7b20c72d87df3b47bb", null ],
-      [ "input_D_gain", "namespacebluetooth.html#afe16de83d8cb4a3747ead3c9caabe673", null ],
-      [ "input_I_gain", "namespacebluetooth.html#ae17e727f96c66452e07616f0467b5047", null ],
-      [ "input_P_gain", "namespacebluetooth.html#ab75325ae994deab25546ff03916f3065", null ],
       [ "left_position", "namespacebluetooth.html#aae45f8f409068123268ed92828543ea8", null ],
       [ "left_speed", "namespacebluetooth.html#a2f55cdb9d20c9ba1c60212393ce434fd", null ],
       [ "line", "namespacebluetooth.html#a1b7fe498ed269a637d0cdf6a0145b59a", null ],
@@ -20,7 +18,7 @@ var namespaces_dup =
       [ "row_list", "namespacebluetooth.html#a62f336a1b0dd063394165ebba3cf3ca4", null ],
       [ "rp", "namespacebluetooth.html#a81f64a914c79c744a8e3c20bc46c5ac3", null ],
       [ "rs", "namespacebluetooth.html#a991b523e311f18c1f3b97624f361f402", null ],
-      [ "save_location", "namespacebluetooth.html#a0ce4090e84bd99a0f61fa21164da2912", null ],
+      [ "save_location", "namespacebluetooth.html#a8a52dcd10093ea814ecfdaef35a78d02", null ],
       [ "t", "namespacebluetooth.html#a1327a98d8ad137a60e0e6a9374dbe668", null ],
       [ "time", "namespacebluetooth.html#a55d35e1656ece77b10178ef97c5dd759", null ],
       [ "timeout", "namespacebluetooth.html#acb70dd9b7f1982b3b0603058bc6eaaab", null ],
@@ -37,7 +35,6 @@ var namespaces_dup =
     [ "encoder_task", "namespaceencoder__task.html", [
       [ "encoder_task", "namespaceencoder__task.html#a2b06b075d0aba56a86ee570a0d01fb90", null ]
     ] ],
-    [ "IMU_Class", "namespace_i_m_u___class.html", "namespace_i_m_u___class" ],
     [ "imu_driver", "namespaceimu__driver.html", "namespaceimu__driver" ],
     [ "Line_Class", "namespace_line___class.html", "namespace_line___class" ],
     [ "main1", "namespacemain1.html", [

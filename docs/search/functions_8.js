@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nslp_5fpin_0',['nSLP_pin',['../class_motor___driver_1_1_motor.html#a1cd4046c7776a93bc2af1c38f29bd308',1,'Motor_Driver::Motor']]]
+  ['outputs_5fhat_0',['outputs_hat',['../classdiscretized__estimation_1_1_romi_observer.html#a5c113adddc9c589b8086038205c1db80',1,'discretized_estimation::RomiObserver']]]
 ];

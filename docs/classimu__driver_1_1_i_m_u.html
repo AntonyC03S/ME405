@@ -92,17 +92,28 @@ $(function(){initNavTree('classimu__driver_1_1_i_m_u.html','','classimu__driver_
   <div class="headertitle"><div class="title">imu_driver.IMU Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>BNO055 <a class="el" href="classimu__driver_1_1_i_m_u.html" title="BNO055 IMU driver over I2C.">IMU</a> driver over I2C.  
+ <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae30f692d2029b558397a27b5186e618d" id="r_ae30f692d2029b558397a27b5186e618d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae30f692d2029b558397a27b5186e618d">__init__</a> (self, <a class="el" href="#a0e1d37979907b4ce63deea7a300c9b0a">i2c</a>, addr=0x28)</td></tr>
+<tr class="memitem:aff47a4d4fad46dbade63f7467d7cd460" id="r_aff47a4d4fad46dbade63f7467d7cd460"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff47a4d4fad46dbade63f7467d7cd460">__init__</a> (self, I2C <a class="el" href="#a0e1d37979907b4ce63deea7a300c9b0a">i2c</a>, int addr=0x28)</td></tr>
+<tr class="memdesc:aff47a4d4fad46dbade63f7467d7cd460"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize an <a class="el" href="classimu__driver_1_1_i_m_u.html" title="BNO055 IMU driver over I2C.">IMU</a> instance.  <br /></td></tr>
 <tr class="memitem:af958624d4f0e2d3fa492cb7c0b4cc1fa" id="r_af958624d4f0e2d3fa492cb7c0b4cc1fa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af958624d4f0e2d3fa492cb7c0b4cc1fa">cali_status</a> (self)</td></tr>
+<tr class="memdesc:af958624d4f0e2d3fa492cb7c0b4cc1fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <a class="el" href="classimu__driver_1_1_i_m_u.html" title="BNO055 IMU driver over I2C.">IMU</a> calibration status.  <br /></td></tr>
 <tr class="memitem:a07051d2d9704309e5e894240dcef87d5" id="r_a07051d2d9704309e5e894240dcef87d5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07051d2d9704309e5e894240dcef87d5">read_euler</a> (self)</td></tr>
-<tr class="memitem:a701e86543c375dde2ed4d833cf3d458e" id="r_a701e86543c375dde2ed4d833cf3d458e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a701e86543c375dde2ed4d833cf3d458e">read_heading</a> (self)</td></tr>
-<tr class="memitem:a76588a0c1f2ea579225c722bad5beb3f" id="r_a76588a0c1f2ea579225c722bad5beb3f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76588a0c1f2ea579225c722bad5beb3f">get_cal_data</a> (self, filename=&quot;cal_data.bin&quot;)</td></tr>
-<tr class="memitem:ac213d7734a6168cd5e4b14b355ed31e1" id="r_ac213d7734a6168cd5e4b14b355ed31e1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac213d7734a6168cd5e4b14b355ed31e1">push_cal_data</a> (self)</td></tr>
+<tr class="memdesc:a07051d2d9704309e5e894240dcef87d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read Euler angles from the <a class="el" href="classimu__driver_1_1_i_m_u.html" title="BNO055 IMU driver over I2C.">IMU</a>.  <br /></td></tr>
+<tr class="memitem:ad02a8e497fcd78d4d0932d8a643137a0" id="r_ad02a8e497fcd78d4d0932d8a643137a0"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad02a8e497fcd78d4d0932d8a643137a0">read_heading</a> (self)</td></tr>
+<tr class="memdesc:ad02a8e497fcd78d4d0932d8a643137a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read only the heading (yaw) angle.  <br /></td></tr>
+<tr class="memitem:a5cbe69c517ec8cd1082655e0b0a17ae3" id="r_a5cbe69c517ec8cd1082655e0b0a17ae3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5cbe69c517ec8cd1082655e0b0a17ae3">get_cal_data</a> (self, str filename=&quot;cal_data.bin&quot;)</td></tr>
+<tr class="memdesc:a5cbe69c517ec8cd1082655e0b0a17ae3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read and store calibration data to a file.  <br /></td></tr>
+<tr class="memitem:a6cf86cbdfc34424599f9eebc0e676f62" id="r_a6cf86cbdfc34424599f9eebc0e676f62"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6cf86cbdfc34424599f9eebc0e676f62">push_cal_data</a> (self, str filename=&quot;cal_data.bin&quot;)</td></tr>
+<tr class="memdesc:a6cf86cbdfc34424599f9eebc0e676f62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push stored calibration data into the <a class="el" href="classimu__driver_1_1_i_m_u.html" title="BNO055 IMU driver over I2C.">IMU</a>.  <br /></td></tr>
 <tr class="memitem:a75f6adf3ee3b24dc64fde5a2e67e64f6" id="r_a75f6adf3ee3b24dc64fde5a2e67e64f6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75f6adf3ee3b24dc64fde5a2e67e64f6">read_gyro</a> (self)</td></tr>
-<tr class="memitem:a703571d54a2f4c349a9a5aa866e3d573" id="r_a703571d54a2f4c349a9a5aa866e3d573"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a703571d54a2f4c349a9a5aa866e3d573">read_yaw_rate</a> (self)</td></tr>
+<tr class="memdesc:a75f6adf3ee3b24dc64fde5a2e67e64f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read gyroscope rates for all three axes.  <br /></td></tr>
+<tr class="memitem:aa305bb0c3040034c74b1af1993d06739" id="r_aa305bb0c3040034c74b1af1993d06739"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa305bb0c3040034c74b1af1993d06739">read_yaw_rate</a> (self)</td></tr>
+<tr class="memdesc:aa305bb0c3040034c74b1af1993d06739"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read yaw rate from the gyroscope.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -127,11 +138,15 @@ Static Public Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a5eeb3e31b815c11240c3d09e2a2b4cc7" id="r_a5eeb3e31b815c11240c3d09e2a2b4cc7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5eeb3e31b815c11240c3d09e2a2b4cc7">_set_mode</a> (self, mode)</td></tr>
+<tr class="memitem:a802cfa531de381dcdd58647e0455724c" id="r_a802cfa531de381dcdd58647e0455724c"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a802cfa531de381dcdd58647e0455724c">_set_mode</a> (self, str mode)</td></tr>
+<tr class="memdesc:a802cfa531de381dcdd58647e0455724c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal helper to switch <a class="el" href="classimu__driver_1_1_i_m_u.html" title="BNO055 IMU driver over I2C.">IMU</a> operation mode.  <br /></td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ae30f692d2029b558397a27b5186e618d" name="ae30f692d2029b558397a27b5186e618d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae30f692d2029b558397a27b5186e618d">&#9670;&#160;</a></span>__init__()</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>BNO055 <a class="el" href="classimu__driver_1_1_i_m_u.html" title="BNO055 IMU driver over I2C.">IMU</a> driver over I2C. </p>
+<p>Wraps common BNO055 functions such as mode switching, calibration, and reading Euler angles / gyro data. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aff47a4d4fad46dbade63f7467d7cd460" name="aff47a4d4fad46dbade63f7467d7cd460"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff47a4d4fad46dbade63f7467d7cd460">&#9670;&#160;</a></span>__init__()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -144,21 +159,31 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>i2c</em></span>, </td>
+          <td class="paramtype">I2C</td>          <td class="paramname"><span class="paramname"><em>i2c</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>addr</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0x28</span>&#160;)</td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>addr</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0x28</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>Initialize an <a class="el" href="classimu__driver_1_1_i_m_u.html" title="BNO055 IMU driver over I2C.">IMU</a> instance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i2c</td><td>Initialized I2C object. </td></tr>
+    <tr><td class="paramname">addr</td><td>7-bit I2C address of the BNO055 (default: 0x28).</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The constructor sets the <a class="el" href="classimu__driver_1_1_i_m_u.html" title="BNO055 IMU driver over I2C.">IMU</a> into CONFIG mode initially. </p>
+
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a5eeb3e31b815c11240c3d09e2a2b4cc7" name="a5eeb3e31b815c11240c3d09e2a2b4cc7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5eeb3e31b815c11240c3d09e2a2b4cc7">&#9670;&#160;</a></span>_set_mode()</h2>
+<a id="a802cfa531de381dcdd58647e0455724c" name="a802cfa531de381dcdd58647e0455724c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a802cfa531de381dcdd58647e0455724c">&#9670;&#160;</a></span>_set_mode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -167,14 +192,14 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">imu_driver.IMU._set_mode </td>
+          <td class="memname"> None imu_driver.IMU._set_mode </td>
           <td>(</td>
           <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>mode</em></span>&#160;)</td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>mode</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -183,6 +208,15 @@ Protected Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Internal helper to switch <a class="el" href="classimu__driver_1_1_i_m_u.html" title="BNO055 IMU driver over I2C.">IMU</a> operation mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>String specifying mode: <span class="tt">"CONFIG"</span>, <span class="tt">"NDOF"</span>, or <span class="tt">"<a class="el" href="classimu__driver_1_1_i_m_u.html" title="BNO055 IMU driver over I2C.">IMU</a>"</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This writes to the operation mode register and includes required delays as per the BNO055 datasheet. </p>
 
 </div>
 </div>
@@ -200,11 +234,15 @@ Protected Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Return calibration status as a tuple: (sys, gyro, acc, mag)</pre> 
+
+<p>Get <a class="el" href="classimu__driver_1_1_i_m_u.html" title="BNO055 IMU driver over I2C.">IMU</a> calibration status. </p>
+<p>Returns the calibration state of system, gyro, accelerometer, and magnetometer.</p>
+<dl class="section return"><dt>Returns</dt><dd>Tuple <span class="tt">(sys, gyro, acc, mag)</span> where each value is from 0–3. A value of 3 indicates fully calibrated. </dd></dl>
+
 </div>
 </div>
-<a id="a76588a0c1f2ea579225c722bad5beb3f" name="a76588a0c1f2ea579225c722bad5beb3f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a76588a0c1f2ea579225c722bad5beb3f">&#9670;&#160;</a></span>get_cal_data()</h2>
+<a id="a5cbe69c517ec8cd1082655e0b0a17ae3" name="a5cbe69c517ec8cd1082655e0b0a17ae3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cbe69c517ec8cd1082655e0b0a17ae3">&#9670;&#160;</a></span>get_cal_data()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -217,27 +255,51 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>filename</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;cal_data.bin&quot;</span>&#160;)</td>
+          <td class="paramtype">str </td>          <td class="paramname"><span class="paramname"><em>filename</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;cal_data.bin&quot;</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>Read and store calibration data to a file. </p>
+<p>Switches to CONFIG mode, reads calibration data, and writes it to a binary file for later reuse.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>Name of the file where calibration data is saved. Default is <span class="tt">"cal_data.bin"</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The raw calibration data as a bytes object. </dd></dl>
+
 </div>
 </div>
-<a id="ac213d7734a6168cd5e4b14b355ed31e1" name="ac213d7734a6168cd5e4b14b355ed31e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac213d7734a6168cd5e4b14b355ed31e1">&#9670;&#160;</a></span>push_cal_data()</h2>
+<a id="a6cf86cbdfc34424599f9eebc0e676f62" name="a6cf86cbdfc34424599f9eebc0e676f62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cf86cbdfc34424599f9eebc0e676f62">&#9670;&#160;</a></span>push_cal_data()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">imu_driver.IMU.push_cal_data </td>
+          <td class="memname"> None imu_driver.IMU.push_cal_data </td>
           <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">str </td>          <td class="paramname"><span class="paramname"><em>filename</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;cal_data.bin&quot;</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Push stored calibration data into the <a class="el" href="classimu__driver_1_1_i_m_u.html" title="BNO055 IMU driver over I2C.">IMU</a>. </p>
+<p>Reads calibration data from a file and writes it to the <a class="el" href="classimu__driver_1_1_i_m_u.html" title="BNO055 IMU driver over I2C.">IMU</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>File containing previously saved calibration data (default: <span class="tt">"cal_data.bin"</span>).</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This can be used at startup to restore a known good calibration, avoiding re-calibration on every power cycle. </p>
 
 </div>
 </div>
@@ -256,6 +318,11 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Read Euler angles from the <a class="el" href="classimu__driver_1_1_i_m_u.html" title="BNO055 IMU driver over I2C.">IMU</a>. </p>
+<p>Returns heading, roll, and pitch in degrees.</p>
+<dl class="section return"><dt>Returns</dt><dd>Tuple <span class="tt">(heading, roll, pitch)</span> in degrees.</dd></dl>
+<p>These angles are provided directly by the BNO055 in fusion mode (e.g. NDOF). </p>
+
 </div>
 </div>
 <a id="a75f6adf3ee3b24dc64fde5a2e67e64f6" name="a75f6adf3ee3b24dc64fde5a2e67e64f6"></a>
@@ -272,17 +339,21 @@ Protected Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Return (gx, gy, gz) in deg/s.</pre> 
+
+<p>Read gyroscope rates for all three axes. </p>
+<p>Reads raw gyro data from the <a class="el" href="classimu__driver_1_1_i_m_u.html" title="BNO055 IMU driver over I2C.">IMU</a> and converts it to deg/s.</p>
+<dl class="section return"><dt>Returns</dt><dd>Tuple <span class="tt">(gx, gy, gz)</span> in degrees per second. </dd></dl>
+
 </div>
 </div>
-<a id="a701e86543c375dde2ed4d833cf3d458e" name="a701e86543c375dde2ed4d833cf3d458e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a701e86543c375dde2ed4d833cf3d458e">&#9670;&#160;</a></span>read_heading()</h2>
+<a id="ad02a8e497fcd78d4d0932d8a643137a0" name="ad02a8e497fcd78d4d0932d8a643137a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad02a8e497fcd78d4d0932d8a643137a0">&#9670;&#160;</a></span>read_heading()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">imu_driver.IMU.read_heading </td>
+          <td class="memname"> float imu_driver.IMU.read_heading </td>
           <td>(</td>
           <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
           <td></td>
@@ -290,23 +361,30 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Read only the heading (yaw) angle. </p>
+<dl class="section return"><dt>Returns</dt><dd>Heading in degrees. </dd></dl>
+
 </div>
 </div>
-<a id="a703571d54a2f4c349a9a5aa866e3d573" name="a703571d54a2f4c349a9a5aa866e3d573"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a703571d54a2f4c349a9a5aa866e3d573">&#9670;&#160;</a></span>read_yaw_rate()</h2>
+<a id="aa305bb0c3040034c74b1af1993d06739" name="aa305bb0c3040034c74b1af1993d06739"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa305bb0c3040034c74b1af1993d06739">&#9670;&#160;</a></span>read_yaw_rate()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">imu_driver.IMU.read_yaw_rate </td>
+          <td class="memname"> float imu_driver.IMU.read_yaw_rate </td>
           <td>(</td>
           <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Return yaw rate (gz) in deg/s.</pre> 
+
+<p>Read yaw rate from the gyroscope. </p>
+<p>Returns the Z-axis gyro rate.</p>
+<dl class="section return"><dt>Returns</dt><dd>Yaw rate (gz) in degrees per second. </dd></dl>
+
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>

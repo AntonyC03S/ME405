@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['position_0',['position',['../class_encoder___driver_1_1_encoder.html#a46acaf0092dd3034c797d872aa182f5c',1,'Encoder_Driver::Encoder']]],
-  ['push_5fcal_5fdata_1',['push_cal_data',['../class_i_m_u___class_1_1_i_m_u.html#a0eff67f3e9387e2c9949059bca4f7877',1,'IMU_Class.IMU.push_cal_data()'],['../classimu__driver_1_1_i_m_u.html#ac213d7734a6168cd5e4b14b355ed31e1',1,'imu_driver.IMU.push_cal_data()']]],
-  ['pwm_5fchan_2',['PWM_chan',['../class_motor___driver_1_1_motor.html#a7e433b924b6d1486f8a09cc6802bc5e7',1,'Motor_Driver::Motor']]]
+  ['read_5feuler_0',['read_euler',['../classimu__driver_1_1_i_m_u.html#a07051d2d9704309e5e894240dcef87d5',1,'imu_driver::IMU']]],
+  ['read_5fgyro_1',['read_gyro',['../classimu__driver_1_1_i_m_u.html#a75f6adf3ee3b24dc64fde5a2e67e64f6',1,'imu_driver::IMU']]],
+  ['read_5fheading_2',['read_heading',['../classimu__driver_1_1_i_m_u.html#ad02a8e497fcd78d4d0932d8a643137a0',1,'imu_driver::IMU']]],
+  ['read_5fyaw_5frate_3',['read_yaw_rate',['../classimu__driver_1_1_i_m_u.html#aa305bb0c3040034c74b1af1993d06739',1,'imu_driver::IMU']]],
+  ['readings_4',['readings',['../class_line___class_1_1_line.html#ac1df3cf2f0b639ccb2a246a882bbf85b',1,'Line_Class::Line']]],
+  ['reset_5',['reset',['../classdiscretized__estimation_1_1_romi_observer.html#a62d6674aa4ed320056eb4f123d416439',1,'discretized_estimation::RomiObserver']]],
+  ['rk4_5fsolver_6',['RK4_solver',['../class_state___estimation__class_1_1_state___estimation.html#a81406719aeef31af6a6b1c37048f9f66',1,'State_Estimation_class::State_Estimation']]]
 ];

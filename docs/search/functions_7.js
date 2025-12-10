@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['main_0',['main',['../namespacemain1.html#a78f0d8663a034dd779bcd88cc1711dfe',1,'main1']]],
-  ['motor_5ftask_1',['motor_task',['../namespacemotor__task.html#a34f3f7751391229fd593dc79a1763699',1,'motor_task']]]
+  ['nslp_5fpin_0',['nSLP_pin',['../class_motor___driver_1_1_motor.html#a1cd4046c7776a93bc2af1c38f29bd308',1,'Motor_Driver::Motor']]]
 ];

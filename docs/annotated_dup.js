@@ -9,9 +9,6 @@ var annotated_dup =
     [ "Encoder_Driver", "namespace_encoder___driver.html", [
       [ "Encoder", "class_encoder___driver_1_1_encoder.html", "class_encoder___driver_1_1_encoder" ]
     ] ],
-    [ "IMU_Class", "namespace_i_m_u___class.html", [
-      [ "IMU", "class_i_m_u___class_1_1_i_m_u.html", "class_i_m_u___class_1_1_i_m_u" ]
-    ] ],
     [ "imu_driver", "namespaceimu__driver.html", [
       [ "IMU", "classimu__driver_1_1_i_m_u.html", "classimu__driver_1_1_i_m_u" ]
     ] ],

@@ -51,7 +51,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_controller___class_8py.html",
-"classimu__driver_1_1_i_m_u.html#a07051d2d9704309e5e894240dcef87d5"
+"functions_func.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

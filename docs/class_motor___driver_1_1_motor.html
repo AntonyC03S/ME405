@@ -92,27 +92,43 @@ $(function(){initNavTree('class_motor___driver_1_1_motor.html','','class_motor__
   <div class="headertitle"><div class="title">Motor_Driver.Motor Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_motor___driver_1_1_motor.html" title="Motor driver interface using PWM + direction control.">Motor</a> driver interface using PWM + direction control.  
+ <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a8c241ad98deb0ee95f833eadd196f4f5" id="r_a8c241ad98deb0ee95f833eadd196f4f5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c241ad98deb0ee95f833eadd196f4f5">__init__</a> (self, Pin PWM, Pin DIR, Pin nSLP, Timer tim, int chan)</td></tr>
+<tr class="memdesc:a8c241ad98deb0ee95f833eadd196f4f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a <a class="el" href="class_motor___driver_1_1_motor.html" title="Motor driver interface using PWM + direction control.">Motor</a> object.  <br /></td></tr>
 <tr class="memitem:a1cd4046c7776a93bc2af1c38f29bd308" id="r_a1cd4046c7776a93bc2af1c38f29bd308"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1cd4046c7776a93bc2af1c38f29bd308">nSLP_pin</a> (self)</td></tr>
+<tr class="memdesc:a1cd4046c7776a93bc2af1c38f29bd308"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the nSLP pin object.  <br /></td></tr>
 <tr class="memitem:a00f7590dbf5888bad078aaa9334f7a08" id="r_a00f7590dbf5888bad078aaa9334f7a08"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00f7590dbf5888bad078aaa9334f7a08">DIR_pin</a> (self)</td></tr>
+<tr class="memdesc:a00f7590dbf5888bad078aaa9334f7a08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the direction pin object.  <br /></td></tr>
 <tr class="memitem:a7e433b924b6d1486f8a09cc6802bc5e7" id="r_a7e433b924b6d1486f8a09cc6802bc5e7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e433b924b6d1486f8a09cc6802bc5e7">PWM_chan</a> (self)</td></tr>
+<tr class="memdesc:a7e433b924b6d1486f8a09cc6802bc5e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the PWM channel object.  <br /></td></tr>
 <tr class="memitem:a0b74645c14c9e659e84fb653ffb6b2fd" id="r_a0b74645c14c9e659e84fb653ffb6b2fd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b74645c14c9e659e84fb653ffb6b2fd">set_effort</a> (self, float effort)</td></tr>
+<tr class="memdesc:a0b74645c14c9e659e84fb653ffb6b2fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set motor effort level between -100 and 100.  <br /></td></tr>
 <tr class="memitem:aee499cb16c9cdcd674048647f11694ea" id="r_aee499cb16c9cdcd674048647f11694ea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee499cb16c9cdcd674048647f11694ea">enable</a> (self)</td></tr>
+<tr class="memdesc:aee499cb16c9cdcd674048647f11694ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the motor driver.  <br /></td></tr>
 <tr class="memitem:a728f6643037bc8beb5c5f8702969d945" id="r_a728f6643037bc8beb5c5f8702969d945"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a728f6643037bc8beb5c5f8702969d945">disable</a> (self)</td></tr>
+<tr class="memdesc:a728f6643037bc8beb5c5f8702969d945"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the motor driver.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:afd8f0bcb4f1d18beb384c6b7083159ae" id="r_afd8f0bcb4f1d18beb384c6b7083159ae"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd8f0bcb4f1d18beb384c6b7083159ae">_nSLP_pin</a> = Pin(nSLP, mode=Pin.OUT_PP, value=0)</td></tr>
 <tr class="memitem:a39f8207bba98f06572f91960d34ccf8d" id="r_a39f8207bba98f06572f91960d34ccf8d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39f8207bba98f06572f91960d34ccf8d">_DIR_pin</a> = Pin(DIR, mode=Pin.OUT_PP, value=0)</td></tr>
-<tr class="memitem:a8bbd451205b552baad87071eef93a6eb" id="r_a8bbd451205b552baad87071eef93a6eb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8bbd451205b552baad87071eef93a6eb">_PWM_chan</a> = tim.channel(chan, pin = PWM, mode=Timer.PWM, pulse_width_percent=0)</td></tr>
+<tr class="memitem:a8bbd451205b552baad87071eef93a6eb" id="r_a8bbd451205b552baad87071eef93a6eb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8bbd451205b552baad87071eef93a6eb">_PWM_chan</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><pre class="fragment">A motor driver interface encapsulated in a Python class. Works with
-   motor drivers using separate PWM and direction inputs such as the DRV8838
-   drivers present on the Romi chassis from Pololu.</pre> </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<div class="textblock"><p><a class="el" href="class_motor___driver_1_1_motor.html" title="Motor driver interface using PWM + direction control.">Motor</a> driver interface using PWM + direction control. </p>
+<p>Controls a brushed DC motor using a PWM pin, a direction pin, and an nSLP pin.</p>
+<p>The driver accepts effort values from <span class="tt">-100</span> to <span class="tt">100</span>, where:</p>
+<ul>
+<li>Positive → forward (DIR low)</li>
+<li>Negative → reverse (DIR high)</li>
+<li>Zero → motor brake (0% PWM) </li>
+</ul>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8c241ad98deb0ee95f833eadd196f4f5" name="a8c241ad98deb0ee95f833eadd196f4f5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8c241ad98deb0ee95f833eadd196f4f5">&#9670;&#160;</a></span>__init__()</h2>
 
@@ -151,7 +167,20 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Initializes a Motor object</pre> 
+
+<p>Initialize a <a class="el" href="class_motor___driver_1_1_motor.html" title="Motor driver interface using PWM + direction control.">Motor</a> object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PWM</td><td>Pin object (or pin name) connected to PWM input. </td></tr>
+    <tr><td class="paramname">DIR</td><td>Pin object (or pin name) connected to direction input. </td></tr>
+    <tr><td class="paramname">nSLP</td><td>Pin used to enable/disable the motor driver. </td></tr>
+    <tr><td class="paramname">tim</td><td>Timer configured to generate PWM. </td></tr>
+    <tr><td class="paramname">chan</td><td>Timer channel number for the PWM output.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This constructor sets all pins to output mode and initializes the PWM channel with 0% duty cycle. </p>
+
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
@@ -170,6 +199,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Get the direction pin object. </p>
+
 </div>
 </div>
 <a id="a728f6643037bc8beb5c5f8702969d945" name="a728f6643037bc8beb5c5f8702969d945"></a>
@@ -186,7 +217,11 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Disables the motor driver by taking it into sleep mode</pre> 
+
+<p>Disable the motor driver. </p>
+<p>Sets PWM to 0% and puts the H-bridge into sleep mode.</p>
+<p>Useful for saving power or ensuring the motor will not move. </p>
+
 </div>
 </div>
 <a id="aee499cb16c9cdcd674048647f11694ea" name="aee499cb16c9cdcd674048647f11694ea"></a>
@@ -203,7 +238,11 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Enables the motor driver by taking it out of sleep mode into brake mode</pre> 
+
+<p>Enable the motor driver. </p>
+<p>Takes the DRV8838 out of sleep mode and sets PWM to 0%.</p>
+<p>This places the driver in <b>brake mode</b> until an effort is applied. </p>
+
 </div>
 </div>
 <a id="a1cd4046c7776a93bc2af1c38f29bd308" name="a1cd4046c7776a93bc2af1c38f29bd308"></a>
@@ -221,6 +260,8 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Get the nSLP pin object. </p>
+
 </div>
 </div>
 <a id="a7e433b924b6d1486f8a09cc6802bc5e7" name="a7e433b924b6d1486f8a09cc6802bc5e7"></a>
@@ -237,6 +278,8 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Get the PWM channel object. </p>
 
 </div>
 </div>
@@ -258,8 +301,22 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Sets the present effort requested from the motor based on an input value
-   between -100 and 100</pre> 
+
+<p>Set motor effort level between -100 and 100. </p>
+<p>Controls the PWM duty cycle and direction pin based on effort.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">effort</td><td>Desired effort from -100 (reverse max) to +100 (forward max).</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Behavior:</p><ul>
+<li>If effort &gt; 0 → forward direction</li>
+<li>If effort &lt; 0 → reverse direction</li>
+<li>If effort = 0 → motor output = brake (0% PWM)</li>
+</ul>
+<p>Effort values are automatically clamped to [-100, 100]. </p>
+
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
@@ -317,7 +374,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Motor_Driver.Motor._PWM_chan = tim.channel(chan, pin = PWM, mode=Timer.PWM, pulse_width_percent=0)</td>
+          <td class="memname">Motor_Driver.Motor._PWM_chan</td>
         </tr>
       </table>
   </td>
@@ -326,7 +383,10 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<b>Initial value:</b><div class="fragment"><div class="line">=  tim.channel(</div>
+<div class="line">            chan, pin=PWM, mode=Timer.PWM, pulse_width_percent=0</div>
+<div class="line">        )</div>
+</div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
