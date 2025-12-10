@@ -105,7 +105,7 @@ def state_task(shares):
 
             s.put(s_mm)
             a.put(a_deg)
-            print(s_mm,a_deg)
+            # print(s_mm,a_deg)
         yield state
 
 

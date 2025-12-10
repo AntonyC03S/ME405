@@ -53,8 +53,12 @@ def motor_task(shares):
             eff = int(motor_eff.get())
             motor_left.set_effort(0)
             motor_right.set_effort(0)
+            PID_data = data_sharing.get() 
             if eff != 0:
-                state = Line_Running
+                if PID_data == 0:
+                    state = Line_Running
+                else:
+                    state = PID_Tuning
                 encoder_start.put(1)
 
         # State 2 - Running
@@ -62,8 +66,10 @@ def motor_task(shares):
         elif state == Running:
             eff = int(motor_eff.get())
             if counter == 0:
-                controller_left = Controller(2.7,20,0.1)
-                controller_right = Controller(2,19,0.1)
+                # controller_left = Controller(2.7,20,0.1)
+                # controller_right = Controller(2,19,0.1)
+                controller_left = Controller(1.5,12.5,0.1)
+                controller_right = Controller(1.6,12.5,0.1)
                 motor_left.set_effort(eff)
                 motor_right.set_effort(eff)
             else:
@@ -91,8 +97,12 @@ def motor_task(shares):
         elif state == Line_Running:
             eff = int(motor_eff.get())
             if counter == 0:
-                controller_left = Controller(2.7,20,0.1)
-                controller_right = Controller(2,19,0.1)
+                # controller_left = Controller(2.7,20,0.1)
+                # controller_right = Controller(2,19,0.1)
+                # controller_left = Controller(2.7,20,0.1)
+                # controller_right = Controller(2,19,0.1)
+                controller_left = Controller(1.5,12.5,0.1)
+                controller_right = Controller(1.6,12.5,0.1)
                 controller_line = Controller(1.2,0,0)
                 motor_left.set_effort(eff)
                 motor_right.set_effort(eff)
@@ -201,27 +211,34 @@ def motor_task(shares):
         # State 4 - PID Tuning
         # Enabling Motor and running an effort
         elif state == PID_Tuning:
-            # eff = int(motor_eff.get())
-            # if counter == 0:
-            #     controller_left = Controller(2.7,20,0.1)
-            #     controller_right = Controller(2,19,0.1)
-            #     motor_left.set_effort(eff)
-            #     motor_right.set_effort(eff)
-            # else:
-            #     Lgain = controller_left.update(15,lspeed.get())
-            #     Rgain = controller_right.update(15,rspeed.get())
-            #     Lnew = eff + Lgain
-            #     Rnew = eff + Rgain
-            #     motor_left.set_effort(Lnew)
-            #     motor_right.set_effort(Rnew)
-            # counter += 1
-            # if counter >= 100:
-            #     done.put(1)
-            #     encoder_start.put(0)
-            #     motor_eff.put(0)
-            #     counter = 0
-            #     state = Stop
-            # if eff == 0:
+            eff = int(motor_eff.get())
+            if counter == 0:
+                # PID_side_split = PID_data.split("-")
+                # PID_left_split = PID_side_split[0].split("*") 
+                # PID_right_split = PID_side_split[1].split("*") 
+                # controller_left = Controller(2.7,20,0.1)
+                # controller_right = Controller(2,19,0.1)
+                controller_left = Controller(1.5,12.5,0.1)
+                controller_right = Controller(1.6,12.5,0.1)
+                motor_left.set_effort(eff)
+                motor_right.set_effort(eff)
+            else:
+                Lgain = controller_left.update(15,lspeed.get())
+                Rgain = controller_right.update(15,rspeed.get())
+                Lnew = eff + Lgain
+                Rnew = eff + Rgain
+                motor_left.set_effort(Lnew)
+                motor_right.set_effort(Rnew)
+
+            counter += 1
+
+            if counter >= 50:
+                done.put(1)
+                encoder_start.put(0)
+                motor_eff.put(0)
+                counter = 0
+                state = Stop
+            if eff == 0:
                 state = Stop
 
 

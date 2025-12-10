@@ -30,7 +30,7 @@ def UI_task(shares):
             mode = input("Enable Bluetooth? Yes or No")
 
             #<--       Bluetooth              -->
-            if "no" == "yes":
+            if mode == "Yes":
                 if not start and bluetooth.any():
                     chunk = bluetooth.read()
                     if chunk:
@@ -59,6 +59,7 @@ def UI_task(shares):
                             if cmd.lower().startswith("c"):
                                 start = True
                                 state = 2
+                                data_sharing.put(0)
                                 break
                             elif cmd.lower().startswith("1"):
                                 cmd_split = cmd.split("_")
@@ -69,12 +70,13 @@ def UI_task(shares):
                                 Kp.put(float(kp))
                                 Ki.put(float(ki))
                                 Kd.put(float(kd))
+                                data_sharing.put("0")
                                 state = 2
                                 Pid = True
                                 break
                             elif cmd.lower().startswith("2"):
                                 cmd_split = cmd.split("_")
-                                data_sharing.put(cmd_split[1])
+                                data_sharing.put(1)
                                 state = 2
                                 Pid = True
                                 break
@@ -87,6 +89,7 @@ def UI_task(shares):
                 # Kp.put(float(input_P_gain))
                 # Ki.put(float(input_I_gain))
                 # Kd.put(float(input_D_gain))
+                data_sharing.put(0)
                 state = 2
                 Pid = True
             yield state

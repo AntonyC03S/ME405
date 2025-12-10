@@ -12,7 +12,16 @@ left_speed = []
 right_speed = []
 volt = []
 csv_list = []
- 
+def unique_path(path: str) -> str:
+    base, ext = os.path.splitext(path)
+    i = 1
+    new_path = path
+
+    while os.path.exists(new_path):
+        new_path = f"{base}_{i}{ext}"
+        i += 1
+
+    return new_path
 
 with Serial("COM7", baudrate=115_200, timeout=1) as ser: 
 # with Serial("/dev/cu.mecha12", baudrate=115_200, timeout=1) as ser: 
@@ -22,10 +31,10 @@ with Serial("COM7", baudrate=115_200, timeout=1) as ser:
     while ser.in_waiting: 
         ser.read() 
     print("Sending command to start data collection") 
-    input_P_gain = input("Input P gain: ")
-    input_I_gain = input("Input I gain: ")
-    input_D_gain = input("Input D gain: ")
-    ser.write(f"1_{input_P_gain}_{input_I_gain}_{input_D_gain}\r\n".encode())
+    # input_PID_left_gain = input("Input PID gain for left: ")
+    # input_PID_right_gain = input("Input PID gain for left: ")
+    
+    ser.write(f"1\r\n".encode())
     print("Waiting for data") 
 
 
@@ -52,7 +61,7 @@ with Serial("COM7", baudrate=115_200, timeout=1) as ser:
                 # skip malformed lines
                 print("Skipping bad line:", repr(line))
                 continue
-            t, lp, rp, ls, rs, v = map(float, parts)
+            t, ls, rs, lp, rp, v = map(float, parts)
             row_list = [t, lp, rp, ls, rs]
             csv_list.append(row_list)
 
@@ -72,6 +81,7 @@ with Serial("COM7", baudrate=115_200, timeout=1) as ser:
 
     save_location = os.path.join("Lab_0x03", "data")
     save_location = os.path.join(save_location, f"Trail.csv")
+    save_location = unique_path(save_location)    
 
     with open(save_location, "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
@@ -82,3 +92,4 @@ print(f'left postion: {left_position}')
 print(f'right position: {right_position}')
 print(f'left speed: {left_speed}')
 print(f'right speed: {right_speed}')
+
