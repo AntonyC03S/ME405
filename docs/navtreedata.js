@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "ME 405 Term Project", "index.html", [
+    [ "Romi Line-Following Robot Documentation", "index.html", "index" ],
     [ "Packages", "namespaces.html", [
       [ "Package List", "namespaces.html", "namespaces_dup" ],
       [ "Package Members", "namespacemembers.html", [

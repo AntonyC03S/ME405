@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['i2c_0',['i2c',['../classimu__driver_1_1_i_m_u.html#a0e1d37979907b4ce63deea7a300c9b0a',1,'imu_driver::IMU']]],
-  ['imu_1',['IMU',['../classimu__driver_1_1_i_m_u.html',1,'imu_driver']]],
-  ['imu_5fdriver_2',['imu_driver',['../namespaceimu__driver.html',1,'']]],
-  ['imu_5fdriver_2epy_3',['imu_driver.py',['../imu__driver_8py.html',1,'']]],
-  ['imu_5fmode_4',['IMU_MODE',['../classimu__driver_1_1_i_m_u.html#adbbac92baaa2a18137f0575efa9dec4f',1,'imu_driver::IMU']]]
+  ['get_5fcal_5fdata_0',['get_cal_data',['../classimu__driver_1_1_i_m_u.html#a5cbe69c517ec8cd1082655e0b0a17ae3',1,'imu_driver::IMU']]],
+  ['getting_20started_1',['Getting Started',['../index.html#getting_started',1,'']]],
+  ['gyro_5fdata_5fx_5flsb_2',['GYRO_DATA_X_LSB',['../classimu__driver_1_1_i_m_u.html#aeeb9c63277a26e1f381fc47f3b4c7860',1,'imu_driver::IMU']]]
 ];

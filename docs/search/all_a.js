@@ -1,6 +1,13 @@
 var searchData=
 [
-  ['ndof_5fmode_0',['NDOF_MODE',['../classimu__driver_1_1_i_m_u.html#a445619e8fb75fb7b4778687038cc6d8f',1,'imu_driver::IMU']]],
-  ['newline_1',['newline',['../namespacebluetooth.html#a848060152284bb6a99a0d74167f49bf8',1,'bluetooth']]],
-  ['nslp_5fpin_2',['nSLP_pin',['../class_motor___driver_1_1_motor.html#a1cd4046c7776a93bc2af1c38f29bd308',1,'Motor_Driver::Motor']]]
+  ['mag_5fdata_5fx_5flsb_0',['MAG_DATA_X_LSB',['../classimu__driver_1_1_i_m_u.html#a5c95c329a6f2a73dcb9dd91507f512df',1,'imu_driver::IMU']]],
+  ['main_1',['main',['../namespacemain1.html#a78f0d8663a034dd779bcd88cc1711dfe',1,'main1']]],
+  ['main1_2',['main1',['../namespacemain1.html',1,'']]],
+  ['main1_2epy_3',['main1.py',['../main1_8py.html',1,'']]],
+  ['mainpage_2etxt_4',['mainpage.txt',['../mainpage_8txt.html',1,'']]],
+  ['motor_5',['Motor',['../class_motor___driver_1_1_motor.html',1,'Motor_Driver']]],
+  ['motor_5fdriver_6',['Motor_Driver',['../namespace_motor___driver.html',1,'']]],
+  ['motor_5fdriver_2epy_7',['Motor_Driver.py',['../_motor___driver_8py.html',1,'']]],
+  ['motor_5ftask_8',['motor_task',['../namespacemotor__task.html',1,'motor_task'],['../namespacemotor__task.html#a34f3f7751391229fd593dc79a1763699',1,'motor_task.motor_task()']]],
+  ['motor_5ftask_2epy_9',['motor_task.py',['../motor__task_8py.html',1,'']]]
 ];
