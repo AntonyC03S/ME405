@@ -1,0 +1,21 @@
+/** @mainpage Romi Line-Following Robot Documentation
+
+@section intro_sec Introduction
+Welcome! This documentation covers all drivers used in our Romi robot project.
+
+It includes:
+- Motor driver (`Motor` class)
+- Encoder driver (`Encoder` class)
+- IMU interface (`IMU` class)
+- Line sensor array (`Line` class)
+
+@section getting_started Getting Started
+To explore the documentation:
+- Navigate to the **Classes** tab
+- Click a class name to see its methods and details
+
+@section structure Project Structure
+The main drivers are located in the source directory and include detailed
+Doxygen-style docstrings for automatic documentation generation.
+
+*/
