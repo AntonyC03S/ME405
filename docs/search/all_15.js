@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['yout_0',['yout',['../class_state___estimation__class_1_1_state___estimation.html#a8f29d58a752d32a8917edbc3843c79b3',1,'State_Estimation_class::State_Estimation']]]
+  ['x_0',['x',['../class_state___estimation___class_1_1_romi_observer.html#abe910611e86b586283da63307ab7740e',1,'State_Estimation_Class::RomiObserver']]]
 ];

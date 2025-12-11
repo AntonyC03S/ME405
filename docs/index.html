@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.15.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>ME 405 Term Project: Romi Line-Following Robot Documentation</title>
+<title>ME 405 Term Project: ME 405 Term Project</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -89,27 +89,90 @@ $(function(){initNavTree('index.html','',''); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Romi Line-Following Robot Documentation </div></div>
+  <div class="headertitle"><div class="title">ME 405 Term Project </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><h1 class="doxsection"><a class="anchor" id="intro_sec"></a>
-Introduction</h1>
-<p>Welcome! This documentation covers all drivers used in our Romi robot project.</p>
-<p>It includes:</p><ul>
-<li>Motor driver (<span class="tt">Motor</span> class)</li>
-<li>Encoder driver (<span class="tt">Encoder</span> class)</li>
-<li>IMU interface (<span class="tt">IMU</span> class)</li>
-<li>Line sensor array (<span class="tt">Line</span> class)</li>
+Overview</h1>
+<p>This documentation describes the software for a Romi line-following robot developed for <b>ME 405</b>. The robot uses:</p>
+<ul>
+<li>DC motors with PWM + direction drivers</li>
+<li>Quadrature encoders on each wheel</li>
+<li>A BNO055 IMU for heading and yaw-rate</li>
+<li>A reflectance line sensor array</li>
+<li>A PID controller and state observer for control and estimation</li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="getting_started"></a>
-Getting Started</h1>
-<p>To explore the documentation:</p><ul>
-<li>Navigate to the <b>Classes</b> tab</li>
-<li>Click a class name to see its methods and details</li>
+<p>The goal of the project is to follow a line smoothly and robustly while demonstrating good embedded software structure and documentation.</p>
+<h1 class="doxsection"><a class="anchor" id="hw_sec"></a>
+Hardware</h1>
+<div class="image">
+<img src="romi_top_view.png" alt="" width="400px"/>
+<div class="caption">
+Romi robot with sensors and electronics</div></div>
+<p>The main hardware components are:</p>
+<ul>
+<li>Pololu Romi chassis</li>
+<li>MicroPython-capable microcontroller (e.g. Pyboard)</li>
+<li>Motor driver boards</li>
+<li>Line sensor array</li>
+<li>BNO055 IMU</li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="structure"></a>
-Project Structure</h1>
-<p>The main drivers are located in the source directory and include detailed Doxygen-style docstrings for automatic documentation generation. </p>
+<h1 class="doxsection"><a class="anchor" id="sw_sec"></a>
+Software Structure</h1>
+<p>The code is organized into two main parts:</p>
+<ul>
+<li><b>Drivers</b> (in the <span class="tt">_Driver</span> folder)<ul>
+<li>Motor driver (<span class="tt">Motor</span>)</li>
+<li>Encoder driver (<span class="tt">Encoder</span>)</li>
+<li>IMU driver (<span class="tt">IMU</span>)</li>
+<li>Line sensor array (<span class="tt">Line</span>)</li>
+<li>State observer (<span class="tt">RomiObserver</span>)</li>
+<li>PID controller (<span class="tt">Controller</span>)</li>
+</ul>
+</li>
+<li><b>Tasks</b> (in the <span class="tt">_Task</span> folder)<ul>
+<li>Motor control task</li>
+<li>Line-following / control loop task</li>
+<li>IMU and encoder update tasks</li>
+<li>Any additional high-level behaviors</li>
+</ul>
+</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="nav_sec"></a>
+How to Use This Documentation</h1>
+<p>Use the navigation panel on the left:</p>
+<ul>
+<li><b>Project</b> – this page you are reading now</li>
+<li><b>Classes</b> – object-oriented interfaces such as <span class="tt">Motor</span>, <span class="tt">Encoder</span>, <span class="tt">IMU</span>, <span class="tt">Line</span>, <span class="tt">Controller</span>, and <span class="tt">RomiObserver</span></li>
+<li><b>Files</b> – source files from the <span class="tt">_Driver</span> and <span class="tt">_Task</span> folders</li>
+</ul>
+<p>To see how components fit together, start with:</p>
+<ul>
+<li><span class="tt"><a class="el" href="_motor___driver_8py.html" title="Motor driver class for PWM + direction motor controllers.">Motor_Driver.py</a></span></li>
+<li><span class="tt"><a class="el" href="_encoder___driver_8py.html" title="Quadrature encoder driver for a MicroPython Pyboard.">Encoder_Driver.py</a></span></li>
+<li><span class="tt"><a class="el" href="_imu___driver_8py.html" title="I2C interface for a BNO055 IMU sensor.">Imu_Driver.py</a></span></li>
+<li><span class="tt"><a class="el" href="_line___class_8py.html" title="Line sensor array driver using analog reflectance sensors.">Line_Class.py</a></span></li>
+<li><span class="tt"><a class="el" href="_controller___class_8py.html" title="PID controller implementation for robot motion control.">Controller_Class.py</a></span></li>
+<li><span class="tt"><a class="el" href="_state___estimation___class_8py.html">State_Estimation_Class.py</a></span></li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="demo_sec"></a>
+Demo Video</h1>
+<p>Below is a demo of the Romi following a line:</p>
+<p> 
+<div style="margin-top: 1em;">
+  <iframe width="560" height="315"
+          src="https://www.youtube.com/embed/watch?v=IdQXAvqh3a0"
+          title="Romi Line-Following Demo"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+  </iframe>
+</div>
+</p>
+<p>If the video does not appear in your viewer, you can also open it directly:</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=IdQXAvqh3a0">https://www.youtube.com/watch?v=IdQXAvqh3a0</a> </li>
+</ul>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->

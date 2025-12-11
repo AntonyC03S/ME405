@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['robot_20documentation_0',['Romi Line-Following Robot Documentation',['../index.html',1,'']]],
-  ['romi_20line_20following_20robot_20documentation_1',['Romi Line-Following Robot Documentation',['../index.html',1,'']]]
+  ['software_20structure_0',['Software Structure',['../index.html#sw_sec',1,'']]],
+  ['structure_1',['Software Structure',['../index.html#sw_sec',1,'']]]
 ];

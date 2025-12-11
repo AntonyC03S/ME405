@@ -9,19 +9,6 @@ var classimu__driver_1_1_i_m_u =
     [ "read_gyro", "classimu__driver_1_1_i_m_u.html#a75f6adf3ee3b24dc64fde5a2e67e64f6", null ],
     [ "read_heading", "classimu__driver_1_1_i_m_u.html#ad02a8e497fcd78d4d0932d8a643137a0", null ],
     [ "read_yaw_rate", "classimu__driver_1_1_i_m_u.html#aa305bb0c3040034c74b1af1993d06739", null ],
-    [ "ACC_DATA_X_LSB", "classimu__driver_1_1_i_m_u.html#a9e415389dead92e5dff0daca4b0d0c73", null ],
-    [ "CAL_DATA_LSB", "classimu__driver_1_1_i_m_u.html#a0e145aea2fea79e5fa0258cdd502901c", null ],
-    [ "CHIP_ID_REG", "classimu__driver_1_1_i_m_u.html#a3a06ab10571b05ddb222d81503adf002", null ],
-    [ "CONFIG_MODE", "classimu__driver_1_1_i_m_u.html#ae298623546023614984fbf9493686e92", null ],
     [ "devad", "classimu__driver_1_1_i_m_u.html#ace901986ca330461be0598c9a188d5ad", null ],
-    [ "EULER_H_LSB", "classimu__driver_1_1_i_m_u.html#acf54366975cb4dcb646a17145912f787", null ],
-    [ "GYRO_DATA_X_LSB", "classimu__driver_1_1_i_m_u.html#aeeb9c63277a26e1f381fc47f3b4c7860", null ],
-    [ "i2c", "classimu__driver_1_1_i_m_u.html#a0e1d37979907b4ce63deea7a300c9b0a", null ],
-    [ "IMU_MODE", "classimu__driver_1_1_i_m_u.html#adbbac92baaa2a18137f0575efa9dec4f", null ],
-    [ "MAG_DATA_X_LSB", "classimu__driver_1_1_i_m_u.html#a5c95c329a6f2a73dcb9dd91507f512df", null ],
-    [ "NDOF_MODE", "classimu__driver_1_1_i_m_u.html#a445619e8fb75fb7b4778687038cc6d8f", null ],
-    [ "OPR_MODE_REG", "classimu__driver_1_1_i_m_u.html#aff906f9622aa30fc53f0c398b5e71319", null ],
-    [ "PAGE_ID_REG", "classimu__driver_1_1_i_m_u.html#aa86dce926f3fffc30369218ac6fde55d", null ],
-    [ "PWR_MODE_REG", "classimu__driver_1_1_i_m_u.html#a8a9559cf459e3411608c7a684ec5f2b7", null ],
-    [ "SYS_TRIGGER_REG", "classimu__driver_1_1_i_m_u.html#a06da48bfee2082a34551939e70b2e5e0", null ]
+    [ "i2c", "classimu__driver_1_1_i_m_u.html#a0e1d37979907b4ce63deea7a300c9b0a", null ]
 ];

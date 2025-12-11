@@ -1,4 +1,4 @@
-"""! @file controller.py
+"""! @file Controller_Class.py
 @brief PID controller implementation for robot motion control.
 
 This module defines the :class:`Controller` class which implements a

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['imu_5fdriver_0',['imu_driver',['../namespaceimu__driver.html',1,'']]]
+  ['imu_5fdriver_0',['Imu_Driver',['../namespace_imu___driver.html',1,'']]]
 ];

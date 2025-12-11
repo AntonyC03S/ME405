@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['opr_5fmode_5freg_0',['OPR_MODE_REG',['../classimu__driver_1_1_i_m_u.html#aff906f9622aa30fc53f0c398b5e71319',1,'imu_driver::IMU']]],
-  ['outputs_5fhat_1',['outputs_hat',['../classdiscretized__estimation_1_1_romi_observer.html#a5c113adddc9c589b8086038205c1db80',1,'discretized_estimation::RomiObserver']]]
+  ['ndof_5fmode_0',['NDOF_MODE',['../class_imu___driver_1_1_i_m_u.html#aab8d929c76d656159c29b1935741b66e',1,'Imu_Driver::IMU']]],
+  ['newline_1',['newline',['../namespacebluetooth.html#a848060152284bb6a99a0d74167f49bf8',1,'bluetooth']]],
+  ['nslp_5fpin_2',['nSLP_pin',['../class_motor___driver_1_1_motor.html#a1cd4046c7776a93bc2af1c38f29bd308',1,'Motor_Driver::Motor']]]
 ];

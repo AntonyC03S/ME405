@@ -1,4 +1,4 @@
-"""! @file line.py
+"""! @file Line_Class.py
 @brief Line sensor array driver using analog reflectance sensors.
 
 This module provides the :class:`Line` class to handle an array of

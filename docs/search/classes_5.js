@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['romiobserver_0',['RomiObserver',['../classdiscretized__estimation_1_1_romi_observer.html',1,'discretized_estimation']]]
+  ['romiobserver_0',['RomiObserver',['../class_state___estimation___class_1_1_romi_observer.html',1,'State_Estimation_Class']]]
 ];

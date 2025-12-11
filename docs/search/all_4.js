@@ -1,15 +1,16 @@
 var searchData=
 [
-  ['data_5ftask_0',['data_task',['../namespacedata__task.html',1,'data_task'],['../namespacedata__task.html#a6ef8f5a49b7bea48861b43fc42cc3bcc',1,'data_task.data_task()']]],
-  ['data_5ftask_2epy_1',['data_task.py',['../data__task_8py.html',1,'']]],
-  ['define_5f13_2',['define_13',['../class_line___class_1_1_line.html#a622194888b54879df1c6321fb79e8982',1,'Line_Class::Line']]],
-  ['define_5f8_3',['define_8',['../class_line___class_1_1_line.html#ae2bf1057070ca79d578aa0e6a2c273a0',1,'Line_Class::Line']]],
-  ['define_5fdistance_5ftraveled_4',['define_distance_traveled',['../class_encoder___driver_1_1_encoder.html#a6a14ec19252ad77e5565ffcb732c8a03',1,'Encoder_Driver::Encoder']]],
-  ['devad_5',['devad',['../classimu__driver_1_1_i_m_u.html#ace901986ca330461be0598c9a188d5ad',1,'imu_driver::IMU']]],
-  ['dir_5fpin_6',['DIR_pin',['../class_motor___driver_1_1_motor.html#a00f7590dbf5888bad078aaa9334f7a08',1,'Motor_Driver::Motor']]],
-  ['disable_7',['disable',['../class_motor___driver_1_1_motor.html#a728f6643037bc8beb5c5f8702969d945',1,'Motor_Driver::Motor']]],
-  ['discretized_5festimation_8',['discretized_estimation',['../namespacediscretized__estimation.html',1,'']]],
-  ['discretized_5festimation_2epy_9',['discretized_estimation.py',['../discretized__estimation_8py.html',1,'']]],
-  ['distance_5ftraveled_10',['distance_traveled',['../class_encoder___driver_1_1_encoder.html#a8e65237e5f0465fab888df64841aca60',1,'Encoder_Driver::Encoder']]],
-  ['documentation_11',['Romi Line-Following Robot Documentation',['../index.html',1,'']]]
+  ['c_0',['C',['../class_state___estimation___class_1_1_romi_observer.html#a1053fd1607e678fe810d54fdd12fd11a',1,'State_Estimation_Class::RomiObserver']]],
+  ['cal_5fdata_5flsb_1',['CAL_DATA_LSB',['../class_imu___driver_1_1_i_m_u.html#adeccd5b57ba4dfec5712c4d4fed2c276',1,'Imu_Driver::IMU']]],
+  ['cali_5fblack_2',['cali_black',['../class_line___class_1_1_line.html#a5c1deb219e6093b5279a5724d8e9f82d',1,'Line_Class::Line']]],
+  ['cali_5fstatus_3',['cali_status',['../class_imu___driver_1_1_i_m_u.html#acc75d1e8114e48c3baca9c3cbf040a26',1,'Imu_Driver::IMU']]],
+  ['cali_5fwhite_4',['cali_white',['../class_line___class_1_1_line.html#a298a118fcd75cd347f0e7acc0d045957',1,'Line_Class::Line']]],
+  ['calibrate_5',['calibrate',['../class_line___class_1_1_line.html#a06f199b2621b5d316d40549f1a75558b',1,'Line_Class::Line']]],
+  ['chip_5fid_5freg_6',['CHIP_ID_REG',['../class_imu___driver_1_1_i_m_u.html#a26046636c0505e5678ae82846b9525bb',1,'Imu_Driver::IMU']]],
+  ['color_5fdef_7',['color_def',['../class_line___class_1_1_line.html#ae9dbb17ac924140dccc5a52143d39cb9',1,'Line_Class::Line']]],
+  ['config_5fmode_8',['CONFIG_MODE',['../class_imu___driver_1_1_i_m_u.html#a4eda27372f5420f56178e270dc11e6f6',1,'Imu_Driver::IMU']]],
+  ['controller_9',['Controller',['../class_controller___class_1_1_controller.html',1,'Controller_Class']]],
+  ['controller_5fclass_10',['Controller_Class',['../namespace_controller___class.html',1,'']]],
+  ['controller_5fclass_2epy_11',['Controller_Class.py',['../_controller___class_8py.html',1,'']]],
+  ['csv_5flist_12',['csv_list',['../namespacebluetooth.html#a276f9869f017d245d99a4a8627c01e6c',1,'bluetooth']]]
 ];

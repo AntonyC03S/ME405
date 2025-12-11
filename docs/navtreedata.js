@@ -25,23 +25,13 @@
 var NAVTREE =
 [
   [ "ME 405 Term Project", "index.html", [
-    [ "Romi Line-Following Robot Documentation", "index.html", "index" ],
-    [ "Packages", "namespaces.html", [
-      [ "Package List", "namespaces.html", "namespaces_dup" ],
-      [ "Package Members", "namespacemembers.html", [
-        [ "All", "namespacemembers.html", null ],
-        [ "Functions", "namespacemembers_func.html", null ],
-        [ "Variables", "namespacemembers_vars.html", null ]
-      ] ]
-    ] ],
-    [ "Classes", "annotated.html", [
-      [ "Class List", "annotated.html", "annotated_dup" ],
-      [ "Class Index", "classes.html", null ],
-      [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
-        [ "Functions", "functions_func.html", null ],
-        [ "Variables", "functions_vars.html", null ]
-      ] ]
+    [ "Overview", "index.html#intro_sec", null ],
+    [ "Hardware", "index.html#hw_sec", null ],
+    [ "Software Structure", "index.html#sw_sec", null ],
+    [ "How to Use This Documentation", "index.html#nav_sec", null ],
+    [ "Demo Video", "index.html#demo_sec", null ],
+    [ "Classes/Drivers", "annotated.html", [
+      [ "Classes/Drivers List", "annotated.html", "annotated_dup" ]
     ] ],
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ]
@@ -51,8 +41,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_controller___class_8py.html",
-"functions_func.html"
+"_controller___class_8py.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

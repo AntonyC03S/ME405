@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['outputs_5fhat_0',['outputs_hat',['../classdiscretized__estimation_1_1_romi_observer.html#a5c113adddc9c589b8086038205c1db80',1,'discretized_estimation::RomiObserver']]]
+  ['outputs_5fhat_0',['outputs_hat',['../class_state___estimation___class_1_1_romi_observer.html#a7ef297da222966736c9be78a7ba54ecf',1,'State_Estimation_Class::RomiObserver']]]
 ];
