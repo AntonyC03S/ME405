@@ -4,7 +4,7 @@
   <!-- Navigation index tabs for HTML output -->
   <navindex>
     <tab type="mainpage" visible="yes" title=""/>
-    <tab type="pages" visible="yes" title="" intro="Project"/>
+    <tab type="pages" visible="yes" title="Tasks" intro="Project"/>
     <tab type="topics" visible="no" title="" intro=""/>
     <tab type="modules" visible="no" title="" intro="">
       <tab type="modulelist" visible="yes" title="" intro=""/>
@@ -58,14 +58,14 @@
       <signals visible="yes" title=""/>
       <publicmethods visible="yes" title=""/>
       <publicstaticmethods visible="yes" title=""/>
-      <publicattributes visible="yes" title=""/>
-      <publicstaticattributes visible="yes" title=""/>
+      <publicattributes visible="no" title=""/>
+      <publicstaticattributes visible="no" title=""/>
       <protectedtypes visible="yes" title=""/>
       <protectedslots visible="yes" title=""/>
       <protectedmethods visible="yes" title=""/>
       <protectedstaticmethods visible="yes" title=""/>
-      <protectedattributes visible="yes" title=""/>
-      <protectedstaticattributes visible="yes" title=""/>
+      <protectedattributes visible="no" title=""/>
+      <protectedstaticattributes visible="no" title=""/>
       <packagetypes visible="yes" title=""/>
       <packagemethods visible="yes" title=""/>
       <packagestaticmethods visible="yes" title=""/>
@@ -77,8 +77,8 @@
       <privateslots visible="yes" title=""/>
       <privatemethods visible="yes" title=""/>
       <privatestaticmethods visible="yes" title=""/>
-      <privateattributes visible="yes" title=""/>
-      <privatestaticattributes visible="yes" title=""/>
+      <privateattributes visible="no" title=""/>
+      <privatestaticattributes visible="no" title=""/>
       <friends visible="yes" title=""/>
       <related visible="yes" title="" subtitle=""/>
       <membergroups visible="yes"/>
@@ -93,7 +93,7 @@
       <constructors visible="yes" title=""/>
       <functions visible="yes" title=""/>
       <related visible="yes" title=""/>
-      <variables visible="yes" title=""/>
+      <variables visible="no" title=""/>
       <properties visible="yes" title=""/>
       <events visible="yes" title=""/>
     </memberdef>

@@ -112,12 +112,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aee499cb16c9cdcd674048647f11694ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable the motor driver.  <br /></td></tr>
 <tr class="memitem:a728f6643037bc8beb5c5f8702969d945" id="r_a728f6643037bc8beb5c5f8702969d945"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a728f6643037bc8beb5c5f8702969d945">disable</a> (self)</td></tr>
 <tr class="memdesc:a728f6643037bc8beb5c5f8702969d945"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the motor driver.  <br /></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr class="memitem:afd8f0bcb4f1d18beb384c6b7083159ae" id="r_afd8f0bcb4f1d18beb384c6b7083159ae"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd8f0bcb4f1d18beb384c6b7083159ae">_nSLP_pin</a> = Pin(nSLP, mode=Pin.OUT_PP, value=0)</td></tr>
-<tr class="memitem:a39f8207bba98f06572f91960d34ccf8d" id="r_a39f8207bba98f06572f91960d34ccf8d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39f8207bba98f06572f91960d34ccf8d">_DIR_pin</a> = Pin(DIR, mode=Pin.OUT_PP, value=0)</td></tr>
-<tr class="memitem:a8bbd451205b552baad87071eef93a6eb" id="r_a8bbd451205b552baad87071eef93a6eb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8bbd451205b552baad87071eef93a6eb">_PWM_chan</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_motor___driver_1_1_motor.html" title="Motor driver interface using PWM + direction control.">Motor</a> driver interface using PWM + direction control. </p>
@@ -317,76 +311,6 @@ Protected Attributes</h2></td></tr>
 </ul>
 <p>Effort values are automatically clamped to [-100, 100]. </p>
 
-</div>
-</div>
-<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
-<a id="a39f8207bba98f06572f91960d34ccf8d" name="a39f8207bba98f06572f91960d34ccf8d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a39f8207bba98f06572f91960d34ccf8d">&#9670;&#160;</a></span>_DIR_pin</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Motor_Driver.Motor._DIR_pin = Pin(DIR, mode=Pin.OUT_PP, value=0)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="afd8f0bcb4f1d18beb384c6b7083159ae" name="afd8f0bcb4f1d18beb384c6b7083159ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd8f0bcb4f1d18beb384c6b7083159ae">&#9670;&#160;</a></span>_nSLP_pin</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Motor_Driver.Motor._nSLP_pin = Pin(nSLP, mode=Pin.OUT_PP, value=0)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a8bbd451205b552baad87071eef93a6eb" name="a8bbd451205b552baad87071eef93a6eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8bbd451205b552baad87071eef93a6eb">&#9670;&#160;</a></span>_PWM_chan</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Motor_Driver.Motor._PWM_chan</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=  tim.channel(</div>
-<div class="line">            chan, pin=PWM, mode=Timer.PWM, pulse_width_percent=0</div>
-<div class="line">        )</div>
-</div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>

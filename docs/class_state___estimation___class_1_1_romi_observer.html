@@ -108,14 +108,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:adafa6afaed0222b5b7261aff15770b48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current state estimate.  <br /></td></tr>
 <tr class="memitem:a7ef297da222966736c9be78a7ba54ecf" id="r_a7ef297da222966736c9be78a7ba54ecf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ef297da222966736c9be78a7ba54ecf">outputs_hat</a> (self)</td></tr>
 <tr class="memdesc:a7ef297da222966736c9be78a7ba54ecf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get estimated outputs based on current state.  <br /></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Data Fields</h2></td></tr>
-<tr class="memitem:acb14fe13abbdd54476375df94967a001" id="r_acb14fe13abbdd54476375df94967a001"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb14fe13abbdd54476375df94967a001">Ad</a></td></tr>
-<tr class="memitem:a6dc622d73dec59a84fdcf8dd0628950e" id="r_a6dc622d73dec59a84fdcf8dd0628950e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6dc622d73dec59a84fdcf8dd0628950e">Bd</a></td></tr>
-<tr class="memitem:a1053fd1607e678fe810d54fdd12fd11a" id="r_a1053fd1607e678fe810d54fdd12fd11a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1053fd1607e678fe810d54fdd12fd11a">C</a></td></tr>
-<tr class="memitem:aaf6281864e90f20735189de97c0aa836" id="r_aaf6281864e90f20735189de97c0aa836"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaf6281864e90f20735189de97c0aa836">L</a></td></tr>
-<tr class="memitem:abe910611e86b586283da63307ab7740e" id="r_abe910611e86b586283da63307ab7740e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe910611e86b586283da63307ab7740e">x</a> = np.zeros((4, 1))</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Discrete-time Romi state observer. </p>
@@ -320,109 +312,6 @@ Data Fields</h2></td></tr>
 <li>Computes output estimate yhat = C x</li>
 <li>Applies observer correction using the gain L </li>
 </ul>
-
-</div>
-</div>
-<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Field Documentation</h2>
-<a id="acb14fe13abbdd54476375df94967a001" name="acb14fe13abbdd54476375df94967a001"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb14fe13abbdd54476375df94967a001">&#9670;&#160;</a></span>Ad</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">State_Estimation_Class.RomiObserver.Ad</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=  np.array(</div>
-<div class="line">            [</div>
-<div class="line">                [0.904837, 0, 0, 0],</div>
-<div class="line">                [0, 0.904837, 0, 0],</div>
-<div class="line">                [0.000167, 0.000167, 1, 0],</div>
-<div class="line">                [-0.002362, 0.002362, 0, 1],</div>
-<div class="line">            ]</div>
-<div class="line">        )</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a6dc622d73dec59a84fdcf8dd0628950e" name="a6dc622d73dec59a84fdcf8dd0628950e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6dc622d73dec59a84fdcf8dd0628950e">&#9670;&#160;</a></span>Bd</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">State_Estimation_Class.RomiObserver.Bd</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=  np.array(</div>
-<div class="line">            [</div>
-<div class="line">                [0.553633, 0],</div>
-<div class="line">                [0, 0.553633],</div>
-<div class="line">                [0.000049, 0.000049],</div>
-<div class="line">                [-0.000699, 0.000699],</div>
-<div class="line">            ]</div>
-<div class="line">        )</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a1053fd1607e678fe810d54fdd12fd11a" name="a1053fd1607e678fe810d54fdd12fd11a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1053fd1607e678fe810d54fdd12fd11a">&#9670;&#160;</a></span>C</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">State_Estimation_Class.RomiObserver.C</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=  np.array(</div>
-<div class="line">            [</div>
-<div class="line">                [0, 0, 1, -l / 2],   <span class="comment"># SL</span></div>
-<div class="line">                [0, 0, 1,  l / 2],   <span class="comment"># SR</span></div>
-<div class="line">                [0, 0, 0, 1],        <span class="comment"># psi</span></div>
-<div class="line">                [-r / l, r / l, 0, 0]  <span class="comment"># psidot</span></div>
-<div class="line">            ]</div>
-<div class="line">        )</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="aaf6281864e90f20735189de97c0aa836" name="aaf6281864e90f20735189de97c0aa836"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf6281864e90f20735189de97c0aa836">&#9670;&#160;</a></span>L</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">State_Estimation_Class.RomiObserver.L</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=  np.array(</div>
-<div class="line">                [</div>
-<div class="line">                    [0.08, -0.08, 0.00, -0.02],</div>
-<div class="line">                    [-0.08, 0.08, 0.00, 0.02],</div>
-<div class="line">                    [0.35, 0.35, 0.00, 0.00],</div>
-<div class="line">                    [0.00, 0.00, 0.50, 0.70],</div>
-<div class="line">                ]</div>
-<div class="line">            )</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="abe910611e86b586283da63307ab7740e" name="abe910611e86b586283da63307ab7740e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abe910611e86b586283da63307ab7740e">&#9670;&#160;</a></span>x</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">State_Estimation_Class.RomiObserver.x = np.zeros((4, 1))</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>

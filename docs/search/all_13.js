@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['v_0',['v',['../namespacebluetooth.html#a88420f99d65c8679b53d168bf58bec11',1,'bluetooth']]],
-  ['velocity_1',['velocity',['../class_encoder___driver_1_1_encoder.html#adaec2847d562794c090d581bcc24b054',1,'Encoder_Driver::Encoder']]],
-  ['video_2',['Demo Video',['../index.html#demo_sec',1,'']]],
-  ['volt_3',['volt',['../namespacebluetooth.html#a8af50ad6701b85669af39f7a80a4ecfe',1,'bluetooth']]]
+  ['ui_5ftask_0',['UI_Task',['../namespace_u_i___task.html',1,'']]],
+  ['ui_5ftask_1',['UI_task',['../namespace_u_i___task.html#aea77ae18ded7dee71489a04cbc82515f',1,'UI_Task']]],
+  ['ui_5ftask_2epy_2',['UI_Task.py',['../_u_i___task_8py.html',1,'']]],
+  ['unique_5fpath_3',['unique_path',['../namespacebluetooth.html#ab51b3172a0b1cbc15a33689022cc8d3b',1,'bluetooth']]],
+  ['update_4',['update',['../class_controller___class_1_1_controller.html#ac421ee15e0473b009529c470ea8be7ff',1,'Controller_Class.Controller.update()'],['../class_encoder___driver_1_1_encoder.html#a515f2adcb8f91581693beab528c29ba0',1,'Encoder_Driver.Encoder.update()'],['../class_line___class_1_1_line.html#aff7e2ef4f5d64700d44f60bc328657ee',1,'Line_Class.Line.update()']]],
+  ['use_20this_20documentation_5',['How to Use This Documentation',['../index.html#nav_sec',1,'']]]
 ];

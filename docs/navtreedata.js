@@ -30,6 +30,10 @@ var NAVTREE =
     [ "Software Structure", "index.html#sw_sec", null ],
     [ "How to Use This Documentation", "index.html#nav_sec", null ],
     [ "Demo Video", "index.html#demo_sec", null ],
+    [ "Task Modules", "tasks.html", [
+      [ "Task Files", "tasks.html#task_list", null ],
+      [ "How These Tasks Work Together", "tasks.html#usage", null ]
+    ] ],
     [ "Classes/Drivers", "annotated.html", [
       [ "Classes/Drivers List", "annotated.html", "annotated_dup" ]
     ] ],

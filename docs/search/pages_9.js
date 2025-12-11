@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['video_0',['Demo Video',['../index.html#demo_sec',1,'']]]
+  ['use_20this_20documentation_0',['How to Use This Documentation',['../index.html#nav_sec',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ui_5ftask_2epy_0',['UI_task.py',['../_u_i__task_8py.html',1,'']]]
+  ['tasks_2etxt_0',['tasks.txt',['../tasks_8txt.html',1,'']]]
 ];

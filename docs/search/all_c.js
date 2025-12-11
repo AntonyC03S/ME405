@@ -1,6 +1,16 @@
 var searchData=
 [
-  ['ndof_5fmode_0',['NDOF_MODE',['../class_imu___driver_1_1_i_m_u.html#aab8d929c76d656159c29b1935741b66e',1,'Imu_Driver::IMU']]],
-  ['newline_1',['newline',['../namespacebluetooth.html#a848060152284bb6a99a0d74167f49bf8',1,'bluetooth']]],
-  ['nslp_5fpin_2',['nSLP_pin',['../class_motor___driver_1_1_motor.html#a1cd4046c7776a93bc2af1c38f29bd308',1,'Motor_Driver::Motor']]]
+  ['mag_5fdata_5fx_5flsb_0',['MAG_DATA_X_LSB',['../class_imu___driver_1_1_i_m_u.html#af025b2415d71e5d1f3188cf1abedfa16',1,'Imu_Driver::IMU']]],
+  ['main_1',['main',['../namespace_main1.html#a1653c596f3a137a11ecad6d0566e60fb',1,'Main1']]],
+  ['main1_2',['Main1',['../namespace_main1.html',1,'']]],
+  ['main1_2epy_3',['Main1.py',['../_main1_8py.html',1,'']]],
+  ['mainpage_2etxt_4',['mainpage.txt',['../mainpage_8txt.html',1,'']]],
+  ['me_20405_20term_20project_5',['ME 405 Term Project',['../index.html',1,'']]],
+  ['modules_6',['Task Modules',['../tasks.html',1,'']]],
+  ['motor_7',['Motor',['../class_motor___driver_1_1_motor.html',1,'Motor_Driver']]],
+  ['motor_5fdriver_8',['Motor_Driver',['../namespace_motor___driver.html',1,'']]],
+  ['motor_5fdriver_2epy_9',['Motor_Driver.py',['../_motor___driver_8py.html',1,'']]],
+  ['motor_5ftask_10',['Motor_Task',['../namespace_motor___task.html',1,'']]],
+  ['motor_5ftask_11',['motor_task',['../namespace_motor___task.html#a1d3ce4c660d09cc6aa522b1fed8def79',1,'Motor_Task']]],
+  ['motor_5ftask_2epy_12',['Motor_Task.py',['../_motor___task_8py.html',1,'']]]
 ];

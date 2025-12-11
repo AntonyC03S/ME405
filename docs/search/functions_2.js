@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['data_5ftask_0',['data_task',['../namespacedata__task.html#a6ef8f5a49b7bea48861b43fc42cc3bcc',1,'data_task']]],
+  ['data_5ftask_0',['data_task',['../namespace_data___task.html#a713f75e002d25ae6a47c84421ea8563a',1,'Data_Task']]],
   ['define_5f13_1',['define_13',['../class_line___class_1_1_line.html#a622194888b54879df1c6321fb79e8982',1,'Line_Class::Line']]],
   ['define_5f8_2',['define_8',['../class_line___class_1_1_line.html#ae2bf1057070ca79d578aa0e6a2c273a0',1,'Line_Class::Line']]],
   ['define_5fdistance_5ftraveled_3',['define_distance_traveled',['../class_encoder___driver_1_1_encoder.html#a6a14ec19252ad77e5565ffcb732c8a03',1,'Encoder_Driver::Encoder']]],

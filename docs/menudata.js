@@ -24,6 +24,7 @@
 */
 var menudata={children:[
 {text:"Main Page",url:"index.html"},
+{text:"Tasks",url:"pages.html"},
 {text:"Classes/Drivers",url:"annotated.html",children:[
 {text:"Classes/Drivers List",url:"annotated.html"}]},
 {text:"Files",url:"files.html",children:[

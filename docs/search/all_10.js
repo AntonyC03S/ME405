@@ -1,15 +1,15 @@
 var searchData=
 [
-  ['save_5flocation_0',['save_location',['../namespacebluetooth.html#a8a52dcd10093ea814ecfdaef35a78d02',1,'bluetooth']]],
-  ['set_5feffort_1',['set_effort',['../class_motor___driver_1_1_motor.html#a0b74645c14c9e659e84fb653ffb6b2fd',1,'Motor_Driver::Motor']]],
-  ['software_20structure_2',['Software Structure',['../index.html#sw_sec',1,'']]],
-  ['state_3',['state',['../class_state___estimation___class_1_1_romi_observer.html#adafa6afaed0222b5b7261aff15770b48',1,'State_Estimation_Class::RomiObserver']]],
-  ['state_5festimation_5fclass_4',['State_Estimation_Class',['../namespace_state___estimation___class.html',1,'']]],
-  ['state_5festimation_5fclass_2epy_5',['State_Estimation_Class.py',['../_state___estimation___class_8py.html',1,'']]],
-  ['state_5festimation_5ftask_6',['state_estimation_task',['../namespacestate__estimation__task.html',1,'']]],
-  ['state_5festimation_5ftask_2epy_7',['state_estimation_task.py',['../state__estimation__task_8py.html',1,'']]],
-  ['state_5ftask_8',['state_task',['../namespacestate__estimation__task.html#a1c37b6080236d564d5e280b4940fd21e',1,'state_estimation_task']]],
-  ['step_9',['step',['../class_state___estimation___class_1_1_romi_observer.html#ad6e768d1fb0a887004ef2f9bf4d0e2cf',1,'State_Estimation_Class::RomiObserver']]],
-  ['structure_10',['Software Structure',['../index.html#sw_sec',1,'']]],
-  ['sys_5ftrigger_5freg_11',['SYS_TRIGGER_REG',['../class_imu___driver_1_1_i_m_u.html#a70275c2b816f4f091c169fd3156b9abc',1,'Imu_Driver::IMU']]]
+  ['read_5feuler_0',['read_euler',['../class_imu___driver_1_1_i_m_u.html#a383f62ecf870ae868b95039f45153093',1,'Imu_Driver::IMU']]],
+  ['read_5fgyro_1',['read_gyro',['../class_imu___driver_1_1_i_m_u.html#a987ced878da29967544fd2ee6174f019',1,'Imu_Driver::IMU']]],
+  ['read_5fheading_2',['read_heading',['../class_imu___driver_1_1_i_m_u.html#ad3a4b9bfed3da8f97ad942efdc6691cd',1,'Imu_Driver::IMU']]],
+  ['read_5fyaw_5frate_3',['read_yaw_rate',['../class_imu___driver_1_1_i_m_u.html#a7742e7919b060dc383388c7750cc63ed',1,'Imu_Driver::IMU']]],
+  ['readings_4',['readings',['../class_line___class_1_1_line.html#ac1df3cf2f0b639ccb2a246a882bbf85b',1,'Line_Class::Line']]],
+  ['reset_5',['reset',['../class_state___estimation___class_1_1_romi_observer.html#abdf3fae9ac7d4ec6c311f3c49b7db57a',1,'State_Estimation_Class::RomiObserver']]],
+  ['right_5fposition_6',['right_position',['../namespacebluetooth.html#aa46bcd6511b10f7c6bec50b28857a6cb',1,'bluetooth']]],
+  ['right_5fspeed_7',['right_speed',['../namespacebluetooth.html#a8305ea6ab93078ba2dede93da68f7f8f',1,'bluetooth']]],
+  ['romiobserver_8',['RomiObserver',['../class_state___estimation___class_1_1_romi_observer.html',1,'State_Estimation_Class']]],
+  ['row_5flist_9',['row_list',['../namespacebluetooth.html#a62f336a1b0dd063394165ebba3cf3ca4',1,'bluetooth']]],
+  ['rp_10',['rp',['../namespacebluetooth.html#a81f64a914c79c744a8e3c20bc46c5ac3',1,'bluetooth']]],
+  ['rs_11',['rs',['../namespacebluetooth.html#a991b523e311f18c1f3b97624f361f402',1,'bluetooth']]]
 ];
