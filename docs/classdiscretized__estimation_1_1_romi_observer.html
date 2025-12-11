@@ -92,29 +92,52 @@ $(function(){initNavTree('classdiscretized__estimation_1_1_romi_observer.html','
   <div class="headertitle"><div class="title">discretized_estimation.RomiObserver Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Discrete-time Romi state observer.  
+ <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5d087126a34dc0d7ad380a7bdfa5679d" id="r_a5d087126a34dc0d7ad380a7bdfa5679d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d087126a34dc0d7ad380a7bdfa5679d">__init__</a> (self, <a class="el" href="#abc70c87661db8bcb9a655418f047247b">Ad</a>, <a class="el" href="#a5782693db41836e1ce1f1b353f5e8452">Bd</a>, r=0.035, l=0.141, <a class="el" href="#a7014c5f7422c0b6ba38325a47b676c1f">L</a>=None)</td></tr>
-<tr class="memitem:a62d6674aa4ed320056eb4f123d416439" id="r_a62d6674aa4ed320056eb4f123d416439"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62d6674aa4ed320056eb4f123d416439">reset</a> (self, x0=None)</td></tr>
-<tr class="memitem:a17da0a13215a71c8413edfb1efed81ec" id="r_a17da0a13215a71c8413edfb1efed81ec"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17da0a13215a71c8413edfb1efed81ec">step</a> (self, u, SL, SR, psi_deg, yawrate_dps)</td></tr>
+<tr class="memitem:af8669a6c207c77ef91453131b244ba52" id="r_af8669a6c207c77ef91453131b244ba52"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8669a6c207c77ef91453131b244ba52">__init__</a> (self, <a class="el" href="#abc70c87661db8bcb9a655418f047247b">Ad</a>, <a class="el" href="#a5782693db41836e1ce1f1b353f5e8452">Bd</a>, float r=0.035, float l=0.141, <a class="el" href="#a7014c5f7422c0b6ba38325a47b676c1f">L</a>=None)</td></tr>
+<tr class="memdesc:af8669a6c207c77ef91453131b244ba52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the Romi observer.  <br /></td></tr>
+<tr class="memitem:a8f1198f7ffd049e0dd1e78d82e0d0e39" id="r_a8f1198f7ffd049e0dd1e78d82e0d0e39"><td class="memItemLeft" align="right" valign="top">None&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f1198f7ffd049e0dd1e78d82e0d0e39">reset</a> (self, x0=None)</td></tr>
+<tr class="memdesc:a8f1198f7ffd049e0dd1e78d82e0d0e39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the observer state.  <br /></td></tr>
+<tr class="memitem:ac805a33264b4cf95a5f47b7e0f90a22a" id="r_ac805a33264b4cf95a5f47b7e0f90a22a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac805a33264b4cf95a5f47b7e0f90a22a">step</a> (self, u, SL, SR, float psi_deg, float yawrate_dps)</td></tr>
+<tr class="memdesc:ac805a33264b4cf95a5f47b7e0f90a22a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Advance the observer one time step.  <br /></td></tr>
 <tr class="memitem:a78676c5fc162dca2b5467df3dd641ae6" id="r_a78676c5fc162dca2b5467df3dd641ae6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78676c5fc162dca2b5467df3dd641ae6">state</a> (self)</td></tr>
+<tr class="memdesc:a78676c5fc162dca2b5467df3dd641ae6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current state estimate.  <br /></td></tr>
 <tr class="memitem:a5c113adddc9c589b8086038205c1db80" id="r_a5c113adddc9c589b8086038205c1db80"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c113adddc9c589b8086038205c1db80">outputs_hat</a> (self)</td></tr>
+<tr class="memdesc:a5c113adddc9c589b8086038205c1db80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get estimated outputs based on current state.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:abc70c87661db8bcb9a655418f047247b" id="r_abc70c87661db8bcb9a655418f047247b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc70c87661db8bcb9a655418f047247b">Ad</a> = np.array([[0.904837, 0, 0, 0], [0, 0.904837, 0, 0], [0.000167, 0.000167, 1, 0], [-0.002362, 0.002362, 0, 1]])</td></tr>
-<tr class="memitem:a5782693db41836e1ce1f1b353f5e8452" id="r_a5782693db41836e1ce1f1b353f5e8452"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5782693db41836e1ce1f1b353f5e8452">Bd</a> = np.array([[0.553633, 0], [0, 0.553633], [0.000049, 0.000049], [-0.000699, 0.000699]])</td></tr>
+<tr class="memitem:abc70c87661db8bcb9a655418f047247b" id="r_abc70c87661db8bcb9a655418f047247b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc70c87661db8bcb9a655418f047247b">Ad</a></td></tr>
+<tr class="memitem:a5782693db41836e1ce1f1b353f5e8452" id="r_a5782693db41836e1ce1f1b353f5e8452"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5782693db41836e1ce1f1b353f5e8452">Bd</a></td></tr>
 <tr class="memitem:a597f2e6d1e532b38d4464e233f1d3853" id="r_a597f2e6d1e532b38d4464e233f1d3853"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a597f2e6d1e532b38d4464e233f1d3853">C</a></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
 <tr class="memitem:a7014c5f7422c0b6ba38325a47b676c1f" id="r_a7014c5f7422c0b6ba38325a47b676c1f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7014c5f7422c0b6ba38325a47b676c1f">L</a></td></tr>
-<tr class="memitem:a576079518b977b1df91b8a63f6330eb8" id="r_a576079518b977b1df91b8a63f6330eb8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a576079518b977b1df91b8a63f6330eb8">x</a></td></tr>
+<tr class="memitem:a576079518b977b1df91b8a63f6330eb8" id="r_a576079518b977b1df91b8a63f6330eb8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a576079518b977b1df91b8a63f6330eb8">x</a> = np.zeros((4, 1))</td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a5d087126a34dc0d7ad380a7bdfa5679d" name="a5d087126a34dc0d7ad380a7bdfa5679d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5d087126a34dc0d7ad380a7bdfa5679d">&#9670;&#160;</a></span>__init__()</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Discrete-time Romi state observer. </p>
+<p>Estimates robot states from motor commands and sensor feedback.</p>
+<p>The observer uses a discrete-time linear model:</p>
+<p class="formulaDsp">
+<picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\&zwj;[x_{k+1} = A_d x_k + B_d u_k + L (y_k - C x_k)
+\&zwj;]" src="form_4.png"/></picture>
+</p>
+<p>with measurements:</p>
+<ul>
+<li><picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ S_L, S_R $" src="form_5.png"/></picture>: left/right encoder arc lengths [m]</li>
+<li><picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \\psi $" src="form_3.png"/></picture>: IMU heading [rad]</li>
+<li><picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \\dot{\\psi} $" src="form_6.png"/></picture>: IMU yaw rate [rad/s]</li>
+</ul>
+<p>and state:</p>
+<ul>
+<li><picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x = [\\omega_L, \\omega_R, s, \\psi]^T $" src="form_7.png"/></picture> </li>
+</ul>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="af8669a6c207c77ef91453131b244ba52" name="af8669a6c207c77ef91453131b244ba52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8669a6c207c77ef91453131b244ba52">&#9670;&#160;</a></span>__init__()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -137,12 +160,12 @@ Static Public Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>r</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.035</span>, </td>
+          <td class="paramtype">float </td>          <td class="paramname"><span class="paramname"><em>r</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.035</span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>l</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.141</span>, </td>
+          <td class="paramtype">float </td>          <td class="paramname"><span class="paramname"><em>l</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0.141</span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -151,6 +174,19 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Initialize the Romi observer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Ad</td><td>Discrete-time A matrix (currently unused; internal default is used). </td></tr>
+    <tr><td class="paramname">Bd</td><td>Discrete-time B matrix (currently unused; internal default is used). </td></tr>
+    <tr><td class="paramname">r</td><td>Wheel radius [m] (default: 0.035). </td></tr>
+    <tr><td class="paramname">l</td><td>Wheel track width [m] (default: 0.141). </td></tr>
+    <tr><td class="paramname">L</td><td>Observer gain matrix (4x4). If None, a default gain is used.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Currently, the constructor uses built-in Ad and Bd matrices tuned for a specific sampling period and robot model. The <code class="param">Ad</code> and <code class="param">Bd</code> parameters are present for future flexibility but are not applied. </dd></dl>
 
 </div>
 </div>
@@ -170,16 +206,20 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Get estimated outputs based on current state. </p>
+<p>Computes <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \\hat{y} = C x $" src="form_9.png"/></picture>.</p>
+<dl class="section return"><dt>Returns</dt><dd>Estimated output vector (4x1): [SL_hat, SR_hat, psi_hat, psidot_hat]^T. </dd></dl>
+
 </div>
 </div>
-<a id="a62d6674aa4ed320056eb4f123d416439" name="a62d6674aa4ed320056eb4f123d416439"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a62d6674aa4ed320056eb4f123d416439">&#9670;&#160;</a></span>reset()</h2>
+<a id="a8f1198f7ffd049e0dd1e78d82e0d0e39" name="a8f1198f7ffd049e0dd1e78d82e0d0e39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f1198f7ffd049e0dd1e78d82e0d0e39">&#9670;&#160;</a></span>reset()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">discretized_estimation.RomiObserver.reset </td>
+          <td class="memname"> None discretized_estimation.RomiObserver.reset </td>
           <td>(</td>
           <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
         </tr>
@@ -190,6 +230,15 @@ Static Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Reset the observer state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x0</td><td>Optional initial state vector (4x1). If None, zeros are used.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This is useful when re-starting an experiment or re-initializing the estimate after a large disturbance. </p>
 
 </div>
 </div>
@@ -208,10 +257,13 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Get the current state estimate. </p>
+<dl class="section return"><dt>Returns</dt><dd>State vector x as (4x1) array: [wL, wR, s, psi]^T. </dd></dl>
+
 </div>
 </div>
-<a id="a17da0a13215a71c8413edfb1efed81ec" name="a17da0a13215a71c8413edfb1efed81ec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a17da0a13215a71c8413edfb1efed81ec">&#9670;&#160;</a></span>step()</h2>
+<a id="ac805a33264b4cf95a5f47b7e0f90a22a" name="ac805a33264b4cf95a5f47b7e0f90a22a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac805a33264b4cf95a5f47b7e0f90a22a">&#9670;&#160;</a></span>step()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -239,22 +291,36 @@ Static Public Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>psi_deg</em></span>, </td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>psi_deg</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>yawrate_dps</em></span>&#160;)</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>yawrate_dps</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">u: (2,1) np.array volts [[uL],[uR]]
-SL, SR: encoder arc lengths [m]
-psi_deg: IMU heading [deg]
-yawrate_dps: IMU yaw rate [deg/s]
 
-returns xhat (4,1)
-</pre> 
+<p>Advance the observer one time step. </p>
+<p>Updates the state estimate based on input and sensor readings.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">u</td><td>Control input vector (2x1) with motor voltages [[uL], [uR]]. </td></tr>
+    <tr><td class="paramname">SL</td><td>Left wheel arc length [m] from encoder. </td></tr>
+    <tr><td class="paramname">SR</td><td>Right wheel arc length [m] from encoder. </td></tr>
+    <tr><td class="paramname">psi_deg</td><td>IMU heading [deg]. </td></tr>
+    <tr><td class="paramname">yawrate_dps</td><td>IMU yaw rate [deg/s]. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Updated state estimate <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_{k+1} $" src="form_8.png"/></picture> as a (4x1) array.</dd></dl>
+<p>The method:</p><ul>
+<li>Converts IMU angles from degrees to radians</li>
+<li>Forms measurement vector y = [SL, SR, psi, psidot]^T</li>
+<li>Computes output estimate yhat = C x</li>
+<li>Applies observer correction using the gain L </li>
+</ul>
+
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
@@ -265,11 +331,19 @@ returns xhat (4,1)
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">discretized_estimation.RomiObserver.Ad = np.array([[0.904837, 0, 0, 0], [0, 0.904837, 0, 0], [0.000167, 0.000167, 1, 0], [-0.002362, 0.002362, 0, 1]])</td>
+          <td class="memname">discretized_estimation.RomiObserver.Ad</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<b>Initial value:</b><div class="fragment"><div class="line">=  np.array(</div>
+<div class="line">            [</div>
+<div class="line">                [0.904837, 0, 0, 0],</div>
+<div class="line">                [0, 0.904837, 0, 0],</div>
+<div class="line">                [0.000167, 0.000167, 1, 0],</div>
+<div class="line">                [-0.002362, 0.002362, 0, 1],</div>
+<div class="line">            ]</div>
+<div class="line">        )</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a5782693db41836e1ce1f1b353f5e8452" name="a5782693db41836e1ce1f1b353f5e8452"></a>
@@ -279,11 +353,19 @@ returns xhat (4,1)
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">discretized_estimation.RomiObserver.Bd = np.array([[0.553633, 0], [0, 0.553633], [0.000049, 0.000049], [-0.000699, 0.000699]])</td>
+          <td class="memname">discretized_estimation.RomiObserver.Bd</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<b>Initial value:</b><div class="fragment"><div class="line">=  np.array(</div>
+<div class="line">            [</div>
+<div class="line">                [0.553633, 0],</div>
+<div class="line">                [0, 0.553633],</div>
+<div class="line">                [0.000049, 0.000049],</div>
+<div class="line">                [-0.000699, 0.000699],</div>
+<div class="line">            ]</div>
+<div class="line">        )</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a597f2e6d1e532b38d4464e233f1d3853" name="a597f2e6d1e532b38d4464e233f1d3853"></a>
@@ -297,10 +379,14 @@ returns xhat (4,1)
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">=  np.array([[0, 0, 1, -l/2],</div>
-<div class="line">                            [0, 0, 1,  l/2],</div>
-<div class="line">                            [0, 0, 0, 1],</div>
-<div class="line">                            [-r/l, r/l, 0, 0]])</div>
+<b>Initial value:</b><div class="fragment"><div class="line">=  np.array(</div>
+<div class="line">            [</div>
+<div class="line">                [0, 0, 1, -l / 2],   <span class="comment"># SL</span></div>
+<div class="line">                [0, 0, 1,  l / 2],   <span class="comment"># SR</span></div>
+<div class="line">                [0, 0, 0, 1],        <span class="comment"># psi</span></div>
+<div class="line">                [-r / l, r / l, 0, 0]  <span class="comment"># psidot</span></div>
+<div class="line">            ]</div>
+<div class="line">        )</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -309,21 +395,21 @@ returns xhat (4,1)
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">discretized_estimation.RomiObserver.L</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
-
+<b>Initial value:</b><div class="fragment"><div class="line">=  np.array(</div>
+<div class="line">                [</div>
+<div class="line">                    [0.08, -0.08, 0.00, -0.02],</div>
+<div class="line">                    [-0.08, 0.08, 0.00, 0.02],</div>
+<div class="line">                    [0.35, 0.35, 0.00, 0.00],</div>
+<div class="line">                    [0.00, 0.00, 0.50, 0.70],</div>
+<div class="line">                ]</div>
+<div class="line">            )</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a576079518b977b1df91b8a63f6330eb8" name="a576079518b977b1df91b8a63f6330eb8"></a>
@@ -331,19 +417,11 @@ returns xhat (4,1)
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">discretized_estimation.RomiObserver.x</td>
+          <td class="memname">discretized_estimation.RomiObserver.x = np.zeros((4, 1))</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>

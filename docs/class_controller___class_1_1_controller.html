@@ -92,11 +92,16 @@ $(function(){initNavTree('class_controller___class_1_1_controller.html','','clas
   <div class="headertitle"><div class="title">Controller_Class.Controller Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>PID feedback controller.  
+ <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:abbe62f44f598c6af639629186f63a4fc" id="r_abbe62f44f598c6af639629186f63a4fc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbe62f44f598c6af639629186f63a4fc">__init__</a> (self, float KP, float KI, float KD)</td></tr>
-<tr class="memitem:a9c096e691e165fabe292a14449a27aa0" id="r_a9c096e691e165fabe292a14449a27aa0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c096e691e165fabe292a14449a27aa0">update</a> (self, float setpoint, float measured)</td></tr>
+<tr class="memdesc:abbe62f44f598c6af639629186f63a4fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize a PID controller.  <br /></td></tr>
+<tr class="memitem:ac421ee15e0473b009529c470ea8be7ff" id="r_ac421ee15e0473b009529c470ea8be7ff"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac421ee15e0473b009529c470ea8be7ff">update</a> (self, float setpoint, float measured)</td></tr>
+<tr class="memdesc:ac421ee15e0473b009529c470ea8be7ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the PID output for the current measurement.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -104,12 +109,22 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a3504900b82e53703bfb5c2a9201e8d92" id="r_a3504900b82e53703bfb5c2a9201e8d92"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3504900b82e53703bfb5c2a9201e8d92">_KI</a> = KI</td></tr>
 <tr class="memitem:aae5d1cb861091d1f8e362c1bcad83c27" id="r_aae5d1cb861091d1f8e362c1bcad83c27"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae5d1cb861091d1f8e362c1bcad83c27">_KD</a> = KD</td></tr>
 <tr class="memitem:a56a7909230541d84933936204881ecd8" id="r_a56a7909230541d84933936204881ecd8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56a7909230541d84933936204881ecd8">_prev_time</a> = ticks_us()</td></tr>
-<tr class="memitem:adde80b00fcc8bf7929b24c3e243703b4" id="r_adde80b00fcc8bf7929b24c3e243703b4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adde80b00fcc8bf7929b24c3e243703b4">_prev_error</a> = 0</td></tr>
-<tr class="memitem:a884c04e9464798f1b9ebd5148d1bc4da" id="r_a884c04e9464798f1b9ebd5148d1bc4da"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a884c04e9464798f1b9ebd5148d1bc4da">_integral</a> = 0</td></tr>
-<tr class="memitem:a3c21f4a8ae2af43a0f66c2f59ced6728" id="r_a3c21f4a8ae2af43a0f66c2f59ced6728"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c21f4a8ae2af43a0f66c2f59ced6728">_gain</a> = 0</td></tr>
-<tr class="memitem:a3e73b41df35d53b1ceecf01d78626f2c" id="r_a3e73b41df35d53b1ceecf01d78626f2c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e73b41df35d53b1ceecf01d78626f2c">_output</a> = 0</td></tr>
+<tr class="memitem:a7372369aa94314a6e6c16a0e15f053f6" id="r_a7372369aa94314a6e6c16a0e15f053f6"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7372369aa94314a6e6c16a0e15f053f6">_prev_error</a> = 0.0</td></tr>
+<tr class="memitem:afb44180a1251c6fa68ab131411a9d9d0" id="r_afb44180a1251c6fa68ab131411a9d9d0"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb44180a1251c6fa68ab131411a9d9d0">_integral</a> = 0.0</td></tr>
+<tr class="memitem:aa9a2e3d2716ca384719f6a7afbaeaa06" id="r_aa9a2e3d2716ca384719f6a7afbaeaa06"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa9a2e3d2716ca384719f6a7afbaeaa06">_gain</a> = 0.0</td></tr>
+<tr class="memitem:aebd0d36edad4c8533dfa403f8ff87c22" id="r_aebd0d36edad4c8533dfa403f8ff87c22"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aebd0d36edad4c8533dfa403f8ff87c22">_output</a> = 0.0</td></tr>
 </table>
-<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>PID feedback controller. </p>
+<p>Implements a real-time PID controller with anti-windup and output saturation.</p>
+<p>The controller outputs a value limited to the range <span class="tt">[-100, 100]</span>, making it suitable for motor effort commands in your robot.</p>
+<p>Features:</p><ul>
+<li>Proportional, integral, and derivative terms</li>
+<li>Derivative on measurement error</li>
+<li>Anti-windup integral behavior</li>
+<li>Automatic output saturation </li>
+</ul>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="abbe62f44f598c6af639629186f63a4fc" name="abbe62f44f598c6af639629186f63a4fc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abbe62f44f598c6af639629186f63a4fc">&#9670;&#160;</a></span>__init__()</h2>
 
@@ -139,17 +154,28 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Initialize a PID controller. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">KP</td><td>Proportional gain. </td></tr>
+    <tr><td class="paramname">KI</td><td>Integral gain. </td></tr>
+    <tr><td class="paramname">KD</td><td>Derivative gain.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The controller stores internal timestamps and error history for computing numerical derivatives and integrals. </p>
+
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a9c096e691e165fabe292a14449a27aa0" name="a9c096e691e165fabe292a14449a27aa0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9c096e691e165fabe292a14449a27aa0">&#9670;&#160;</a></span>update()</h2>
+<a id="ac421ee15e0473b009529c470ea8be7ff" name="ac421ee15e0473b009529c470ea8be7ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac421ee15e0473b009529c470ea8be7ff">&#9670;&#160;</a></span>update()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Controller_Class.Controller.update </td>
+          <td class="memname"> float Controller_Class.Controller.update </td>
           <td>(</td>
           <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
         </tr>
@@ -166,11 +192,29 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Compute the PID output for the current measurement. </p>
+<p>Performs one update step of the PID controller.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">setpoint</td><td>Desired value. </td></tr>
+    <tr><td class="paramname">measured</td><td>Actual measured value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Control output in the range [-100, 100].</dd></dl>
+<p>This method:</p><ul>
+<li>Computes error</li>
+<li>Calculates P, I, and D components</li>
+<li>Runs anti-windup on the integral term</li>
+<li>Applies output saturation</li>
+<li>Returns the bounded control signal </li>
+</ul>
+
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="a3c21f4a8ae2af43a0f66c2f59ced6728" name="a3c21f4a8ae2af43a0f66c2f59ced6728"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c21f4a8ae2af43a0f66c2f59ced6728">&#9670;&#160;</a></span>_gain</h2>
+<a id="aa9a2e3d2716ca384719f6a7afbaeaa06" name="aa9a2e3d2716ca384719f6a7afbaeaa06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9a2e3d2716ca384719f6a7afbaeaa06">&#9670;&#160;</a></span>_gain</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -179,7 +223,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Controller_Class.Controller._gain = 0</td>
+          <td class="memname">float Controller_Class.Controller._gain = 0.0</td>
         </tr>
       </table>
   </td>
@@ -191,8 +235,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a884c04e9464798f1b9ebd5148d1bc4da" name="a884c04e9464798f1b9ebd5148d1bc4da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a884c04e9464798f1b9ebd5148d1bc4da">&#9670;&#160;</a></span>_integral</h2>
+<a id="afb44180a1251c6fa68ab131411a9d9d0" name="afb44180a1251c6fa68ab131411a9d9d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb44180a1251c6fa68ab131411a9d9d0">&#9670;&#160;</a></span>_integral</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -201,7 +245,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Controller_Class.Controller._integral = 0</td>
+          <td class="memname">float Controller_Class.Controller._integral = 0.0</td>
         </tr>
       </table>
   </td>
@@ -279,8 +323,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a3e73b41df35d53b1ceecf01d78626f2c" name="a3e73b41df35d53b1ceecf01d78626f2c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e73b41df35d53b1ceecf01d78626f2c">&#9670;&#160;</a></span>_output</h2>
+<a id="aebd0d36edad4c8533dfa403f8ff87c22" name="aebd0d36edad4c8533dfa403f8ff87c22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebd0d36edad4c8533dfa403f8ff87c22">&#9670;&#160;</a></span>_output</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -289,7 +333,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Controller_Class.Controller._output = 0</td>
+          <td class="memname">float Controller_Class.Controller._output = 0.0</td>
         </tr>
       </table>
   </td>
@@ -301,8 +345,8 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="adde80b00fcc8bf7929b24c3e243703b4" name="adde80b00fcc8bf7929b24c3e243703b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adde80b00fcc8bf7929b24c3e243703b4">&#9670;&#160;</a></span>_prev_error</h2>
+<a id="a7372369aa94314a6e6c16a0e15f053f6" name="a7372369aa94314a6e6c16a0e15f053f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7372369aa94314a6e6c16a0e15f053f6">&#9670;&#160;</a></span>_prev_error</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -311,7 +355,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Controller_Class.Controller._prev_error = 0</td>
+          <td class="memname">float Controller_Class.Controller._prev_error = 0.0</td>
         </tr>
       </table>
   </td>

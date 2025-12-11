@@ -92,16 +92,39 @@ $(function(){initNavTree('discretized__estimation_8py.html','',''); });
   <div class="headertitle"><div class="title">discretized_estimation.py File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Discrete-time state observer for the Romi robot.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:discretized_5Festimation_2ERomiObserver" id="r_discretized_5Festimation_2ERomiObserver"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdiscretized__estimation_1_1_romi_observer.html">discretized_estimation.RomiObserver</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Discrete-time Romi state observer.  <a href="classdiscretized__estimation_1_1_romi_observer.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:discretized_5Festimation" id="r_discretized_5Festimation"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacediscretized__estimation.html">discretized_estimation</a></td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Discrete-time state observer for the Romi robot. </p>
+<p>This module implements a Luenberger-style state observer for the Romi robot using discrete-time system matrices and <span class="tt">ulab</span> for lightweight linear algebra in MicroPython.</p>
+<p>The observer estimates the state vector</p>
+<p class="formulaDsp">
+<picture><source srcset="form_0_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\&zwj;[x = \\begin{bmatrix}
+\\omega_L \\\\
+\\omega_R \\\\
+s \\\\
+\\psi
+\\end{bmatrix}
+\&zwj;]" src="form_0.png"/></picture>
+</p>
+<p>where:</p>
+<ul>
+<li><picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \\omega_L, \\omega_R $" src="form_1.png"/></picture> are left/right wheel angular speeds</li>
+<li><picture><source srcset="form_2_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ s $" src="form_2.png"/></picture> is (approximately) the forward arc length / position</li>
+<li><picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \\psi $" src="form_3.png"/></picture> is the heading (yaw angle, in radians) </li>
+</ul>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
 <div id="page-nav-resize-handle"></div>
