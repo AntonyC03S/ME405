@@ -112,10 +112,13 @@ def motor_task(shares):
                 R_volt.put(u)
                 # state  = Turn
                 # hi = a.get()
-                # checkpoint = 1
+                # checkpoint = 2
             else:
                 basespeed = 5
-                if s.get() >= 86000:
+                if s.get() >= 102000:
+                    if checkpoint == 3:
+                        state = Turn
+                elif s.get() >= 86000:
                     if checkpoint == 2:
                         state = Turn
                         hi = a.get()
@@ -123,6 +126,7 @@ def motor_task(shares):
                     if checkpoint == 0:
                         checkpoint = 1
                         state = Backward
+    
 
                         
                 centroid = line.update()
@@ -169,6 +173,9 @@ def motor_task(shares):
                     hi = a.get()
 
 
+                    # ANTONY BUMP SENSOR CODE GOES HERE
+
+
         # State 6 - Turn
         elif state == Turn:
             basespeed = 1.5
@@ -184,16 +191,21 @@ def motor_task(shares):
             R_volt.put(7.2 * (Rgain / 100.0))
             
             counter += 1
-            deltaa = a.get() - hi
+            deltaa = hi - a.get()
 
             if checkpoint == 1:
-                if deltaa >= 100:
+                if deltaa >= 120:
                     state = Line_Running
                     checkpoint = 2
                     controller_line._KP  = 1.5
             elif checkpoint == 2:
-                if deltaa >= 30:
+                if s.get() >= 87500:
                     state = Line_Running
+                    checkpoint = 3
+            elif checkpoint == 3:
+                if s.get() >= 104500:
+                    state = Backward
+
 
 
             if counter >= 1000:
