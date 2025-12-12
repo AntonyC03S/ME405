@@ -126,22 +126,19 @@ def motor_task(shares):
                 basespeed = 6
                 turn_count = 0
                 # print(subcheck, set_time, checkpoint, s.get())
-                if s.get() >= set_time+32000:
+                if s.get() >= set_time+26000:
                     if subcheck == 3:
                         done.put(1)
                         encoder_start.put(0)
                         motor_eff.put(0)
                         counter = 0
                         state = Stop
-                elif s.get() >= set_time+19000:
+                elif s.get() >= set_time+13000:
                     if subcheck == 2:
                         state = Turn
                         hi = a.get()
                         # last_a = hi
-                        # controller_line._KP  = 0.4
-                        # controller_line._KD  = 0.05
-
-                elif s.get() >= set_time+10000:
+                elif s.get() >= set_time+6000:
                     if subcheck == 1:
                         state = Turn
                         hi = a.get()
@@ -269,11 +266,11 @@ def motor_task(shares):
                     state = Backward
             elif checkpoint == 5:
                 if subcheck == 0:
-                    if turn_count >= 25:
+                    if turn_count >= 22:
                         subcheck += 1
                         state = Line_Running
                 else:
-                    if turn_count >= 25:
+                    if turn_count >= 24:
                         subcheck += 1
                         state = Line_Running
             # last_a = a.get()

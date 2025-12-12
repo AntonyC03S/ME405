@@ -1,28 +1,21 @@
 """! @file Controller_Class.py
-@brief PID controller implementation for robot motion control.
+@brief The Controller Class is used to implment a PID feedback loop
 
-This module defines the :class:`Controller` class which implements a
-standard PID (Proportional–Integral–Derivative) feedback controller.
-It is compatible with MicroPython through the use of `ticks_us()` for
-timekeeping.
+The Controller Class implments the PID contoller which are Proportional,
+Intergral and Derivative.
 """
-
 from time import ticks_us, ticks_diff
-import math  # noqa: F401
-
 
 class Controller:
     """! PID feedback controller.
 
-    @brief Implements a real-time PID controller with anti-windup and
+    @brief Implements a real-time PID controller with anti windup and
     output saturation.
 
-    The controller outputs a value limited to the range `[-100, 100]`,
-    making it suitable for motor effort commands in your robot.
+    The controller outputs a effort limited to the range `[-100, 100]`.
 
     Features:
-    - Proportional, integral, and derivative terms
-    - Derivative on measurement error
+    - Proportional, integral, and derivative 
     - Anti-windup integral behavior
     - Automatic output saturation
     """
@@ -33,9 +26,6 @@ class Controller:
         @param KP Proportional gain.
         @param KI Integral gain.
         @param KD Derivative gain.
-
-        The controller stores internal timestamps and error history
-        for computing numerical derivatives and integrals.
         """
         self._KP = KP
         self._KI = KI
@@ -44,8 +34,8 @@ class Controller:
         self._prev_time = ticks_us()
         self._prev_error = 0.0
         self._integral = 0.0
-        self._gain = 0.0       # Raw PID output before saturation
-        self._output = 0.0     # Saturated output [-100, 100]
+        self._gain = 0.0       
+        self._output = 0.0     
 
     def update(self, setpoint: float, measured: float) -> float:
         """! Compute the PID output for the current measurement.
@@ -54,27 +44,12 @@ class Controller:
 
         @param setpoint  Desired value.
         @param measured  Actual measured value.
-        @return Control output in the range [-100, 100].
-
-        This method:
-        - Computes error
-        - Calculates P, I, and D components
-        - Runs anti-windup on the integral term
-        - Applies output saturation
-        - Returns the bounded control signal
+        @return Effort output in the range [-100, 100].
         """
         now = ticks_us()
         dt = ticks_diff(now, self._prev_time) / 1_000_000  # convert µs → seconds
-
-        # Protect against dt = 0 (should rarely happen)
-        if dt <= 0:
-            dt = 1e-6
-
-        # Error signal
+        
         error = setpoint - measured
-
-        # Proportional term
-        P_gain = error * self._KP
 
         # Integral term (with anti-windup)
         if self._output == self._gain:
@@ -82,13 +57,12 @@ class Controller:
         else:
             self._integral = 0
 
+        # PID terms
+        P_gain = error * self._KP
         I_gain = self._integral * self._KI
-
-        # Derivative term
         D_gain = ((error - self._prev_error) / dt) * self._KD
-
-        # Combine
         self._gain = P_gain + I_gain + D_gain
+
 
         # Output saturation
         if self._gain >= 100:
@@ -98,7 +72,7 @@ class Controller:
         else:
             self._output = self._gain
 
-        # Save state
+
         self._prev_error = error
         self._prev_time = now
 

@@ -1,6 +1,7 @@
 from pyb import UART # type: ignore
 from time import sleep_ms
 
+
 def data_task(shares):
     state = 0
     (
@@ -41,7 +42,6 @@ def data_task(shares):
                 rp = -motor_position_right.get()        
                 t_us = motor_time.get()
                 t = t_us / 1_000_000.0         
-
 
                 send_line('{:.6f},{:.6f},{:.6f},{:.6f},{:.6f},{:.6f}'.format(
                     t, lp, rp, ls, rs, 1

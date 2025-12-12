@@ -1,14 +1,6 @@
 """! @file Line_Class.py
 @brief Line sensor array driver using analog reflectance sensors.
 
-This module provides the :class:`Line` class to handle an array of
-line sensors (e.g. reflectance sensors) connected to ADC pins.
-
-Features:
-- Supports 8- or 13-sensor configurations
-- Per-sensor black/white calibration with file storage
-- Normalized sensor readings
-- Centroid computation for line-following control
 """
 
 from pyb import Pin, ADC  # type: ignore
@@ -34,9 +26,6 @@ class Line:
 
     def __init__(self):
         """! Initialize an empty Line object.
-
-        Calibration data and sensors are set up later via @ref define_8
-        or @ref define_13 and the calibration methods.
         """
         self._white_cal = None
         self._black_cal = None
@@ -53,7 +42,7 @@ class Line:
         s11: Pin,
         s13: Pin,
         s15: Pin,
-    ) -> None:
+    ):
         """! Configure an 8-sensor line array.
 
         @brief Sets up 8 ADC sensors on the given pins and their position indices.
@@ -105,7 +94,7 @@ class Line:
         s12: Pin,
         s13: Pin,
         s14: Pin,
-    ) -> None:
+    ):
         """! Configure a 13-sensor line array.
 
         @brief Sets up 13 ADC sensors on the given pins and their position indices.

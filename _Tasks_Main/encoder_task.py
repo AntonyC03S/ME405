@@ -67,6 +67,8 @@ def encoder_task(shares):
                 start = ticks_us()
                 counter += 1
             motor_time.put(ticks_diff(ticks_us(), start))
+            timess = ticks_diff(ticks_us(), start)/ 1_000_000.0   
+            print("{},{},{}".format(timess, float(encoder_left.velocity), float(encoder_right.velocity)))
             if encoder_start.get() == 0:
                 state = Stop
             else:

@@ -1,13 +1,7 @@
 """! @file imu_driver.py
 @brief I2C interface for a BNO055 IMU sensor.
 
-This module provides the :class:`IMU` class for communicating with a 
-BNO055 IMU over I2C from a MicroPython board. It supports:
-
-- Changing operation modes (CONFIG, IMU, NDOF)
-- Reading Euler angles (heading, roll, pitch)
-- Reading raw gyro data
-- Getting and restoring calibration data
+The IMU driver is used to read the heading, roll, pitch and gyro data. 
 """
 
 from pyb import I2C  # type: ignore
@@ -45,8 +39,6 @@ class IMU:
 
         @param i2c   Initialized I2C object.
         @param addr  7-bit I2C address of the BNO055 (default: 0x28).
-
-        The constructor sets the IMU into CONFIG mode initially.
         """
         self.i2c = i2c
         self.devad = addr
@@ -57,8 +49,6 @@ class IMU:
 
         @param mode String specifying mode: `"CONFIG"`, `"NDOF"`, or `"IMU"`.
 
-        This writes to the operation mode register and includes required
-        delays as per the BNO055 datasheet.
         """
         if mode == "NDOF":
             mode_val = self.NDOF_MODE
@@ -67,10 +57,8 @@ class IMU:
         elif mode == "IMU":
             mode_val = self.IMU_MODE
         else:
-            # Default to CONFIG if an unknown mode string is given
             mode_val = self.CONFIG_MODE
 
-        # Always use page 0 for these registers
         self.i2c.mem_write(bytes([0x00]), self.devad, self.PAGE_ID_REG)
         time.sleep_ms(10)
 
@@ -83,7 +71,7 @@ class IMU:
         @brief Returns the calibration state of system, gyro, accelerometer,
         and magnetometer.
 
-        @return Tuple `(sys, gyro, acc, mag)` where each value is from 0–3.
+        @return Tuple `(sys, gyro, acc, mag)` where each value is from 0-3.
         A value of 3 indicates fully calibrated.
         """
         cal_stat = self.i2c.mem_read(1, self.devad, 0x35)[0]
@@ -100,8 +88,6 @@ class IMU:
 
         @return Tuple `(heading, roll, pitch)` in degrees.
 
-        These angles are provided directly by the BNO055 in fusion mode
-        (e.g. NDOF).
         """
         raw = self.i2c.mem_read(6, self.devad, self.EULER_H_LSB)
         heading = struct.unpack('<h', raw[0:2])[0] / 16.0

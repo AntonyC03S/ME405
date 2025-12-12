@@ -1,13 +1,14 @@
 from pyb import UART, ExtInt, Pin  # type: ignore
 from time import sleep_ms
 from gc import collect
+button = 0
+def button_callback(pin):
+    global button
+    button = 1
 
 def UI_task(shares):
-    button = []
-    def button_callback(button):
-        def button_LED_toggle(the_pin):
-            button.append(0)
-    button_int = ExtInt(Pin.cpu.C13, ExtInt.IRQ_FALLING, Pin.PULL_NONE, button_callback(button))
+    global button
+    button_int = ExtInt(Pin.cpu.C13, ExtInt.IRQ_FALLING, Pin.PULL_NONE, button_callback)
     motor_eff, results, done, motor_speed_left, motor_speed_right, motor_time, encoder_start, Kp, Ki, Kd,data_sharing = shares
     state = 0
     start = False
@@ -24,10 +25,15 @@ def UI_task(shares):
         bluetooth.read()
 
     buf = bytearray()
-
+    button = 0
     while True:
         if state == 0:
-            mode = input("Enable Bluetooth? Yes or No")
+            mode = ''#input("Enable Bluetooth? Yes or No")
+            print(button)
+            if button == 0:
+                yield state
+                continue
+            
 
             #<--       Bluetooth              -->
             if mode == "Yes":
@@ -122,10 +128,6 @@ def UI_task(shares):
             yield state
 
         elif state == 3:
-            if len(button) != 0:
-                state == 4
-                print("button")
-            collect()
             yield state
 
         elif state == 4:
