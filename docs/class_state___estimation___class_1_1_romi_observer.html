@@ -114,18 +114,18 @@ Public Member Functions</h2></td></tr>
 <p>Estimates robot states from motor commands and sensor feedback.</p>
 <p>The observer uses a discrete-time linear model:</p>
 <p class="formulaDsp">
-<picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\&zwj;[x_{k+1} = A_d x_k + B_d u_k + L (y_k - C x_k)
-\&zwj;]" src="form_8.png"/></picture>
+<picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\&zwj;[x_{k+1} = A_d x_k + B_d u_k + L (y_k - C x_k)
+\&zwj;]" src="form_4.png"/></picture>
 </p>
 <p>with measurements:</p>
 <ul>
-<li><picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ S_L, S_R $" src="form_9.png"/></picture>: left/right encoder arc lengths [m]</li>
-<li><picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \\psi $" src="form_7.png"/></picture>: IMU heading [rad]</li>
-<li><picture><source srcset="form_10_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \\dot{\\psi} $" src="form_10.png"/></picture>: IMU yaw rate [rad/s]</li>
+<li><picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ S_L, S_R $" src="form_5.png"/></picture>: left/right encoder arc lengths [m]</li>
+<li><picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \\psi $" src="form_3.png"/></picture>: IMU heading [rad]</li>
+<li><picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \\dot{\\psi} $" src="form_6.png"/></picture>: IMU yaw rate [rad/s]</li>
 </ul>
 <p>and state:</p>
 <ul>
-<li><picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x = [\\omega_L, \\omega_R, s, \\psi]^T $" src="form_11.png"/></picture> </li>
+<li><picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x = [\\omega_L, \\omega_R, s, \\psi]^T $" src="form_7.png"/></picture> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="_state___estimation___class_8py_source.html#l00030">30</a> of file <a class="el" href="_state___estimation___class_8py_source.html">State_Estimation_Class.py</a>.</p>
@@ -203,7 +203,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get estimated outputs based on current state. </p>
-<p>Computes <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \\hat{y} = C x $" src="form_13.png"/></picture>.</p>
+<p>Computes <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \\hat{y} = C x $" src="form_9.png"/></picture>.</p>
 <dl class="section return"><dt>Returns</dt><dd>Estimated output vector (4x1): [SL_hat, SR_hat, psi_hat, psidot_hat]^T. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_state___estimation___class_8py_source.html#l00161">161</a> of file <a class="el" href="_state___estimation___class_8py_source.html">State_Estimation_Class.py</a>.</p>
@@ -315,7 +315,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Updated state estimate <picture><source srcset="form_12_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_{k+1} $" src="form_12.png"/></picture> as a (4x1) array.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Updated state estimate <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_{k+1} $" src="form_8.png"/></picture> as a (4x1) array.</dd></dl>
 <p>The method:</p><ul>
 <li>Converts IMU angles from degrees to radians</li>
 <li>Forms measurement vector y = [SL, SR, psi, psidot]^T</li>

@@ -1,66 +1,195 @@
 /** @page tasks Task Modules
-@brief Overview of the real-time task files used in the Romi project.
+@brief Overview of the cooperative tasks used in the Romi robot project.
 
-This page summarizes the main task files that run on the Romi robot.
-Each file typically contains a cooperative task (or set of tasks) that
-runs in the scheduler loop.
+The Romi robot software uses a cooperative real-time scheduler (`cotask`)
+that runs a collection of task functions. Each task receives shared objects
+(`task_share.Share` or `task_share.Queue`) that allow safe communication
+between tasks.
 
-@section task_list Task Files
+This page provides a detailed description of every task file located in the
+`_Task/` directory.
 
-- `bluetooth.py`  
-  Handles Bluetooth communication with an external device (such as a PC
-  or phone). Typically used for:
-  - Sending debug/status information
-  - Receiving commands (start/stop, mode selection, tuning values, etc.)
+---
 
-- `Data_Task.py`  
-  Manages shared data structures used by multiple tasks. This may include:
-  - Sensor readings (line sensors, IMU, encoders)
-  - State estimates
-  - Control outputs and flags
-  It often acts as a central place to log or buffer data.
+@section ui_task UI_Task.py — User Interface Task
 
-- `Encoder_Task.py`  
-  Reads the quadrature encoders and updates wheel position/velocity
-  information using the `Encoder` driver. This task provides:
-  - Periodic calls to `Encoder.update()`
-  - Stored values for wheel angle, distance traveled, and speed
+The UI task is responsible for starting tests, sending control parameters,
+and selecting operating modes. It interacts with the user through:
 
-- `Main1.py`  
-  Main entry point / scheduler setup file. Responsibilities usually include:
-  - Initializing hardware drivers and tasks
-  - Creating shared data objects
-  - Running the main cooperative scheduler loop
+### **1. Hardware Button (Pin C13 interrupt)**
+- A falling-edge interrupt calls `button_callback()` and sets a global flag.
+- The task does nothing until the user presses the button once.
 
-- `Motor_Task.py`  
-  Controls the motors using the `Motor` driver (and often the PID
-  `Controller`). This task:
-  - Reads setpoints (desired speed or position)
-  - Applies control laws (e.g., PID)
-  - Calls `Motor.set_effort()` for each motor
+### **2. Bluetooth UART Commands (UART1 @ 115200 baud)**  
+Commands include:
 
-- `State_Estimation_Task.py`  
-  Runs the state estimation logic using the `RomiObserver` (or related
-  estimation code). It typically:
-  - Reads IMU and encoder measurements
-  - Calls the observer `step()` method
-  - Stores the estimated state `[wL, wR, s, psi]` for other tasks to use
+- `"c"` — Start a normal run  
+- `"1_KP_KI_KD"` — Provide PID gains and enter a PID tuning mode  
+- `"2_*"` — Alternate operating mode (value stored in `data_sharing`)  
 
-- `UI_Task.py`  
-  Handles user interaction with the robot. Depending on your setup, this
-  may include:
-  - Reading buttons or switches
-  - Updating an OLED / LCD / serial menu
-  - Changing modes (idle, line follow, test, debug) based on user input
+The task parses incoming UART text lines and updates shares like `Kp`, `Ki`,
+`Kd`, `motor_eff`, `data_sharing`, and `encoder_start`.
 
-@section usage How These Tasks Work Together
+### **State Machine**
+- **State 0 — Idle:**  
+  Waits for the hardware button OR valid Bluetooth command.
+- **State 2 — Start:**  
+  If `Pid == True`, sets a small effort and enters state 3.  
+  If running a test-sweep, cycles motor effort 0→10→20→... and logs encoder data.
+- **State 3 — Hold:**  
+  Post-start resting state.
+- **State 4 — Reset:**  
+  Stops motors, clears flags, returns to state 3.
 
-In the complete system, these tasks cooperate to:
+The UI task is the entry point connecting human input to the robot.
 
-1. Read sensors (encoders, IMU, line sensors).
-2. Estimate the robot state.
-3. Compute motor commands using control algorithms.
-4. Send debug/telemetry data over Bluetooth.
-5. Provide a user interface to configure and start/stop the robot.
+---
+
+@section motor_task Motor_Task.py — Motion / Line-Following Task
+
+This is the central control task of the robot. It creates and manages:
+
+- Two `Motor` objects  
+- Two wheel-speed PID controllers  
+- A line-following PID controller  
+- A `Line` sensor array (13 reflectance sensors)  
+- Logic for turns, checkpoints, backing up, and obstacle navigation  
+
+### **State Machine**
+- **Init:**  
+  - Configures timer for 20 kHz PWM  
+  - Creates motors and enables them  
+  - Sets up the 13-sensor array  
+  - Initializes shared values (`L_volt`, `R_volt`, etc.)
+- **Stop:**  
+  Motors are off.  
+  Looks at `motor_eff` and a mode flag (`data_sharing`) to decide:
+  - Normal line run  
+  - Time trial (mode 9)  
+  - PID tuning  
+- **Running:**  
+  Simple straight-line run using wheel-speed PID correction.
+- **Line_Running:**  
+  Full course logic:  
+  - Line following  
+  - Dynamic gain changes  
+  - Checkpoints  
+  - Turning triggers  
+  - Backtracking  
+  - Goal detection (sets `done`)
+- **Backward:**  
+  Controlled reverse motion along the line.
+- **Turn:**  
+  Spin-in-place turns using IMU heading differences.
+- **PID_Tuning:**  
+  Short, controlled PID testing routine.
+- **Time_tial:**  
+  Placeholder for future expansion.
+
+This task is the “brains” of robot movement.
+
+---
+
+@section encoder_task Encoder_Task.py — Quadrature Encoder Task
+
+This task reads both wheel encoders and publishes:
+
+- Wheel speeds (`lspeed`, `rspeed`)  
+- Wheel positions (`lpos`, `rpos`)  
+- Motor speed & position copies  
+- Timestamps for logging (`motor_time`)  
+
+### **State Machine**
+- **Init:**  
+  Configures pins C6/C7 for encoder input.  
+  Creates left and right `Encoder` objects (Timer 1 and Timer 8).
+- **Stop:**  
+  Waits until `encoder_start == 1`.
+- **Read:**  
+  Calls `.update()` on both encoders.  
+  On first entry, zeros both encoders.
+- **Send:**  
+  Writes:
+  - `velocity` into speed queues  
+  - `position` into position queues  
+  - Elapsed time into the `motor_time` queue  
+  Also prints CSV to the console.  
+  Loops until `encoder_start` becomes 0.
+
+This task provides sensor data for the motor task, the state estimator,
+and the data logger.
+
+---
+
+@section data_task Data_Task.py — UART Data Logger
+
+This task streams encoder data over UART in clean CSV format.
+
+### **State Machine**
+- **Init:**  
+  Opens UART1 @ 115200 and clears the RX buffer.
+- **Collect:**  
+  As long as encoder queues have data:  
+  - Pops matching samples:  
+    - left speed, right speed  
+    - left position, right position  
+    - time  
+  - Converts microseconds → seconds  
+  - Sends a CSV line:  
+    `t, left_pos, right_pos, left_speed, right_speed, 1`
+- **Send:**  
+  When all data is flushed and `done == 1`:  
+  - Sends `"END"`  
+  - Resets the `done` flag  
+  - Returns to Collect
+
+Perfect for plotting in MATLAB, Python, or Excel.
+
+---
+
+@section state_task state_estimation_task.py — State Estimation / Observer Task
+
+Runs a discrete-time observer (`RomiObserver`) combining:
+
+- Left/right motor voltages  
+- Encoder arc lengths  
+- IMU heading + yaw rate  
+- System matrices (Ad, Bd) and observer gain L  
+
+### **State Machine**
+- **Init:**  
+  - Initializes I2C(2)  
+  - Loads BNO055 calibration data  
+  - Enters NDOF mode  
+  - Creates `RomiObserver`
+- **Run:**  
+  Every 10 ms:
+  - Reads motor voltages  
+  - Reads encoder positions  
+  - Reads IMU heading (deg) and yaw rate (deg/s)  
+  - Computes relative heading (`wrap_deg180`)  
+  - Runs observer step:  
+    `xhat = obs.step(u, SL, SR, psi_rel_deg, yaw_dps)`  
+  - Writes:  
+    - `s` → distance traveled (mm)  
+    - `a` → heading (deg)
+
+This task provides filtered, fused state information to the control system.
+
+---
+
+@section summary Task Interaction Overview
+
+All tasks cooperate through shared variables:
+
+- **UI_task** sets modes, PID gains, and effort commands  
+- **motor_task** reads UI commands, line sensors, IMU/encoder state, and drives motors  
+- **encoder_task** provides wheel motion data  
+- **state_task** fuses encoder + IMU data for cleaner heading/distance  
+- **data_task** logs data for offline analysis  
+
+Together they create a full real-time control architecture suitable for
+line-following, navigation, and tuning.
 
 */
+

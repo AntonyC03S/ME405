@@ -92,69 +92,261 @@ $(function(){initNavTree('tasks.html','',''); });
   <div class="headertitle"><div class="title">Task Modules </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Overview of the real-time task files used in the Romi project.</p>
-<p>This page summarizes the main task files that run on the Romi robot. Each file typically contains a cooperative task (or set of tasks) that runs in the scheduler loop.</p>
-<h1 class="doxsection"><a class="anchor" id="task_list"></a>
-Task Files</h1>
+<div class="textblock"><p>Overview of the cooperative tasks used in the Romi robot project.</p>
+<p>The Romi robot software uses a cooperative real-time scheduler (<span class="tt">cotask</span>) that runs a collection of task functions. Each task receives shared objects (<span class="tt">task_share.Share</span> or <span class="tt">task_share.Queue</span>) that allow safe communication between tasks.</p>
+<p>This page provides a detailed description of every task file located in the <span class="tt">_Task/</span> directory.</p>
+<hr  />
+<h1 class="doxsection"><a class="anchor" id="ui_task"></a>
+UI_Task.py — User Interface Task</h1>
+<p>The UI task is responsible for starting tests, sending control parameters, and selecting operating modes. It interacts with the user through:</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
+<b>1. Hardware Button (Pin C13 interrupt)</b></h3>
 <ul>
-<li><span class="tt"><a class="el" href="bluetooth_8py.html">bluetooth.py</a></span> <br  />
- Handles Bluetooth communication with an external device (such as a PC or phone). Typically used for:<ul>
-<li>Sending debug/status information</li>
-<li>Receiving commands (start/stop, mode selection, tuning values, etc.)</li>
+<li>A falling-edge interrupt calls <span class="tt">button_callback()</span> and sets a global flag.</li>
+<li>The task does nothing until the user presses the button once.</li>
 </ul>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+<b>2. Bluetooth UART Commands (UART1 @ 115200 baud)</b></h3>
+<p>Commands include:</p>
+<ul>
+<li><span class="tt">"c"</span> — Start a normal run <br  />
 </li>
-<li><span class="tt"><a class="el" href="_data___task_8py.html">Data_Task.py</a></span> <br  />
- Manages shared data structures used by multiple tasks. This may include:<ul>
-<li>Sensor readings (line sensors, IMU, encoders)</li>
-<li>State estimates</li>
-<li>Control outputs and flags It often acts as a central place to log or buffer data.</li>
-</ul>
+<li><span class="tt">"1_KP_KI_KD"</span> — Provide PID gains and enter a PID tuning mode <br  />
 </li>
-<li><span class="tt"><a class="el" href="_encoder___task_8py.html">Encoder_Task.py</a></span> <br  />
- Reads the quadrature encoders and updates wheel position/velocity information using the <span class="tt">Encoder</span> driver. This task provides:<ul>
-<li>Periodic calls to <span class="tt">Encoder.update()</span></li>
-<li>Stored values for wheel angle, distance traveled, and speed</li>
-</ul>
-</li>
-<li><span class="tt"><a class="el" href="_main1_8py.html">Main1.py</a></span> <br  />
- Main entry point / scheduler setup file. Responsibilities usually include:<ul>
-<li>Initializing hardware drivers and tasks</li>
-<li>Creating shared data objects</li>
-<li>Running the main cooperative scheduler loop</li>
-</ul>
-</li>
-<li><span class="tt"><a class="el" href="motor__task_8py.html">Motor_Task.py</a></span> <br  />
- Controls the motors using the <span class="tt">Motor</span> driver (and often the PID <span class="tt">Controller</span>). This task:<ul>
-<li>Reads setpoints (desired speed or position)</li>
-<li>Applies control laws (e.g., PID)</li>
-<li>Calls <span class="tt">Motor.set_effort()</span> for each motor</li>
-</ul>
-</li>
-<li><span class="tt"><a class="el" href="state__estimation__task_8py.html">State_Estimation_Task.py</a></span> <br  />
- Runs the state estimation logic using the <span class="tt">RomiObserver</span> (or related estimation code). It typically:<ul>
-<li>Reads IMU and encoder measurements</li>
-<li>Calls the observer <span class="tt">step()</span> method</li>
-<li>Stores the estimated state <span class="tt">[wL, wR, s, psi]</span> for other tasks to use</li>
-</ul>
-</li>
-<li><span class="tt"><a class="el" href="_u_i___task_8py.html">UI_Task.py</a></span> <br  />
- Handles user interaction with the robot. Depending on your setup, this may include:<ul>
-<li>Reading buttons or switches</li>
-<li>Updating an OLED / LCD / serial menu</li>
-<li>Changing modes (idle, line follow, test, debug) based on user input</li>
-</ul>
+<li><span class="tt">"2_*"</span> — Alternate operating mode (value stored in <span class="tt">data_sharing</span>) <br  />
 </li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="usage"></a>
-How These Tasks Work Together</h1>
-<p>In the complete system, these tasks cooperate to:</p>
-<ol type="1">
-<li>Read sensors (encoders, IMU, line sensors).</li>
-<li>Estimate the robot state.</li>
-<li>Compute motor commands using control algorithms.</li>
-<li>Send debug/telemetry data over Bluetooth.</li>
-<li>Provide a user interface to configure and start/stop the robot. </li>
-</ol>
+<p>The task parses incoming UART text lines and updates shares like <span class="tt">Kp</span>, <span class="tt">Ki</span>, <span class="tt">Kd</span>, <span class="tt">motor_eff</span>, <span class="tt">data_sharing</span>, and <span class="tt">encoder_start</span>.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+<b>State Machine</b></h3>
+<ul>
+<li><b>State 0 — Idle:</b> <br  />
+ Waits for the hardware button OR valid Bluetooth command.</li>
+<li><b>State 2 — Start:</b> <br  />
+ If <span class="tt">Pid == True</span>, sets a small effort and enters state 3. <br  />
+ If running a test-sweep, cycles motor effort 0→10→20→... and logs encoder data.</li>
+<li><b>State 3 — Hold:</b> <br  />
+ Post-start resting state.</li>
+<li><b>State 4 — Reset:</b> <br  />
+ Stops motors, clears flags, returns to state 3.</li>
+</ul>
+<p>The UI task is the entry point connecting human input to the robot.</p>
+<hr  />
+<h1 class="doxsection"><a class="anchor" id="motor_task"></a>
+Motor_Task.py — Motion / Line-Following Task</h1>
+<p>This is the central control task of the robot. It creates and manages:</p>
+<ul>
+<li>Two <span class="tt">Motor</span> objects <br  />
+</li>
+<li>Two wheel-speed PID controllers <br  />
+</li>
+<li>A line-following PID controller <br  />
+</li>
+<li>A <span class="tt">Line</span> sensor array (13 reflectance sensors) <br  />
+</li>
+<li>Logic for turns, checkpoints, backing up, and obstacle navigation <br  />
+</li>
+</ul>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+<b>State Machine</b></h3>
+<ul>
+<li><b>Init:</b> <br  />
+<ul>
+<li>Configures timer for 20 kHz PWM <br  />
+</li>
+<li>Creates motors and enables them <br  />
+</li>
+<li>Sets up the 13-sensor array <br  />
+</li>
+<li>Initializes shared values (<span class="tt">L_volt</span>, <span class="tt">R_volt</span>, etc.)</li>
+</ul>
+</li>
+<li><b>Stop:</b> <br  />
+ Motors are off. <br  />
+ Looks at <span class="tt">motor_eff</span> and a mode flag (<span class="tt">data_sharing</span>) to decide:<ul>
+<li>Normal line run <br  />
+</li>
+<li>Time trial (mode 9) <br  />
+</li>
+<li>PID tuning <br  />
+</li>
+</ul>
+</li>
+<li><b>Running:</b> <br  />
+ Simple straight-line run using wheel-speed PID correction.</li>
+<li><b>Line_Running:</b> <br  />
+ Full course logic: <br  />
+<ul>
+<li>Line following <br  />
+</li>
+<li>Dynamic gain changes <br  />
+</li>
+<li>Checkpoints <br  />
+</li>
+<li>Turning triggers <br  />
+</li>
+<li>Backtracking <br  />
+</li>
+<li>Goal detection (sets <span class="tt">done</span>)</li>
+</ul>
+</li>
+<li><b>Backward:</b> <br  />
+ Controlled reverse motion along the line.</li>
+<li><b>Turn:</b> <br  />
+ Spin-in-place turns using IMU heading differences.</li>
+<li><b>PID_Tuning:</b> <br  />
+ Short, controlled PID testing routine.</li>
+<li><b>Time_tial:</b> <br  />
+ Placeholder for future expansion.</li>
+</ul>
+<p>This task is the “brains” of robot movement.</p>
+<hr  />
+<h1 class="doxsection"><a class="anchor" id="encoder_task"></a>
+Encoder_Task.py — Quadrature Encoder Task</h1>
+<p>This task reads both wheel encoders and publishes:</p>
+<ul>
+<li>Wheel speeds (<span class="tt">lspeed</span>, <span class="tt">rspeed</span>) <br  />
+</li>
+<li>Wheel positions (<span class="tt">lpos</span>, <span class="tt">rpos</span>) <br  />
+</li>
+<li>Motor speed &amp; position copies <br  />
+</li>
+<li>Timestamps for logging (<span class="tt">motor_time</span>) <br  />
+</li>
+</ul>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+<b>State Machine</b></h3>
+<ul>
+<li><b>Init:</b> <br  />
+ Configures pins C6/C7 for encoder input. <br  />
+ Creates left and right <span class="tt">Encoder</span> objects (Timer 1 and Timer 8).</li>
+<li><b>Stop:</b> <br  />
+ Waits until <span class="tt">encoder_start == 1</span>.</li>
+<li><b>Read:</b> <br  />
+ Calls <span class="tt">.update()</span> on both encoders. <br  />
+ On first entry, zeros both encoders.</li>
+<li><b>Send:</b> <br  />
+ Writes:<ul>
+<li><span class="tt">velocity</span> into speed queues <br  />
+</li>
+<li><span class="tt">position</span> into position queues <br  />
+</li>
+<li>Elapsed time into the <span class="tt">motor_time</span> queue <br  />
+ Also prints CSV to the console. <br  />
+ Loops until <span class="tt">encoder_start</span> becomes 0.</li>
+</ul>
+</li>
+</ul>
+<p>This task provides sensor data for the motor task, the state estimator, and the data logger.</p>
+<hr  />
+<h1 class="doxsection"><a class="anchor" id="data_task"></a>
+Data_Task.py — UART Data Logger</h1>
+<p>This task streams encoder data over UART in clean CSV format.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
+<b>State Machine</b></h3>
+<ul>
+<li><b>Init:</b> <br  />
+ Opens UART1 @ 115200 and clears the RX buffer.</li>
+<li><b>Collect:</b> <br  />
+ As long as encoder queues have data: <br  />
+<ul>
+<li>Pops matching samples: <br  />
+<ul>
+<li>left speed, right speed <br  />
+</li>
+<li>left position, right position <br  />
+</li>
+<li>time <br  />
+</li>
+</ul>
+</li>
+<li>Converts microseconds → seconds <br  />
+</li>
+<li>Sends a CSV line: <br  />
+ <span class="tt">t, left_pos, right_pos, left_speed, right_speed, 1</span></li>
+</ul>
+</li>
+<li><b>Send:</b> <br  />
+ When all data is flushed and <span class="tt">done == 1</span>: <br  />
+<ul>
+<li>Sends <span class="tt">"END"</span> <br  />
+</li>
+<li>Resets the <span class="tt">done</span> flag <br  />
+</li>
+<li>Returns to Collect</li>
+</ul>
+</li>
+</ul>
+<p>Perfect for plotting in MATLAB, Python, or Excel.</p>
+<hr  />
+<h1 class="doxsection"><a class="anchor" id="state_task"></a>
+state_estimation_task.py — State Estimation / Observer Task</h1>
+<p>Runs a discrete-time observer (<span class="tt">RomiObserver</span>) combining:</p>
+<ul>
+<li>Left/right motor voltages <br  />
+</li>
+<li>Encoder arc lengths <br  />
+</li>
+<li>IMU heading + yaw rate <br  />
+</li>
+<li>System matrices (Ad, Bd) and observer gain L <br  />
+</li>
+</ul>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
+<b>State Machine</b></h3>
+<ul>
+<li><b>Init:</b> <br  />
+<ul>
+<li>Initializes I2C(2) <br  />
+</li>
+<li>Loads BNO055 calibration data <br  />
+</li>
+<li>Enters NDOF mode <br  />
+</li>
+<li>Creates <span class="tt">RomiObserver</span></li>
+</ul>
+</li>
+<li><b>Run:</b> <br  />
+ Every 10 ms:<ul>
+<li>Reads motor voltages <br  />
+</li>
+<li>Reads encoder positions <br  />
+</li>
+<li>Reads IMU heading (deg) and yaw rate (deg/s) <br  />
+</li>
+<li>Computes relative heading (<span class="tt">wrap_deg180</span>) <br  />
+</li>
+<li>Runs observer step: <br  />
+ <span class="tt">xhat = obs.step(u, SL, SR, psi_rel_deg, yaw_dps)</span> <br  />
+</li>
+<li>Writes: <br  />
+<ul>
+<li><span class="tt">s</span> → distance traveled (mm) <br  />
+</li>
+<li><span class="tt">a</span> → heading (deg)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>This task provides filtered, fused state information to the control system.</p>
+<hr  />
+<h1 class="doxsection"><a class="anchor" id="summary"></a>
+Task Interaction Overview</h1>
+<p>All tasks cooperate through shared variables:</p>
+<ul>
+<li><b><a class="el" href="namespace_u_i__task.html">UI_task</a></b> sets modes, PID gains, and effort commands <br  />
+</li>
+<li><b><a class="el" href="namespacemotor__task.html">motor_task</a></b> reads UI commands, line sensors, IMU/encoder state, and drives motors <br  />
+</li>
+<li><b><a class="el" href="namespaceencoder__task.html">encoder_task</a></b> provides wheel motion data <br  />
+</li>
+<li><b>state_task</b> fuses encoder + IMU data for cleaner heading/distance <br  />
+</li>
+<li><b><a class="el" href="namespacedata__task.html">data_task</a></b> logs data for offline analysis <br  />
+</li>
+</ul>
+<p>Together they create a full real-time control architecture suitable for line-following, navigation, and tuning. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

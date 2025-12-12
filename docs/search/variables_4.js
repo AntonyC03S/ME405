@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['devad_0',['devad',['../class_imu___driver_1_1_i_m_u.html#a8e5cdc40e5a29b510f44d93a9319ef43',1,'Imu_Driver::IMU']]]
+  ['devad_0',['devad',['../classimu__driver_1_1_i_m_u.html#ace901986ca330461be0598c9a188d5ad',1,'imu_driver::IMU']]]
 ];

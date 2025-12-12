@@ -32,8 +32,12 @@ var NAVTREE =
     [ "How to Use This Documentation", "index.html#nav_sec", null ],
     [ "Demo Video", "index.html#demo_sec", null ],
     [ "Task Modules", "tasks.html", [
-      [ "Task Files", "tasks.html#task_list", null ],
-      [ "How These Tasks Work Together", "tasks.html#usage", null ]
+      [ "UI_Task.py — User Interface Task", "tasks.html#ui_task", null ],
+      [ "Motor_Task.py — Motion / Line-Following Task", "tasks.html#motor_task", null ],
+      [ "Encoder_Task.py — Quadrature Encoder Task", "tasks.html#encoder_task", null ],
+      [ "Data_Task.py — UART Data Logger", "tasks.html#data_task", null ],
+      [ "state_estimation_task.py — State Estimation / Observer Task", "tasks.html#state_task", null ],
+      [ "Task Interaction Overview", "tasks.html#summary", null ]
     ] ],
     [ "Classes/Drivers", "annotated.html", [
       [ "Classes/Drivers List", "annotated.html", "annotated_dup" ]
@@ -46,7 +50,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_controller___class_8py.html"
+"___drivers_2motor__task_8py.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

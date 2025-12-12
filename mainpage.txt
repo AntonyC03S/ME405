@@ -104,20 +104,7 @@ Use the navigation panel on the left:
 
 Below is a demo of the Romi completing the course:
 
-@htmlonly
-<div style="margin-top: 1em;">
-  <iframe width="560" height="315"
-          src="https://www.youtube.com/embed/IdQXAvqh3a0"
-          title="Romi Line-Following Demo"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-  </iframe>
-</div>
-@endhtmlonly
 
-If the video does not appear in your viewer, you can also open it directly:
-
-- https://www.youtube.com/watch?v=IdQXAvqh3a0
+- https://youtube.com/shorts/6RF9DJg4Czc?si=MRNYdGy2HCDcjwxs
 
 */

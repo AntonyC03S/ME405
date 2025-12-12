@@ -28,7 +28,7 @@ def UI_task(shares):
     button = 0
     while True:
         if state == 0:
-            mode = ''#input("Enable Bluetooth? Yes or No")
+            mode = ''
             print(button)
             if button == 0:
                 yield state
@@ -87,14 +87,8 @@ def UI_task(shares):
                                 Pid = True
                                 break
 
-                #<--       Direct Input              -->
+               
             else:
-                # input_P_gain = input("Input P gain: ")
-                # input_I_gain = input("Input I gain: ")
-                # input_D_gain = input("Input D gain: ")
-                # Kp.put(float(input_P_gain))
-                # Ki.put(float(input_I_gain))
-                # Kd.put(float(input_D_gain))
                 data_sharing.put(0)
                 state = 2
                 Pid = True

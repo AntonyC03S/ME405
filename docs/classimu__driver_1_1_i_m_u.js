@@ -8,7 +8,5 @@ var classimu__driver_1_1_i_m_u =
     [ "read_euler", "classimu__driver_1_1_i_m_u.html#a07051d2d9704309e5e894240dcef87d5", null ],
     [ "read_gyro", "classimu__driver_1_1_i_m_u.html#a75f6adf3ee3b24dc64fde5a2e67e64f6", null ],
     [ "read_heading", "classimu__driver_1_1_i_m_u.html#ad02a8e497fcd78d4d0932d8a643137a0", null ],
-    [ "read_yaw_rate", "classimu__driver_1_1_i_m_u.html#aa305bb0c3040034c74b1af1993d06739", null ],
-    [ "devad", "classimu__driver_1_1_i_m_u.html#ace901986ca330461be0598c9a188d5ad", null ],
-    [ "i2c", "classimu__driver_1_1_i_m_u.html#a0e1d37979907b4ce63deea7a300c9b0a", null ]
+    [ "read_yaw_rate", "classimu__driver_1_1_i_m_u.html#aa305bb0c3040034c74b1af1993d06739", null ]
 ];

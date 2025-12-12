@@ -105,16 +105,15 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>PID feedback controller. </p>
-<p>Implements a real-time PID controller with anti-windup and output saturation.</p>
-<p>The controller outputs a value limited to the range <span class="tt">[-100, 100]</span>, making it suitable for motor effort commands in your robot.</p>
+<p>Implements a real-time PID controller with anti windup and output saturation.</p>
+<p>The controller outputs a effort limited to the range <span class="tt">[-100, 100]</span>.</p>
 <p>Features:</p><ul>
-<li>Proportional, integral, and derivative terms</li>
-<li>Derivative on measurement error</li>
+<li>Proportional, integral, and derivative</li>
 <li>Anti-windup integral behavior</li>
 <li>Automatic output saturation </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="_controller___class_8py_source.html#l00014">14</a> of file <a class="el" href="_controller___class_8py_source.html">Controller_Class.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_controller___class_8py_source.html#l00009">9</a> of file <a class="el" href="_controller___class_8py_source.html">Controller_Class.py</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="abbe62f44f598c6af639629186f63a4fc" name="abbe62f44f598c6af639629186f63a4fc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abbe62f44f598c6af639629186f63a4fc">&#9670;&#160;</a></span>__init__()</h2>
@@ -150,13 +149,12 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">KP</td><td>Proportional gain. </td></tr>
     <tr><td class="paramname">KI</td><td>Integral gain. </td></tr>
-    <tr><td class="paramname">KD</td><td>Derivative gain.</td></tr>
+    <tr><td class="paramname">KD</td><td>Derivative gain. </td></tr>
   </table>
   </dd>
 </dl>
-<p>The controller stores internal timestamps and error history for computing numerical derivatives and integrals. </p>
 
-<p class="definition">Definition at line <a class="el" href="_controller___class_8py_source.html#l00030">30</a> of file <a class="el" href="_controller___class_8py_source.html">Controller_Class.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_controller___class_8py_source.html#l00023">23</a> of file <a class="el" href="_controller___class_8py_source.html">Controller_Class.py</a>.</p>
 
 </div>
 </div>
@@ -194,16 +192,9 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Control output in the range [-100, 100].</dd></dl>
-<p>This method:</p><ul>
-<li>Computes error</li>
-<li>Calculates P, I, and D components</li>
-<li>Runs anti-windup on the integral term</li>
-<li>Applies output saturation</li>
-<li>Returns the bounded control signal </li>
-</ul>
+<dl class="section return"><dt>Returns</dt><dd>Effort output in the range [-100, 100]. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_controller___class_8py_source.html#l00050">50</a> of file <a class="el" href="_controller___class_8py_source.html">Controller_Class.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_controller___class_8py_source.html#l00040">40</a> of file <a class="el" href="_controller___class_8py_source.html">Controller_Class.py</a>.</p>
 
 </div>
 </div>

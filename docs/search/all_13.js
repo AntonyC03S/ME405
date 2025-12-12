@@ -1,9 +1,15 @@
 var searchData=
 [
-  ['ui_5ftask_0',['UI_Task',['../namespace_u_i___task.html',1,'']]],
-  ['ui_5ftask_1',['UI_task',['../namespace_u_i___task.html#aea77ae18ded7dee71489a04cbc82515f',1,'UI_Task']]],
-  ['ui_5ftask_2epy_2',['UI_Task.py',['../_u_i___task_8py.html',1,'']]],
-  ['unique_5fpath_3',['unique_path',['../namespacebluetooth.html#ab51b3172a0b1cbc15a33689022cc8d3b',1,'bluetooth']]],
-  ['update_4',['update',['../class_controller___class_1_1_controller.html#ac421ee15e0473b009529c470ea8be7ff',1,'Controller_Class.Controller.update()'],['../class_encoder___driver_1_1_encoder.html#a515f2adcb8f91581693beab528c29ba0',1,'Encoder_Driver.Encoder.update()'],['../class_line___class_1_1_line.html#aff7e2ef4f5d64700d44f60bc328657ee',1,'Line_Class.Line.update()']]],
-  ['use_20this_20documentation_5',['How to Use This Documentation',['../index.html#nav_sec',1,'']]]
+  ['read_5feuler_0',['read_euler',['../classimu__driver_1_1_i_m_u.html#a07051d2d9704309e5e894240dcef87d5',1,'imu_driver::IMU']]],
+  ['read_5fgyro_1',['read_gyro',['../classimu__driver_1_1_i_m_u.html#a75f6adf3ee3b24dc64fde5a2e67e64f6',1,'imu_driver::IMU']]],
+  ['read_5fheading_2',['read_heading',['../classimu__driver_1_1_i_m_u.html#ad02a8e497fcd78d4d0932d8a643137a0',1,'imu_driver::IMU']]],
+  ['read_5fyaw_5frate_3',['read_yaw_rate',['../classimu__driver_1_1_i_m_u.html#aa305bb0c3040034c74b1af1993d06739',1,'imu_driver::IMU']]],
+  ['readings_4',['readings',['../class_line___class_1_1_line.html#ac1df3cf2f0b639ccb2a246a882bbf85b',1,'Line_Class::Line']]],
+  ['reset_5',['reset',['../class_state___estimation___class_1_1_romi_observer.html#abdf3fae9ac7d4ec6c311f3c49b7db57a',1,'State_Estimation_Class::RomiObserver']]],
+  ['right_5fposition_6',['right_position',['../namespacebluetooth.html#aa46bcd6511b10f7c6bec50b28857a6cb',1,'bluetooth']]],
+  ['right_5fspeed_7',['right_speed',['../namespacebluetooth.html#a8305ea6ab93078ba2dede93da68f7f8f',1,'bluetooth']]],
+  ['romiobserver_8',['RomiObserver',['../class_state___estimation___class_1_1_romi_observer.html',1,'State_Estimation_Class']]],
+  ['row_5flist_9',['row_list',['../namespacebluetooth.html#a62f336a1b0dd063394165ebba3cf3ca4',1,'bluetooth']]],
+  ['rp_10',['rp',['../namespacebluetooth.html#a81f64a914c79c744a8e3c20bc46c5ac3',1,'bluetooth']]],
+  ['rs_11',['rs',['../namespacebluetooth.html#a991b523e311f18c1f3b97624f361f402',1,'bluetooth']]]
 ];

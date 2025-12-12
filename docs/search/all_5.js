@@ -1,15 +1,12 @@
 var searchData=
 [
-  ['data_5ftask_0',['Data_Task',['../namespace_data___task.html',1,'']]],
-  ['data_5ftask_1',['data_task',['../namespace_data___task.html#a713f75e002d25ae6a47c84421ea8563a',1,'Data_Task']]],
-  ['data_5ftask_2epy_2',['Data_Task.py',['../_data___task_8py.html',1,'']]],
-  ['define_5f13_3',['define_13',['../class_line___class_1_1_line.html#a622194888b54879df1c6321fb79e8982',1,'Line_Class::Line']]],
-  ['define_5f8_4',['define_8',['../class_line___class_1_1_line.html#ae2bf1057070ca79d578aa0e6a2c273a0',1,'Line_Class::Line']]],
-  ['define_5fdistance_5ftraveled_5',['define_distance_traveled',['../class_encoder___driver_1_1_encoder.html#a6a14ec19252ad77e5565ffcb732c8a03',1,'Encoder_Driver::Encoder']]],
-  ['demo_20video_6',['Demo Video',['../index.html#demo_sec',1,'']]],
-  ['devad_7',['devad',['../class_imu___driver_1_1_i_m_u.html#a8e5cdc40e5a29b510f44d93a9319ef43',1,'Imu_Driver::IMU']]],
-  ['dir_5fpin_8',['DIR_pin',['../class_motor___driver_1_1_motor.html#a00f7590dbf5888bad078aaa9334f7a08',1,'Motor_Driver::Motor']]],
-  ['disable_9',['disable',['../class_motor___driver_1_1_motor.html#a728f6643037bc8beb5c5f8702969d945',1,'Motor_Driver::Motor']]],
-  ['distance_5ftraveled_10',['distance_traveled',['../class_encoder___driver_1_1_encoder.html#a8e65237e5f0465fab888df64841aca60',1,'Encoder_Driver::Encoder']]],
-  ['documentation_11',['How to Use This Documentation',['../index.html#nav_sec',1,'']]]
+  ['baud_0',['&lt;b&gt;2. Bluetooth UART Commands (UART1 @ 115200 baud)&lt;/b&gt;',['../tasks.html#autotoc_md2',1,'']]],
+  ['baudrate_1',['baudrate',['../namespacebluetooth.html#a261df53d098d0cef33ebc35691f32be4',1,'bluetooth']]],
+  ['bd_2',['Bd',['../class_state___estimation___class_1_1_romi_observer.html#a6dc622d73dec59a84fdcf8dd0628950e',1,'State_Estimation_Class::RomiObserver']]],
+  ['bluetooth_3',['bluetooth',['../namespacebluetooth.html',1,'']]],
+  ['bluetooth_20uart_20commands_20uart1_20115200_20baud_4',['&lt;b&gt;2. Bluetooth UART Commands (UART1 @ 115200 baud)&lt;/b&gt;',['../tasks.html#autotoc_md2',1,'']]],
+  ['bluetooth_2epy_5',['bluetooth.py',['../bluetooth_8py.html',1,'']]],
+  ['button_6',['button',['../namespace_u_i__task.html#a255acd069b484413c50a83f334bbad75',1,'UI_task']]],
+  ['button_20pin_20c13_20interrupt_7',['&lt;b&gt;1. Hardware Button (Pin C13 interrupt)&lt;/b&gt;',['../tasks.html#autotoc_md1',1,'']]],
+  ['button_5fcallback_8',['button_callback',['../namespace_u_i__task.html#a660b91aa9a4fd82a9f9d33286c351745',1,'UI_task']]]
 ];

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['hardware_0',['Hardware',['../index.html#hw_sec',1,'']]],
-  ['how_20these_20tasks_20work_20together_1',['How These Tasks Work Together',['../tasks.html#usage',1,'']]],
-  ['how_20to_20use_20this_20documentation_2',['How to Use This Documentation',['../index.html#nav_sec',1,'']]]
+  ['baud_0',['&lt;b&gt;2. Bluetooth UART Commands (UART1 @ 115200 baud)&lt;/b&gt;',['../tasks.html#autotoc_md2',1,'']]],
+  ['bluetooth_20uart_20commands_20uart1_20115200_20baud_1',['&lt;b&gt;2. Bluetooth UART Commands (UART1 @ 115200 baud)&lt;/b&gt;',['../tasks.html#autotoc_md2',1,'']]],
+  ['button_20pin_20c13_20interrupt_2',['&lt;b&gt;1. Hardware Button (Pin C13 interrupt)&lt;/b&gt;',['../tasks.html#autotoc_md1',1,'']]]
 ];

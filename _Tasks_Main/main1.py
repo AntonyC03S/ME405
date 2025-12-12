@@ -66,13 +66,9 @@ def main():
         try:
             cotask.task_list.pri_sched()
         except KeyboardInterrupt:
-            # mot_L.disable()
-            # mot_R.disable()
             break
             
         except:
-            # mot_L.disable()
-            # mot_R.disable()
             raise
 
 
