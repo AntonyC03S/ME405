@@ -104,28 +104,64 @@ def motor_task(shares):
                 # controller_right = Controller(2,19,0.1)
                 controller_left = Controller(1.5,12.5,0.1)
                 controller_right = Controller(1.6,12.5,0.1)
-                controller_line = Controller(1.35,0,0)
+                controller_line = Controller(1.35,0,0) #1.35
                 motor_left.set_effort(eff)
                 motor_right.set_effort(eff)
+                switch = Pin.cpu.C10   
+                switch.init(Pin.IN, Pin.PULL_UP)
                 u = 7.2 * (eff / 100.0)
                 L_volt.put(u)
                 R_volt.put(u)
                 # state  = Turn
                 # hi = a.get()
                 # checkpoint = 2
+                subcheck = 0
+                checkpoint = 4
+                set_time = 0
             else:
                 basespeed = 5
-                if s.get() >= 102000:
-                    if checkpoint == 3:
-                        state = Turn
-                elif s.get() >= 86000:
-                    if checkpoint == 2:
+                turn_count = 0
+                if checkpoint == 4:
+                    state = Backward
+
+
+                print(subcheck, set_time, checkpoint, s.get())
+                if s.get() >= set_time+25000:
+                    if subcheck == 3:
+                        done.put(1)
+                        encoder_start.put(0)
+                        motor_eff.put(0)
+                        counter = 0
+                        state = Stop
+                elif s.get() >= set_time+12000:
+                    if subcheck == 2:
                         state = Turn
                         hi = a.get()
-                if s.get() >= 30500:
-                    if checkpoint == 0:
-                        checkpoint = 1
-                        state = Backward
+                        # last_a = hi
+                elif s.get() >= set_time+6000:
+                    if subcheck == 1:
+                        state = Turn
+                        hi = a.get()
+                        # last_a = hi
+                elif s.get() >= set_time+10: # forward from the bump sensor
+                    if checkpoint == 5 and subcheck == 0:
+                        state = Turn
+                        hi = a.get()
+                        # last_a = hi
+                # elif s.get() >= 102000: 
+                #     if checkpoint == 3:
+                #         state = Turn
+                # elif s.get() >= 86000:
+                #     if checkpoint == 2:
+                #         state = Turn
+                        # hi = a.get()
+                        # last_a = hi
+
+                # elif s.get() >= 30500:
+                #     if checkpoint == 0:
+                #         checkpoint = 1
+                #         state = Backward
+                
     
 
                         
@@ -166,19 +202,21 @@ def motor_task(shares):
             
             counter += 1
 
-            if s.get() <=25000:
-                if checkpoint == 1:
-                    basespeed = 5
-                    state = Turn
-                    hi = a.get()
-
-
+            # if s.get() <=25000:
+            #     if checkpoint == 1:
+            #         basespeed = 5
+            #         state = Turn
+            #         hi = a.get()
+            if switch.value() == 1:
+                set_time = s.get()
+                state = Line_Running
+                checkpoint = 5
                     # ANTONY BUMP SENSOR CODE GOES HERE
 
 
         # State 6 - Turn
         elif state == Turn:
-            basespeed = 1.5
+            basespeed = 2.5
             vL_set = -basespeed
             vR_set = basespeed
             vL_set = max(min(vL_set, 100), -100)
@@ -191,6 +229,10 @@ def motor_task(shares):
             R_volt.put(7.2 * (Rgain / 100.0))
             
             counter += 1
+            turn_count += 1
+            print(turn_count)
+            # if abs(last_a -a.get()) > 50:
+            #     hi = a.get() - (hi - last_a) 
             deltaa = hi - a.get()
 
             if checkpoint == 1:
@@ -199,15 +241,18 @@ def motor_task(shares):
                     checkpoint = 2
                     controller_line._KP  = 1.5
             elif checkpoint == 2:
-                if s.get() >= 87500:
+                if s.get() >= 87250:
                     state = Line_Running
                     checkpoint = 3
             elif checkpoint == 3:
-                if s.get() >= 104500:
+                if s.get() >= 104200: #104500
                     state = Backward
+            elif checkpoint == 5:
+                if turn_count >= 25:
+                    subcheck += 1
+                    state = Line_Running
 
-
-
+            # last_a = a.get()
             if counter >= 1000:
                 done.put(1)
                 encoder_start.put(0)

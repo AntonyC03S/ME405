@@ -1,5 +1,5 @@
 from pyb import Pin, Timer # type: ignore
-from discretized_estimation import RomiObserver
+from State_Estimation_class import RomiObserver
 from imu_Driver import IMU
 from pyb import Timer, Pin, I2C, delay
 import time
@@ -105,7 +105,7 @@ def state_task(shares):
 
             s.put(s_mm)
             a.put(a_deg)
-            print(s_mm,a_deg)
+            # print(s_mm,a_deg)
         yield state
 
 
