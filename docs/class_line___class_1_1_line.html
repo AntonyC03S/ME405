@@ -129,6 +129,8 @@ Public Member Functions</h2></td></tr>
 <li>Return normalized sensor readings</li>
 <li>Compute a centroid position of the line across the array </li>
 </ul>
+
+<p class="definition">Definition at line <a class="el" href="_line___class_8py_source.html#l00019">19</a> of file <a class="el" href="_line___class_8py_source.html">Line_Class.py</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a21b7e7a894cdf565725da515ef566e2e" name="a21b7e7a894cdf565725da515ef566e2e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a21b7e7a894cdf565725da515ef566e2e">&#9670;&#160;</a></span>__init__()</h2>
@@ -147,6 +149,8 @@ Public Member Functions</h2></td></tr>
 
 <p>Initialize an empty <a class="el" href="class_line___class_1_1_line.html" title="Line sensor array interface.">Line</a> object. </p>
 <p>Calibration data and sensors are set up later via <a class="el" href="#ae2bf1057070ca79d578aa0e6a2c273a0">define_8</a> or <a class="el" href="#a622194888b54879df1c6321fb79e8982">define_13</a> and the calibration methods. </p>
+
+<p class="definition">Definition at line <a class="el" href="_line___class_8py_source.html#l00035">35</a> of file <a class="el" href="_line___class_8py_source.html">Line_Class.py</a>.</p>
 
 </div>
 </div>
@@ -170,6 +174,8 @@ Public Member Functions</h2></td></tr>
 <p>Reads all sensors and stores their values as the "black" reference.</p>
 <dl class="section return"><dt>Returns</dt><dd>List of raw ADC values measured over a black (line) surface. </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_line___class_8py_source.html#l00169">169</a> of file <a class="el" href="_line___class_8py_source.html">Line_Class.py</a>.</p>
+
 </div>
 </div>
 <a id="a298a118fcd75cd347f0e7acc0d045957" name="a298a118fcd75cd347f0e7acc0d045957"></a>
@@ -190,6 +196,8 @@ Public Member Functions</h2></td></tr>
 <p>Capture white calibration values. </p>
 <p>Reads all sensors and stores their values as the "white" reference.</p>
 <dl class="section return"><dt>Returns</dt><dd>List of raw ADC values measured over a white surface. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_line___class_8py_source.html#l00159">159</a> of file <a class="el" href="_line___class_8py_source.html">Line_Class.py</a>.</p>
 
 </div>
 </div>
@@ -228,6 +236,8 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Normalized value between 0 (white) and 1 (black). </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_line___class_8py_source.html#l00232">232</a> of file <a class="el" href="_line___class_8py_source.html">Line_Class.py</a>.</p>
+
 </div>
 </div>
 <a id="ae9dbb17ac924140dccc5a52143d39cb9" name="ae9dbb17ac924140dccc5a52143d39cb9"></a>
@@ -257,6 +267,8 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Zero if below a small threshold, otherwise the rounded value. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_line___class_8py_source.html#l00267">267</a> of file <a class="el" href="_line___class_8py_source.html">Line_Class.py</a>.</p>
 
 </div>
 </div>
@@ -360,6 +372,8 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="_line___class_8py_source.html#l00093">93</a> of file <a class="el" href="_line___class_8py_source.html">Line_Class.py</a>.</p>
+
 </div>
 </div>
 <a id="ae2bf1057070ca79d578aa0e6a2c273a0" name="ae2bf1057070ca79d578aa0e6a2c273a0"></a>
@@ -432,6 +446,8 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p class="definition">Definition at line <a class="el" href="_line___class_8py_source.html#l00046">46</a> of file <a class="el" href="_line___class_8py_source.html">Line_Class.py</a>.</p>
+
 </div>
 </div>
 <a id="ac1df3cf2f0b639ccb2a246a882bbf85b" name="ac1df3cf2f0b639ccb2a246a882bbf85b"></a>
@@ -458,6 +474,8 @@ Public Member Functions</h2></td></tr>
 </ul>
 <dl class="section return"><dt>Returns</dt><dd>List of floats in approximately [0, 1]. </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_line___class_8py_source.html#l00214">214</a> of file <a class="el" href="_line___class_8py_source.html">Line_Class.py</a>.</p>
+
 </div>
 </div>
 <a id="aff7e2ef4f5d64700d44f60bc328657ee" name="aff7e2ef4f5d64700d44f60bc328657ee"></a>
@@ -479,10 +497,12 @@ Public Member Functions</h2></td></tr>
 <p>Uses normalized sensor readings to compute a weighted average of sensor positions, yielding an estimated line position.</p>
 <dl class="section return"><dt>Returns</dt><dd>Centroid position as a float in the same index space as <a class="el" href="#a5ab2730f6b3630a4882177912d6f440e">positions</a> (e.g. between 1 and 15 for an 8-sensor setup). </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_line___class_8py_source.html#l00179">179</a> of file <a class="el" href="_line___class_8py_source.html">Line_Class.py</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>_Drivers/<a class="el" href="_line___class_8py.html">Line_Class.py</a></li>
+<li>_Drivers/<a class="el" href="_line___class_8py_source.html">Line_Class.py</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

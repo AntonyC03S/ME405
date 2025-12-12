@@ -124,6 +124,8 @@ Public Member Functions</h2></td></tr>
 <li>Time between updates</li>
 <li>Velocity </li>
 </ul>
+
+<p class="definition">Definition at line <a class="el" href="_encoder___driver_8py_source.html#l00014">14</a> of file <a class="el" href="_encoder___driver_8py_source.html">Encoder_Driver.py</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4cc927acee7548adc7f1ded90460d3dd" name="a4cc927acee7548adc7f1ded90460d3dd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4cc927acee7548adc7f1ded90460d3dd">&#9670;&#160;</a></span>__init__()</h2>
@@ -177,6 +179,8 @@ Public Member Functions</h2></td></tr>
 </dl>
 <p>The timer is configured in <code>Timer.ENC_AB</code> mode on the two channels. Internal state variables keep track of position, delta counts, and timestamps between updates. </p>
 
+<p class="definition">Definition at line <a class="el" href="_encoder___driver_8py_source.html#l00028">28</a> of file <a class="el" href="_encoder___driver_8py_source.html">Encoder_Driver.py</a>.</p>
+
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
@@ -213,6 +217,8 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <p>This can be used to "zero" or re-reference the encoder based on a known physical position. </p>
+
+<p class="definition">Definition at line <a class="el" href="_encoder___driver_8py_source.html#l00135">135</a> of file <a class="el" href="_encoder___driver_8py_source.html">Encoder_Driver.py</a>.</p>
 
 </div>
 </div>
@@ -257,6 +263,8 @@ Public Member Functions</h2></td></tr>
 </p>
 <p>where <picture><source srcset="form_1_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ N $" src="form_1.png"/></picture> is the accumulated encoder count. </p>
 
+<p class="definition">Definition at line <a class="el" href="_encoder___driver_8py_source.html#l00113">113</a> of file <a class="el" href="_encoder___driver_8py_source.html">Encoder_Driver.py</a>.</p>
+
 </div>
 </div>
 <a id="ab4ab2e92fd18f45c1009498bba81b988" name="ab4ab2e92fd18f45c1009498bba81b988"></a>
@@ -287,6 +295,8 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Linear velocity at the wheel rim in mm/s. </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_encoder___driver_8py_source.html#l00165">165</a> of file <a class="el" href="_encoder___driver_8py_source.html">Encoder_Driver.py</a>.</p>
+
 </div>
 </div>
 <a id="a46acaf0092dd3034c797d872aa182f5c" name="a46acaf0092dd3034c797d872aa182f5c"></a>
@@ -308,6 +318,8 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Current angular position in radians.</dd></dl>
 <p>The raw encoder count is converted using a fixed <code>ticks_per_rev</code> = 1437.1. </p>
 
+<p class="definition">Definition at line <a class="el" href="_encoder___driver_8py_source.html#l00103">103</a> of file <a class="el" href="_encoder___driver_8py_source.html">Encoder_Driver.py</a>.</p>
+
 </div>
 </div>
 <a id="a515f2adcb8f91581693beab528c29ba0" name="a515f2adcb8f91581693beab528c29ba0"></a>
@@ -328,6 +340,8 @@ Public Member Functions</h2></td></tr>
 <p>Update the encoder state. </p>
 <p>Reads the timer counter, handles overflow/underflow and updates position, delta, and time step.</p>
 <p>This method must be called periodically in the main loop to keep <a class="el" href="#a46acaf0092dd3034c797d872aa182f5c">position</a> and <a class="el" href="#adaec2847d562794c090d581bcc24b054">velocity</a> up-to-date. </p>
+
+<p class="definition">Definition at line <a class="el" href="_encoder___driver_8py_source.html#l00070">70</a> of file <a class="el" href="_encoder___driver_8py_source.html">Encoder_Driver.py</a>.</p>
 
 </div>
 </div>
@@ -356,6 +370,8 @@ Public Member Functions</h2></td></tr>
 </p>
 <p>where <picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \Delta t $" src="form_3.png"/></picture> is in seconds. </p>
 
+<p class="definition">Definition at line <a class="el" href="_encoder___driver_8py_source.html#l00147">147</a> of file <a class="el" href="_encoder___driver_8py_source.html">Encoder_Driver.py</a>.</p>
+
 </div>
 </div>
 <a id="a04a24f94ab1cba754bc8d669138047be" name="a04a24f94ab1cba754bc8d669138047be"></a>
@@ -376,10 +392,12 @@ Public Member Functions</h2></td></tr>
 <p>Zero the position counter. </p>
 <p>Sets the present encoder position to zero so that future updates measure relative motion from this point. </p>
 
+<p class="definition">Definition at line <a class="el" href="_encoder___driver_8py_source.html#l00176">176</a> of file <a class="el" href="_encoder___driver_8py_source.html">Encoder_Driver.py</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>_Drivers/<a class="el" href="_encoder___driver_8py.html">Encoder_Driver.py</a></li>
+<li>_Drivers/<a class="el" href="_encoder___driver_8py_source.html">Encoder_Driver.py</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

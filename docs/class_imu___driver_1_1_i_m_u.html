@@ -123,6 +123,8 @@ Protected Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>BNO055 <a class="el" href="class_imu___driver_1_1_i_m_u.html" title="BNO055 IMU driver over I2C.">IMU</a> driver over I2C. </p>
 <p>Wraps common BNO055 functions such as mode switching, calibration, and reading Euler angles / gyro data. </p>
+
+<p class="definition">Definition at line <a class="el" href="_imu___driver_8py_source.html#l00018">18</a> of file <a class="el" href="_imu___driver_8py_source.html">Imu_Driver.py</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae1e11bed117d97e0f331f6f912475375" name="ae1e11bed117d97e0f331f6f912475375"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae1e11bed117d97e0f331f6f912475375">&#9670;&#160;</a></span>__init__()</h2>
@@ -157,6 +159,8 @@ Protected Member Functions</h2></td></tr>
   </dd>
 </dl>
 <p>The constructor sets the <a class="el" href="class_imu___driver_1_1_i_m_u.html" title="BNO055 IMU driver over I2C.">IMU</a> into CONFIG mode initially. </p>
+
+<p class="definition">Definition at line <a class="el" href="_imu___driver_8py_source.html#l00043">43</a> of file <a class="el" href="_imu___driver_8py_source.html">Imu_Driver.py</a>.</p>
 
 </div>
 </div>
@@ -197,6 +201,8 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <p>This writes to the operation mode register and includes required delays as per the BNO055 datasheet. </p>
 
+<p class="definition">Definition at line <a class="el" href="_imu___driver_8py_source.html#l00055">55</a> of file <a class="el" href="_imu___driver_8py_source.html">Imu_Driver.py</a>.</p>
+
 </div>
 </div>
 <a id="acc75d1e8114e48c3baca9c3cbf040a26" name="acc75d1e8114e48c3baca9c3cbf040a26"></a>
@@ -217,6 +223,8 @@ Protected Member Functions</h2></td></tr>
 <p>Get <a class="el" href="class_imu___driver_1_1_i_m_u.html" title="BNO055 IMU driver over I2C.">IMU</a> calibration status. </p>
 <p>Returns the calibration state of system, gyro, accelerometer, and magnetometer.</p>
 <dl class="section return"><dt>Returns</dt><dd>Tuple <span class="tt">(sys, gyro, acc, mag)</span> where each value is from 0–3. A value of 3 indicates fully calibrated. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_imu___driver_8py_source.html#l00080">80</a> of file <a class="el" href="_imu___driver_8py_source.html">Imu_Driver.py</a>.</p>
 
 </div>
 </div>
@@ -249,6 +257,8 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The raw calibration data as a bytes object. </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_imu___driver_8py_source.html#l00121">121</a> of file <a class="el" href="_imu___driver_8py_source.html">Imu_Driver.py</a>.</p>
+
 </div>
 </div>
 <a id="ab8d48013d86fa867896a93c2424ece10" name="ab8d48013d86fa867896a93c2424ece10"></a>
@@ -280,6 +290,8 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <p>This can be used at startup to restore a known good calibration, avoiding re-calibration on every power cycle. </p>
 
+<p class="definition">Definition at line <a class="el" href="_imu___driver_8py_source.html#l00154">154</a> of file <a class="el" href="_imu___driver_8py_source.html">Imu_Driver.py</a>.</p>
+
 </div>
 </div>
 <a id="a383f62ecf870ae868b95039f45153093" name="a383f62ecf870ae868b95039f45153093"></a>
@@ -302,6 +314,8 @@ Protected Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Tuple <span class="tt">(heading, roll, pitch)</span> in degrees.</dd></dl>
 <p>These angles are provided directly by the BNO055 in fusion mode (e.g. NDOF). </p>
 
+<p class="definition">Definition at line <a class="el" href="_imu___driver_8py_source.html#l00096">96</a> of file <a class="el" href="_imu___driver_8py_source.html">Imu_Driver.py</a>.</p>
+
 </div>
 </div>
 <a id="a987ced878da29967544fd2ee6174f019" name="a987ced878da29967544fd2ee6174f019"></a>
@@ -323,6 +337,8 @@ Protected Member Functions</h2></td></tr>
 <p>Reads raw gyro data from the <a class="el" href="class_imu___driver_1_1_i_m_u.html" title="BNO055 IMU driver over I2C.">IMU</a> and converts it to deg/s.</p>
 <dl class="section return"><dt>Returns</dt><dd>Tuple <span class="tt">(gx, gy, gz)</span> in degrees per second. </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_imu___driver_8py_source.html#l00171">171</a> of file <a class="el" href="_imu___driver_8py_source.html">Imu_Driver.py</a>.</p>
+
 </div>
 </div>
 <a id="ad3a4b9bfed3da8f97ad942efdc6691cd" name="ad3a4b9bfed3da8f97ad942efdc6691cd"></a>
@@ -342,6 +358,8 @@ Protected Member Functions</h2></td></tr>
 
 <p>Read only the heading (yaw) angle. </p>
 <dl class="section return"><dt>Returns</dt><dd>Heading in degrees. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_imu___driver_8py_source.html#l00112">112</a> of file <a class="el" href="_imu___driver_8py_source.html">Imu_Driver.py</a>.</p>
 
 </div>
 </div>
@@ -364,10 +382,12 @@ Protected Member Functions</h2></td></tr>
 <p>Returns the Z-axis gyro rate.</p>
 <dl class="section return"><dt>Returns</dt><dd>Yaw rate (gz) in degrees per second. </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_imu___driver_8py_source.html#l00184">184</a> of file <a class="el" href="_imu___driver_8py_source.html">Imu_Driver.py</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>_Drivers/<a class="el" href="_imu___driver_8py.html">Imu_Driver.py</a></li>
+<li>_Drivers/<a class="el" href="_imu___driver_8py_source.html">Imu_Driver.py</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

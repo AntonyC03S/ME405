@@ -10,7 +10,6 @@ var searchData=
   ['motor_7',['Motor',['../class_motor___driver_1_1_motor.html',1,'Motor_Driver']]],
   ['motor_5fdriver_8',['Motor_Driver',['../namespace_motor___driver.html',1,'']]],
   ['motor_5fdriver_2epy_9',['Motor_Driver.py',['../_motor___driver_8py.html',1,'']]],
-  ['motor_5ftask_10',['Motor_Task',['../namespace_motor___task.html',1,'']]],
-  ['motor_5ftask_11',['motor_task',['../namespace_motor___task.html#a1d3ce4c660d09cc6aa522b1fed8def79',1,'Motor_Task']]],
-  ['motor_5ftask_2epy_12',['Motor_Task.py',['../_motor___task_8py.html',1,'']]]
+  ['motor_5ftask_10',['motor_task',['../namespacemotor__task.html',1,'motor_task'],['../namespacemotor__task.html#a34f3f7751391229fd593dc79a1763699',1,'motor_task.motor_task()']]],
+  ['motor_5ftask_2epy_11',['motor_task.py',['../motor__task_8py.html',1,'']]]
 ];

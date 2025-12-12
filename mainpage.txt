@@ -2,17 +2,58 @@
 
 @section intro_sec Overview
 
-This documentation describes the software for a Romi line-following robot
+This documentation describes the software for a Romi robot
 developed for **ME 405**. The robot uses:
 
 - DC motors with PWM + direction drivers
 - Quadrature encoders on each wheel
 - A BNO055 IMU for heading and yaw-rate
 - A reflectance line sensor array
-- A PID controller and state observer for control and estimation
+- A PID controller
+- State observer for control and estimation
 
-The goal of the project is to follow a line smoothly and robustly while
-demonstrating good embedded software structure and documentation.
+The goal of the project is make it through an obstacle course designed in 
+order for the use of line sensing and state estimation. Below is the obstacle 
+course we were task to complete. 
+
+@image html obstacle_course.png "Obstacle course that Romi needs to complete" width=1000px
+
+@section strategy_sec Strategy
+
+In order to complete the course we came up with a plan to reach each checkpoint.
+
+CP #0 - 1
+
+Here we follow the line using the line sensor. We do not get distracted by the forked
+path and we go straight through the diamond. 
+
+CP #1 - 2
+
+When we reach checkpoint 1 we immediately start driving in reverse and do a 90 degree
+CCW turn so that we can follow the forked path that we ignored early. Here we rely on the 
+state estimation in order to know where to turn. From there we line follow all up to the 
+checkpoint. We decided avoid the tight 180 degree turn because it would slow us down. 
+
+CP #2 - 3
+
+We just line follow.
+
+CP #3 - 4
+
+We drive straight through this obstacle and find the line at the end to line up.
+
+CP #4 - 5
+
+This obstacle requires you to rely on the state observer since there is no line to follow.
+We drive straight through and at the end of obstacle do a 90 degree CCW turn. Here is when
+we drive in reverse to cross the checkpoint.
+
+CP #5 - 6
+
+We drive backwards into the wall. So that our bump sensors detect that we have hit the wall.
+Then we drive forward and turn 90 degrees 3 times so that we can reach the checkpoint. 
+
+
 
 @section hw_sec Hardware
 
@@ -20,11 +61,14 @@ demonstrating good embedded software structure and documentation.
 
 The main hardware components are:
 
-- Pololu Romi chassis
-- MicroPython-capable microcontroller (e.g. Pyboard)
-- Motor driver boards
+- Romi chassis
+- Pyboard
+- Motor driver 
 - Line sensor array
 - BNO055 IMU
+- Bump sensors
+- Bluetooth module
+- Encoders
 
 @section sw_sec Software Structure
 
@@ -40,9 +84,10 @@ The code is organized into two main parts:
 
 - **Tasks** (in the `_Task` folder)
   - Motor control task
-  - Line-following / control loop task
-  - IMU and encoder update tasks
-  - Any additional high-level behaviors
+  - Encoder reading task
+  - State estimation task
+  - UI task
+  - Data collection task
 
 @section nav_sec How to Use This Documentation
 
@@ -51,20 +96,13 @@ Use the navigation panel on the left:
 - **Project** – this page you are reading now
 - **Classes** – object-oriented interfaces such as `Motor`, `Encoder`,
   `IMU`, `Line`, `Controller`, and `RomiObserver`
+- **Task Modules** - where you can find a description of each task file 
 - **Files** – source files from the `_Driver` and `_Task` folders
 
-To see how components fit together, start with:
-
-- `Motor_Driver.py`
-- `Encoder_Driver.py`
-- `Imu_Driver.py`
-- `Line_Class.py`
-- `Controller_Class.py`
-- `State_Estimation_Class.py`
 
 @section demo_sec Demo Video
 
-Below is a demo of the Romi following a line:
+Below is a demo of the Romi completing the course:
 
 @htmlonly
 <div style="margin-top: 1em;">

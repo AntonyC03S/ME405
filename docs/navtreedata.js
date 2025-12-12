@@ -26,6 +26,7 @@ var NAVTREE =
 [
   [ "ME 405 Term Project", "index.html", [
     [ "Overview", "index.html#intro_sec", null ],
+    [ "Strategy", "index.html#strategy_sec", null ],
     [ "Hardware", "index.html#hw_sec", null ],
     [ "Software Structure", "index.html#sw_sec", null ],
     [ "How to Use This Documentation", "index.html#nav_sec", null ],

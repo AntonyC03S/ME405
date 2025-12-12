@@ -147,42 +147,42 @@
 
   <!-- Layout definition for a file page -->
   <file>
-    <briefdescription visible="yes"/>
-    <includes visible="$SHOW_INCLUDE_FILES"/>
-    <includegraph visible="yes"/>
-    <includedbygraph visible="yes"/>
+    <briefdescription visible="no"/>
+    <includes visible="no"/>
+    <includegraph visible="no"/>
+    <includedbygraph visible="no"/>
     <sourcelink visible="yes"/>
     <memberdecl>
-      <interfaces visible="yes" title=""/>
-      <classes visible="yes" title=""/>
-      <structs visible="yes" title=""/>
-      <exceptions visible="yes" title=""/>
-      <namespaces visible="yes" title=""/>
-      <concepts visible="yes" title=""/>
-      <constantgroups visible="yes" title=""/>
-      <defines visible="yes" title=""/>
-      <typedefs visible="yes" title=""/>
-      <sequences visible="yes" title=""/>
-      <dictionaries visible="yes" title=""/>
-      <enums visible="yes" title=""/>
-      <functions visible="yes" title=""/>
-      <variables visible="yes" title=""/>
-      <properties visible="yes" title=""/>
-      <membergroups visible="yes"/>
+      <interfaces visible="no" title=""/>
+      <classes visible="no" title=""/>
+      <structs visible="no" title=""/>
+      <exceptions visible="no" title=""/>
+      <namespaces visible="no" title=""/>
+      <concepts visible="no" title=""/>
+      <constantgroups visible="no" title=""/>
+      <defines visible="no" title=""/>
+      <typedefs visible="no" title=""/>
+      <sequences visible="no" title=""/>
+      <dictionaries visible="no" title=""/>
+      <enums visible="no" title=""/>
+      <functions visible="no" title=""/>
+      <variables visible="no" title=""/>
+      <properties visible="no" title=""/>
+      <membergroups visible="no"/>
     </memberdecl>
-    <detaileddescription visible="yes" title=""/>
+    <detaileddescription visible="no" title=""/>
     <memberdef>
-      <inlineclasses visible="yes" title=""/>
-      <defines visible="yes" title=""/>
-      <typedefs visible="yes" title=""/>
-      <sequences visible="yes" title=""/>
-      <dictionaries visible="yes" title=""/>
-      <enums visible="yes" title=""/>
-      <functions visible="yes" title=""/>
-      <variables visible="yes" title=""/>
-      <properties visible="yes" title=""/>
+      <inlineclasses visible="no" title=""/>
+      <defines visible="no" title=""/>
+      <typedefs visible="no" title=""/>
+      <sequences visible="no" title=""/>
+      <dictionaries visible="no" title=""/>
+      <enums visible="no" title=""/>
+      <functions visible="no" title=""/>
+      <variables visible="no" title=""/>
+      <properties visible="no" title=""/>
     </memberdef>
-    <authorsection/>
+    <authorsection visible="no"/>
   </file>
 
   <!-- Layout definition for a group page -->

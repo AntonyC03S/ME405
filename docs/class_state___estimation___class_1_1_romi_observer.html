@@ -127,6 +127,8 @@ Public Member Functions</h2></td></tr>
 <ul>
 <li><picture><source srcset="form_11_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x = [\\omega_L, \\omega_R, s, \\psi]^T $" src="form_11.png"/></picture> </li>
 </ul>
+
+<p class="definition">Definition at line <a class="el" href="_state___estimation___class_8py_source.html#l00030">30</a> of file <a class="el" href="_state___estimation___class_8py_source.html">State_Estimation_Class.py</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1df2e9ddf86289efcf0d46b383bb27e4" name="a1df2e9ddf86289efcf0d46b383bb27e4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1df2e9ddf86289efcf0d46b383bb27e4">&#9670;&#160;</a></span>__init__()</h2>
@@ -180,6 +182,8 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>Currently, the constructor uses built-in Ad and Bd matrices tuned for a specific sampling period and robot model. The <code class="param">Ad</code> and <code class="param">Bd</code> parameters are present for future flexibility but are not applied. </dd></dl>
 
+<p class="definition">Definition at line <a class="el" href="_state___estimation___class_8py_source.html#l00052">52</a> of file <a class="el" href="_state___estimation___class_8py_source.html">State_Estimation_Class.py</a>.</p>
+
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
@@ -201,6 +205,8 @@ Public Member Functions</h2></td></tr>
 <p>Get estimated outputs based on current state. </p>
 <p>Computes <picture><source srcset="form_13_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \\hat{y} = C x $" src="form_13.png"/></picture>.</p>
 <dl class="section return"><dt>Returns</dt><dd>Estimated output vector (4x1): [SL_hat, SR_hat, psi_hat, psidot_hat]^T. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_state___estimation___class_8py_source.html#l00161">161</a> of file <a class="el" href="_state___estimation___class_8py_source.html">State_Estimation_Class.py</a>.</p>
 
 </div>
 </div>
@@ -232,6 +238,8 @@ Public Member Functions</h2></td></tr>
 </dl>
 <p>This is useful when re-starting an experiment or re-initializing the estimate after a large disturbance. </p>
 
+<p class="definition">Definition at line <a class="el" href="_state___estimation___class_8py_source.html#l00109">109</a> of file <a class="el" href="_state___estimation___class_8py_source.html">State_Estimation_Class.py</a>.</p>
+
 </div>
 </div>
 <a id="adafa6afaed0222b5b7261aff15770b48" name="adafa6afaed0222b5b7261aff15770b48"></a>
@@ -251,6 +259,8 @@ Public Member Functions</h2></td></tr>
 
 <p>Get the current state estimate. </p>
 <dl class="section return"><dt>Returns</dt><dd>State vector x as (4x1) array: [wL, wR, s, psi]^T. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_state___estimation___class_8py_source.html#l00153">153</a> of file <a class="el" href="_state___estimation___class_8py_source.html">State_Estimation_Class.py</a>.</p>
 
 </div>
 </div>
@@ -313,10 +323,12 @@ Public Member Functions</h2></td></tr>
 <li>Applies observer correction using the gain L </li>
 </ul>
 
+<p class="definition">Definition at line <a class="el" href="_state___estimation___class_8py_source.html#l00119">119</a> of file <a class="el" href="_state___estimation___class_8py_source.html">State_Estimation_Class.py</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>_Drivers/<a class="el" href="_state___estimation___class_8py.html">State_Estimation_Class.py</a></li>
+<li>_Drivers/<a class="el" href="_state___estimation___class_8py_source.html">State_Estimation_Class.py</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

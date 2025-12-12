@@ -123,14 +123,14 @@ Task Files</h1>
 <li>Running the main cooperative scheduler loop</li>
 </ul>
 </li>
-<li><span class="tt"><a class="el" href="_motor___task_8py.html">Motor_Task.py</a></span> <br  />
+<li><span class="tt"><a class="el" href="motor__task_8py.html">Motor_Task.py</a></span> <br  />
  Controls the motors using the <span class="tt">Motor</span> driver (and often the PID <span class="tt">Controller</span>). This task:<ul>
 <li>Reads setpoints (desired speed or position)</li>
 <li>Applies control laws (e.g., PID)</li>
 <li>Calls <span class="tt">Motor.set_effort()</span> for each motor</li>
 </ul>
 </li>
-<li><span class="tt"><a class="el" href="_state___estimation___task_8py.html">State_Estimation_Task.py</a></span> <br  />
+<li><span class="tt"><a class="el" href="state__estimation__task_8py.html">State_Estimation_Task.py</a></span> <br  />
  Runs the state estimation logic using the <span class="tt">RomiObserver</span> (or related estimation code). It typically:<ul>
 <li>Reads IMU and encoder measurements</li>
 <li>Calls the observer <span class="tt">step()</span> method</li>

@@ -94,15 +94,35 @@ $(function(){initNavTree('index.html','',''); });
 <div class="contents">
 <div class="textblock"><h1 class="doxsection"><a class="anchor" id="intro_sec"></a>
 Overview</h1>
-<p>This documentation describes the software for a Romi line-following robot developed for <b>ME 405</b>. The robot uses:</p>
+<p>This documentation describes the software for a Romi robot developed for <b>ME 405</b>. The robot uses:</p>
 <ul>
 <li>DC motors with PWM + direction drivers</li>
 <li>Quadrature encoders on each wheel</li>
 <li>A BNO055 IMU for heading and yaw-rate</li>
 <li>A reflectance line sensor array</li>
-<li>A PID controller and state observer for control and estimation</li>
+<li>A PID controller</li>
+<li>State observer for control and estimation</li>
 </ul>
-<p>The goal of the project is to follow a line smoothly and robustly while demonstrating good embedded software structure and documentation.</p>
+<p>The goal of the project is make it through an obstacle course designed in order for the use of line sensing and state estimation. Below is the obstacle course we were task to complete.</p>
+<div class="image">
+<img src="obstacle_course.png" alt="" width="1000px"/>
+<div class="caption">
+Obstacle course that Romi needs to complete</div></div>
+<h1 class="doxsection"><a class="anchor" id="strategy_sec"></a>
+Strategy</h1>
+<p>In order to complete the course we came up with a plan to reach each checkpoint.</p>
+<p>CP #0 - 1</p>
+<p>Here we follow the line using the line sensor. We do not get distracted by the forked path and we go straight through the diamond.</p>
+<p>CP #1 - 2</p>
+<p>When we reach checkpoint 1 we immediately start driving in reverse and do a 90 degree CCW turn so that we can follow the forked path that we ignored early. Here we rely on the state estimation in order to know where to turn. From there we line follow all up to the checkpoint. We decided avoid the tight 180 degree turn because it would slow us down.</p>
+<p>CP #2 - 3</p>
+<p>We just line follow.</p>
+<p>CP #3 - 4</p>
+<p>We drive straight through this obstacle and find the line at the end to line up.</p>
+<p>CP #4 - 5</p>
+<p>This obstacle requires you to rely on the state observer since there is no line to follow. We drive straight through and at the end of obstacle do a 90 degree CCW turn. Here is when we drive in reverse to cross the checkpoint.</p>
+<p>CP #5 - 6</p>
+<p>We drive backwards into the wall. So that our bump sensors detect that we have hit the wall. Then we drive forward and turn 90 degrees 3 times so that we can reach the checkpoint.</p>
 <h1 class="doxsection"><a class="anchor" id="hw_sec"></a>
 Hardware</h1>
 <div class="image">
@@ -111,11 +131,14 @@ Hardware</h1>
 Romi robot with sensors and electronics</div></div>
 <p>The main hardware components are:</p>
 <ul>
-<li>Pololu Romi chassis</li>
-<li>MicroPython-capable microcontroller (e.g. Pyboard)</li>
-<li>Motor driver boards</li>
+<li>Romi chassis</li>
+<li>Pyboard</li>
+<li>Motor driver</li>
 <li>Line sensor array</li>
 <li>BNO055 IMU</li>
+<li>Bump sensors</li>
+<li>Bluetooth module</li>
+<li>Encoders</li>
 </ul>
 <h1 class="doxsection"><a class="anchor" id="sw_sec"></a>
 Software Structure</h1>
@@ -132,9 +155,10 @@ Software Structure</h1>
 </li>
 <li><b>Tasks</b> (in the <span class="tt">_Task</span> folder)<ul>
 <li>Motor control task</li>
-<li>Line-following / control loop task</li>
-<li>IMU and encoder update tasks</li>
-<li>Any additional high-level behaviors</li>
+<li>Encoder reading task</li>
+<li>State estimation task</li>
+<li>UI task</li>
+<li>Data collection task</li>
 </ul>
 </li>
 </ul>
@@ -144,20 +168,12 @@ How to Use This Documentation</h1>
 <ul>
 <li><b>Project</b> – this page you are reading now</li>
 <li><b>Classes</b> – object-oriented interfaces such as <span class="tt">Motor</span>, <span class="tt">Encoder</span>, <span class="tt">IMU</span>, <span class="tt">Line</span>, <span class="tt">Controller</span>, and <span class="tt">RomiObserver</span></li>
+<li><b>Task Modules</b> - where you can find a description of each task file</li>
 <li><b>Files</b> – source files from the <span class="tt">_Driver</span> and <span class="tt">_Task</span> folders</li>
-</ul>
-<p>To see how components fit together, start with:</p>
-<ul>
-<li><span class="tt"><a class="el" href="_motor___driver_8py.html" title="Motor driver class for PWM + direction motor controllers.">Motor_Driver.py</a></span></li>
-<li><span class="tt"><a class="el" href="_encoder___driver_8py.html" title="Quadrature encoder driver for a MicroPython Pyboard.">Encoder_Driver.py</a></span></li>
-<li><span class="tt"><a class="el" href="_imu___driver_8py.html" title="I2C interface for a BNO055 IMU sensor.">Imu_Driver.py</a></span></li>
-<li><span class="tt"><a class="el" href="_line___class_8py.html" title="Line sensor array driver using analog reflectance sensors.">Line_Class.py</a></span></li>
-<li><span class="tt"><a class="el" href="_controller___class_8py.html" title="PID controller implementation for robot motion control.">Controller_Class.py</a></span></li>
-<li><span class="tt"><a class="el" href="_state___estimation___class_8py.html">State_Estimation_Class.py</a></span></li>
 </ul>
 <h1 class="doxsection"><a class="anchor" id="demo_sec"></a>
 Demo Video</h1>
-<p>Below is a demo of the Romi following a line:</p>
+<p>Below is a demo of the Romi completing the course:</p>
 <p> 
 <div style="margin-top: 1em;">
   <iframe width="560" height="315"
