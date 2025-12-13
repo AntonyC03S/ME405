@@ -1,10 +1,9 @@
 /** @page tasks Task Modules
 @brief Overview of the cooperative tasks used in the Romi robot project.
 
-The Romi robot software uses a cooperative real-time scheduler (`cotask`)
-that runs a collection of task functions. Each task receives shared objects
-(`task_share.Share` or `task_share.Queue`) that allow safe communication
-between tasks.
+The Romi robot software uses a cooperative real-time scheduler that runs 
+a collection of task functions. Each task receives shared objects
+that allow safe communication between tasks.
 
 This page provides a detailed description of every task file located in the
 `_Task/` directory.
@@ -16,28 +15,22 @@ This page provides a detailed description of every task file located in the
 The UI task is responsible for starting tests, sending control parameters,
 and selecting operating modes. It interacts with the user through:
 
-### **1. Hardware Button (Pin C13 interrupt)**
-- A falling-edge interrupt calls `button_callback()` and sets a global flag.
+### **1. Hardware Button**
+- A falling-edge interrupt calls and sets a global flag.
 - The task does nothing until the user presses the button once.
 
-### **2. Bluetooth UART Commands (UART1 @ 115200 baud)**  
-Commands include:
-
-- `"c"` — Start a normal run  
-- `"1_KP_KI_KD"` — Provide PID gains and enter a PID tuning mode  
-- `"2_*"` — Alternate operating mode (value stored in `data_sharing`)  
+### **2. Bluetooth UART Commands**    
 
 The task parses incoming UART text lines and updates shares like `Kp`, `Ki`,
 `Kd`, `motor_eff`, `data_sharing`, and `encoder_start`.
 
 ### **State Machine**
 - **State 0 — Idle:**  
-  Waits for the hardware button OR valid Bluetooth command.
+  Waits for the hardware button or valid Bluetooth command.
 - **State 2 — Start:**  
   If `Pid == True`, sets a small effort and enters state 3.  
-  If running a test-sweep, cycles motor effort 0→10→20→... and logs encoder data.
 - **State 3 — Hold:**  
-  Post-start resting state.
+  Post start resting state.
 - **State 4 — Reset:**  
   Stops motors, clears flags, returns to state 3.
 
@@ -52,23 +45,22 @@ This is the central control task of the robot. It creates and manages:
 - Two `Motor` objects  
 - Two wheel-speed PID controllers  
 - A line-following PID controller  
-- A `Line` sensor array (13 reflectance sensors)  
+- A `Line` sensor array  
 - Logic for turns, checkpoints, backing up, and obstacle navigation  
 
 ### **State Machine**
 - **Init:**  
   - Configures timer for 20 kHz PWM  
   - Creates motors and enables them  
-  - Sets up the 13-sensor array  
-  - Initializes shared values (`L_volt`, `R_volt`, etc.)
+  - Sets up the 13- ensor array  
+  - Initializes shared values 
 - **Stop:**  
   Motors are off.  
-  Looks at `motor_eff` and a mode flag (`data_sharing`) to decide:
+  Looks at `motor_eff` and a mode flag to decide:
   - Normal line run  
-  - Time trial (mode 9)  
   - PID tuning  
 - **Running:**  
-  Simple straight-line run using wheel-speed PID correction.
+  Simple straight ine run using wheel speed PID correction.
 - **Line_Running:**  
   Full course logic:  
   - Line following  
@@ -76,15 +68,12 @@ This is the central control task of the robot. It creates and manages:
   - Checkpoints  
   - Turning triggers  
   - Backtracking  
-  - Goal detection (sets `done`)
 - **Backward:**  
   Controlled reverse motion along the line.
 - **Turn:**  
   Spin-in-place turns using IMU heading differences.
 - **PID_Tuning:**  
   Short, controlled PID testing routine.
-- **Time_tial:**  
-  Placeholder for future expansion.
 
 This task is the “brains” of robot movement.
 
@@ -94,15 +83,14 @@ This task is the “brains” of robot movement.
 
 This task reads both wheel encoders and publishes:
 
-- Wheel speeds (`lspeed`, `rspeed`)  
-- Wheel positions (`lpos`, `rpos`)  
-- Motor speed & position copies  
-- Timestamps for logging (`motor_time`)  
+- Wheel speeds  
+- Wheel positions 
+- Timestamps for logging
 
 ### **State Machine**
 - **Init:**  
-  Configures pins C6/C7 for encoder input.  
-  Creates left and right `Encoder` objects (Timer 1 and Timer 8).
+  Configures pins for encoder input.  
+  Creates left and right `Encoder` objects.
 - **Stop:**  
   Waits until `encoder_start == 1`.
 - **Read:**  
@@ -112,8 +100,7 @@ This task reads both wheel encoders and publishes:
   Writes:
   - `velocity` into speed queues  
   - `position` into position queues  
-  - Elapsed time into the `motor_time` queue  
-  Also prints CSV to the console.  
+  - Elapsed time into the `motor_time` queue    
   Loops until `encoder_start` becomes 0.
 
 This task provides sensor data for the motor task, the state estimator,
@@ -149,7 +136,7 @@ Perfect for plotting in MATLAB, Python, or Excel.
 
 @section state_task state_estimation_task.py — State Estimation / Observer Task
 
-Runs a discrete-time observer (`RomiObserver`) combining:
+Runs a discrete time observer combining:
 
 - Left/right motor voltages  
 - Encoder arc lengths  
@@ -158,7 +145,7 @@ Runs a discrete-time observer (`RomiObserver`) combining:
 
 ### **State Machine**
 - **Init:**  
-  - Initializes I2C(2)  
+  - Initializes I2C
   - Loads BNO055 calibration data  
   - Enters NDOF mode  
   - Creates `RomiObserver`
@@ -167,7 +154,6 @@ Runs a discrete-time observer (`RomiObserver`) combining:
   - Reads motor voltages  
   - Reads encoder positions  
   - Reads IMU heading (deg) and yaw rate (deg/s)  
-  - Computes relative heading (`wrap_deg180`)  
   - Runs observer step:  
     `xhat = obs.step(u, SL, SR, psi_rel_deg, yaw_dps)`  
   - Writes:  
@@ -187,9 +173,6 @@ All tasks cooperate through shared variables:
 - **encoder_task** provides wheel motion data  
 - **state_task** fuses encoder + IMU data for cleaner heading/distance  
 - **data_task** logs data for offline analysis  
-
-Together they create a full real-time control architecture suitable for
-line-following, navigation, and tuning.
 
 */
 

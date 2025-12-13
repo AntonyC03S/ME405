@@ -7,20 +7,19 @@ in MicroPython.
 
 The observer estimates the state vector
 
-@f[
-x = \\begin{bmatrix}
-\\omega_L \\\\
-\\omega_R \\\\
-s \\\\
-\\psi
-\\end{bmatrix}
-@f]
+
+x =[
+omega_L 
+omega_R 
+s 
+psi
+]
 
 where:
 
-- @f$ \\omega_L, \\omega_R @f$ are left/right wheel angular speeds
-- @f$ s @f$ is (approximately) the forward arc length / position
-- @f$ \\psi @f$ is the heading (yaw angle, in radians)
+- omega_L, omega_R  are left/right wheel angular speeds
+- s  is the forward arc length / position
+- psi is the heading (yaw angle, in radians)
 """
 
 from ulab import numpy as np
@@ -34,33 +33,30 @@ class RomiObserver:
 
     The observer uses a discrete-time linear model:
 
-    @f[
+    
     x_{k+1} = A_d x_k + B_d u_k + L (y_k - C x_k)
-    @f]
+    
 
     with measurements:
 
-    - @f$ S_L, S_R @f$: left/right encoder arc lengths [m]
-    - @f$ \\psi @f$: IMU heading [rad]
-    - @f$ \\dot{\\psi} @f$: IMU yaw rate [rad/s]
+    -  S_L, S_R : left/right encoder arc lengths [m]
+    - psi: IMU heading [rad]
+    - psi_dot: IMU yaw rate [rad/s]
 
     and state:
 
-    - @f$ x = [\\omega_L, \\omega_R, s, \\psi]^T @f$
+    x = [omega_L, omega_R, s, psi]^T 
     """
 
     def __init__(self, Ad, Bd, r: float = 0.035, l: float = 0.141, L=None):
         """! Initialize the Romi observer.
 
-        @param Ad Discrete-time A matrix (currently unused; internal default is used).
-        @param Bd Discrete-time B matrix (currently unused; internal default is used).
+        @param Ad Discrete-time A matrix.
+        @param Bd Discrete-time B matrix.
         @param r  Wheel radius [m] (default: 0.035).
         @param l  Wheel track width [m] (default: 0.141).
-        @param L  Observer gain matrix (4x4). If None, a default gain is used.
+        @param L  Observer gain matrix (4x4).
 
-        @note Currently, the constructor uses built-in Ad and Bd matrices tuned
-        for a specific sampling period and robot model. The @p Ad and @p Bd
-        parameters are present for future flexibility but are not applied.
         """
         # Discrete-time system matrices (pre-computed offline)
         self.Ad = np.array(
@@ -126,7 +122,7 @@ class RomiObserver:
         @param SR          Right wheel arc length [m] from encoder.
         @param psi_deg     IMU heading [deg].
         @param yawrate_dps IMU yaw rate [deg/s].
-        @return Updated state estimate @f$ x_{k+1} @f$ as a (4x1) array.
+        @return Updated state estimate x_{k+1}  as a (4x1) array.
 
         The method:
         - Converts IMU angles from degrees to radians
@@ -161,7 +157,7 @@ class RomiObserver:
     def outputs_hat(self):
         """! Get estimated outputs based on current state.
 
-        @brief Computes @f$ \\hat{y} = C x @f$.
+        @brief Computes y_hat = C x.
 
         @return Estimated output vector (4x1):
                 [SL_hat, SR_hat, psi_hat, psidot_hat]^T.

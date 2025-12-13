@@ -113,22 +113,17 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p>Discrete-time Romi state observer. </p>
 <p>Estimates robot states from motor commands and sensor feedback.</p>
 <p>The observer uses a discrete-time linear model:</p>
-<p class="formulaDsp">
-<picture><source srcset="form_4_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaDsp" alt="\&zwj;[x_{k+1} = A_d x_k + B_d u_k + L (y_k - C x_k)
-\&zwj;]" src="form_4.png"/></picture>
-</p>
+<p>x_{k+1} = A_d x_k + B_d u_k + L (y_k - C x_k)</p>
 <p>with measurements:</p>
 <ul>
-<li><picture><source srcset="form_5_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ S_L, S_R $" src="form_5.png"/></picture>: left/right encoder arc lengths [m]</li>
-<li><picture><source srcset="form_3_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \\psi $" src="form_3.png"/></picture>: IMU heading [rad]</li>
-<li><picture><source srcset="form_6_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \\dot{\\psi} $" src="form_6.png"/></picture>: IMU yaw rate [rad/s]</li>
+<li>S_L, S_R : left/right encoder arc lengths [m]</li>
+<li>psi: IMU heading [rad]</li>
+<li>psi_dot: IMU yaw rate [rad/s]</li>
 </ul>
 <p>and state:</p>
-<ul>
-<li><picture><source srcset="form_7_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x = [\\omega_L, \\omega_R, s, \\psi]^T $" src="form_7.png"/></picture> </li>
-</ul>
+<p>x = [omega_L, omega_R, s, psi]^T </p>
 
-<p class="definition">Definition at line <a class="el" href="_state___estimation___class_8py_source.html#l00030">30</a> of file <a class="el" href="_state___estimation___class_8py_source.html">State_Estimation_Class.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_state___estimation___class_8py_source.html#l00029">29</a> of file <a class="el" href="_state___estimation___class_8py_source.html">State_Estimation_Class.py</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1df2e9ddf86289efcf0d46b383bb27e4" name="a1df2e9ddf86289efcf0d46b383bb27e4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1df2e9ddf86289efcf0d46b383bb27e4">&#9670;&#160;</a></span>__init__()</h2>
@@ -172,17 +167,16 @@ Public Member Functions</h2></td></tr>
 <p>Initialize the Romi observer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Ad</td><td>Discrete-time A matrix (currently unused; internal default is used). </td></tr>
-    <tr><td class="paramname">Bd</td><td>Discrete-time B matrix (currently unused; internal default is used). </td></tr>
+    <tr><td class="paramname">Ad</td><td>Discrete-time A matrix. </td></tr>
+    <tr><td class="paramname">Bd</td><td>Discrete-time B matrix. </td></tr>
     <tr><td class="paramname">r</td><td>Wheel radius [m] (default: 0.035). </td></tr>
     <tr><td class="paramname">l</td><td>Wheel track width [m] (default: 0.141). </td></tr>
-    <tr><td class="paramname">L</td><td>Observer gain matrix (4x4). If None, a default gain is used.</td></tr>
+    <tr><td class="paramname">L</td><td>Observer gain matrix (4x4). </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>Currently, the constructor uses built-in Ad and Bd matrices tuned for a specific sampling period and robot model. The <code class="param">Ad</code> and <code class="param">Bd</code> parameters are present for future flexibility but are not applied. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_state___estimation___class_8py_source.html#l00052">52</a> of file <a class="el" href="_state___estimation___class_8py_source.html">State_Estimation_Class.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_state___estimation___class_8py_source.html#l00051">51</a> of file <a class="el" href="_state___estimation___class_8py_source.html">State_Estimation_Class.py</a>.</p>
 
 </div>
 </div>
@@ -203,10 +197,10 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get estimated outputs based on current state. </p>
-<p>Computes <picture><source srcset="form_9_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ \\hat{y} = C x $" src="form_9.png"/></picture>.</p>
+<p>Computes y_hat = C x.</p>
 <dl class="section return"><dt>Returns</dt><dd>Estimated output vector (4x1): [SL_hat, SR_hat, psi_hat, psidot_hat]^T. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_state___estimation___class_8py_source.html#l00161">161</a> of file <a class="el" href="_state___estimation___class_8py_source.html">State_Estimation_Class.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_state___estimation___class_8py_source.html#l00157">157</a> of file <a class="el" href="_state___estimation___class_8py_source.html">State_Estimation_Class.py</a>.</p>
 
 </div>
 </div>
@@ -238,7 +232,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <p>This is useful when re-starting an experiment or re-initializing the estimate after a large disturbance. </p>
 
-<p class="definition">Definition at line <a class="el" href="_state___estimation___class_8py_source.html#l00109">109</a> of file <a class="el" href="_state___estimation___class_8py_source.html">State_Estimation_Class.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_state___estimation___class_8py_source.html#l00105">105</a> of file <a class="el" href="_state___estimation___class_8py_source.html">State_Estimation_Class.py</a>.</p>
 
 </div>
 </div>
@@ -260,7 +254,7 @@ Public Member Functions</h2></td></tr>
 <p>Get the current state estimate. </p>
 <dl class="section return"><dt>Returns</dt><dd>State vector x as (4x1) array: [wL, wR, s, psi]^T. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_state___estimation___class_8py_source.html#l00153">153</a> of file <a class="el" href="_state___estimation___class_8py_source.html">State_Estimation_Class.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_state___estimation___class_8py_source.html#l00149">149</a> of file <a class="el" href="_state___estimation___class_8py_source.html">State_Estimation_Class.py</a>.</p>
 
 </div>
 </div>
@@ -315,7 +309,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Updated state estimate <picture><source srcset="form_8_dark.png" media="(prefers-color-scheme: dark)"/><img class="formulaInl" alt="$ x_{k+1} $" src="form_8.png"/></picture> as a (4x1) array.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Updated state estimate x_{k+1} as a (4x1) array.</dd></dl>
 <p>The method:</p><ul>
 <li>Converts IMU angles from degrees to radians</li>
 <li>Forms measurement vector y = [SL, SR, psi, psidot]^T</li>
@@ -323,7 +317,7 @@ Public Member Functions</h2></td></tr>
 <li>Applies observer correction using the gain L </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="_state___estimation___class_8py_source.html#l00119">119</a> of file <a class="el" href="_state___estimation___class_8py_source.html">State_Estimation_Class.py</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_state___estimation___class_8py_source.html#l00115">115</a> of file <a class="el" href="_state___estimation___class_8py_source.html">State_Estimation_Class.py</a>.</p>
 
 </div>
 </div>

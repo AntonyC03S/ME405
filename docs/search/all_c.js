@@ -6,6 +6,5 @@ var searchData=
   ['imu_5fdriver_2epy_3',['imu_driver.py',['../imu__driver_8py.html',1,'']]],
   ['imu_5fmode_4',['IMU_MODE',['../classimu__driver_1_1_i_m_u.html#adbbac92baaa2a18137f0575efa9dec4f',1,'imu_driver::IMU']]],
   ['interaction_20overview_5',['Task Interaction Overview',['../tasks.html#summary',1,'']]],
-  ['interface_20task_6',['UI_Task.py — User Interface Task',['../tasks.html#ui_task',1,'']]],
-  ['interrupt_7',['&lt;b&gt;1. Hardware Button (Pin C13 interrupt)&lt;/b&gt;',['../tasks.html#autotoc_md1',1,'']]]
+  ['interface_20task_6',['UI_Task.py — User Interface Task',['../tasks.html#ui_task',1,'']]]
 ];
